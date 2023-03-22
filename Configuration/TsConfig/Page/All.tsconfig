@@ -1,0 +1,4 @@
+##################
+#### TsConfig ####
+##################
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:ns_wp_migration/Configuration/TsConfig/Page/RTE.tsconfig">

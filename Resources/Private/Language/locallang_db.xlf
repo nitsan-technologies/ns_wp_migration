@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0" xmlns:t3="http://typo3.org/schemas/xliff">
+    <file t3:id="1557352031" source-language="en" datatype="plaintext" original="messages" date="2019-05-08T21:47:12Z" product-name="ns_wp_migration">
+        <header/>
+        <body>
+            <trans-unit id="tx_log_manage" xml:space="preserve">
+                <source>Blog: Tag</source>
+            </trans-unit>
+            <trans-unit id="tx_log_manage.number_of_records" xml:space="preserve">
+                <source>Total Records</source>
+            </trans-unit>
+            <trans-unit id="tx_log_manage.total_success" xml:space="preserve">
+                <source>Inserted Total</source>
+            </trans-unit>
+            <trans-unit id="tx_log_manage.total_fails" xml:space="preserve">
+                <source>Fails Total</source>
+            </trans-unit>
+            <trans-unit id="tx_log_manage.added_by" xml:space="preserve">
+                <source>Added By</source>
+            </trans-unit>
+            <trans-unit id="tx_log_manage.created_date" xml:space="preserve">
+                <source>Created Date</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

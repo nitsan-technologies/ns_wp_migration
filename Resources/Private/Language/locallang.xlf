@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-11-18T13:15:38Z" product-name="ns_wp_migration">
+		<header/>
+		<body>
+			<trans-unit id="import_manager">
+				<source>Import Manager</source>
+			</trans-unit>
+			<trans-unit id="log_manager">
+				<source>Log Manager</source>
+			</trans-unit>
+			<trans-unit id="redirect_rule">
+				<source>301 Rule URL</source>
+			</trans-unit>
+			<trans-unit id="active_url">
+				<source>Active-URL:</source>
+			</trans-unit>
+			<trans-unit id="previous_url">
+				<source>Previous-URL:</source>
+			</trans-unit>
+            <trans-unit id="form.submitButton">
+                <source>Import</source>
+            </trans-unit>
+			<trans-unit id="missing_rule">
+				<source>Missing Items</source>
+			</trans-unit>
+			<trans-unit id="missing_rowno">
+				<source>Row No:</source>
+			</trans-unit>
+			<trans-unit id="missing_column">
+				<source>Column Name:</source>
+			</trans-unit>
+			<trans-unit id="missing_rule_validation">
+				<source>If required items are missing then records are not inserted*</source>
+			</trans-unit>
+        </body>
+    </file>
+</xliff>

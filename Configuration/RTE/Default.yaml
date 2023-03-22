@@ -1,0 +1,75 @@
+imports:
+    - { resource: "EXT:rte_ckeditor/Configuration/RTE/Processing.yaml" }
+    - { resource: "EXT:rte_ckeditor/Configuration/RTE/Editor/Base.yaml" }
+    - { resource: "EXT:rte_ckeditor/Configuration/RTE/Editor/Plugins.yaml" }
+    - { resource: "EXT:rte_ckeditor_image/Configuration/RTE/Plugin.yaml" }
+
+# Add configuration for the editor
+# For complete documentation see http://docs.ckeditor.com/#!/api/CKEDITOR.config
+editor:
+  config:
+    # Available block elements:
+    format_tags: "p;h1;h2;h3;h4;pre;div"
+
+    # Sort buttons:
+    toolbarGroups:
+      - { name: styles }
+      - { name: colors }
+      - { name: cleanup }
+      - { name: basicstyles }
+      - { name: align }
+      - { name: list }
+      - { name: links }
+      - { name: paragraph, groups: [ indent, blocks ] }
+      - { name: insert }
+      - { name: clipboard, groups: [ clipboard, undo ] }
+      - { name: table }
+      - { name: tabletools }
+      - { name: others }
+      - { name: editing, groups: [ find, selection, spellchecker ] }
+      - { name: tools }
+      - { name: mode }
+
+    removeButtons:
+      - Underline
+      - Strike
+      - BGColor
+
+    justifyClasses:
+      - text-left
+      - text-center
+      - text-right
+      - text-justify
+
+    extraPlugins:
+      - justify
+      - specialchar
+      - showblocks
+      - wordcount
+      - colorbutton
+      - find
+
+    removePlugins:
+      - null
+
+    # colorbutton config:
+    colorButton_colorsPerRow: 8
+    colorButton_colors: 'ffd800,ffffff,534c62,4c255b,811e68,439da6'
+
+# Additional processing of tags and attributes
+processing:
+  allowTags:
+    - button,wbr,small
+  HTMLparser_db:
+    noAttrib: wbr
+
+#Button config and defaults
+buttons:
+  link:
+    targetSelector:
+      disabled: false
+    properties:
+      class:
+        allowedClasses: 'btn btn-primary,btn btn-primary btn-lg, btn btn-primary btn-sm, btn btn-secondary,btn btn-secondary btn-lg,btn btn-secondary btn-sm, btn btn-secondary btn--app-chooser,link-smooth-scroll, app-store-badge, google-play-badge'
+      title:
+        readOnly: false

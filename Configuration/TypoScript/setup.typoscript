@@ -1,0 +1,15 @@
+
+# Module configuration
+module.tx_nswpmigration {
+    persistence {
+        storagePid = {$module.tx_nswpmigration.persistence.storagePid}
+    }
+    view {
+        templateRootPaths.0 = EXT:ns_wp_migration/Resources/Private/Backend/Templates/
+        templateRootPaths.1 = {$module.tx_nswpmigration.view.templateRootPath}
+        partialRootPaths.0 = EXT:ns_wp_migration/Resources/Private/Backend/Partials/
+        partialRootPaths.1 = {$module.tx_nswpmigration.view.partialRootPath}
+        layoutRootPaths.0 = EXT:ns_wp_migration/Resources/Private/Backend/Layouts/
+        layoutRootPaths.1 = {$module.tx_nswpmigration.view.layoutRootPath}
+    }
+}
