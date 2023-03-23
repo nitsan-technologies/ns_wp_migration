@@ -13,7 +13,7 @@ One-click Migration from WordPress `Posts` to TYPO3 `EXT:blog Pages`
 
 # Sample Exported `Posts-CSV` from WordPress
 
-You can use this plugin to `Export Posts-CSV` with this WordPress Plugin
+You can use this plugin to `Export Posts-CSV` with this WordPress Plugin https://en-gb.wordpress.org/plugins/jc-importer/
 
 <img width="834" alt="Export Posts-CSV" src="https://user-images.githubusercontent.com/2622317/227136141-840f8882-6cec-4590-9f8d-2089aef79ac2.png">
 
