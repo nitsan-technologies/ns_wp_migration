@@ -33,6 +33,12 @@
 			<trans-unit id="missing_rule_validation">
 				<source>If required items are missing then records are not inserted*</source>
 			</trans-unit>
+			<trans-unit id="storageId.require">
+				<source>Please provide a storage ID</source>
+			</trans-unit>
+			<trans-unit id="import.success">
+				<source>Data import Successfully please check the logs for more informations.</source>
+			</trans-unit>
         </body>
     </file>
 </xliff>

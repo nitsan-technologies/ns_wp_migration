@@ -28,6 +28,7 @@ use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\MathUtility;
 use TYPO3\CMS\Frontend\Configuration\TypoScript\ConditionMatching\ConditionMatcher;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /**
  * TSParser extension class to TemplateService
@@ -327,6 +328,7 @@ class ExtendedTemplateService extends TemplateService
      */
     public function generateConfig_constants()
     {
+        $_POST['data'] = isset($_POST['data']) ? $_POST['data'] : '';
         if ($_POST['data']) {
             foreach ($_POST['data'] as $key => $v) {
                 if (is_array($v)) {
@@ -932,8 +934,8 @@ class ExtendedTemplateService extends TemplateService
                 continue;
             }
             $counter++;
-            $comment = trim($this->flatSetup[$const . '..']);
-            $c_arr = explode(LF, $comment);
+            $comment = trim((string)$this->flatSetup[$const . '..']);
+            $c_arr = explode(LF, (string)$comment);
             foreach ($c_arr as $k => $v) {
                 $line = trim(preg_replace('/^[#\\/]*/', '', $v));
                 if (!$line) {
@@ -962,6 +964,7 @@ class ExtendedTemplateService extends TemplateService
                                 if ($catSplit[1] && isset($this->subCategories[$catSplit[1]])) {
                                     $editableComments[$const]['subcat_name'] = $catSplit[1];
                                     $orderIdentifier = isset($catSplit[2]) ? trim($catSplit[2]) : $counter;
+                                    $this->subCategories[$catSplit[1]][1] = isset($this->subCategories[$catSplit[1]][1]) ? $this->subCategories[$catSplit[1]][1] : '';
                                     $editableComments[$const]['subcat'] = $this->subCategories[$catSplit[1]][1]
                                         . '/' . $catSplit[1] . '/' . $orderIdentifier . 'z';
                                 } elseif (isset($catSplit[2])) {
@@ -1059,6 +1062,7 @@ class ExtendedTemplateService extends TemplateService
                 $p = trim(substr($type, $m));
                 $reg = [];
                 preg_match('/\\[(.*)\\]/', $p, $reg);
+                $reg[1] = isset($reg[1]) ? $reg[1] : '';
                 $p = trim($reg[1]);
                 if ($p) {
                     $retArr['paramstr'] = $p;
@@ -1119,6 +1123,7 @@ class ExtendedTemplateService extends TemplateService
         reset($theConstants);
         $output = '';
         $subcat = '';
+        $this->categories[$category] = isset($this->categories[$category]) ? $this->categories[$category] : '';
         if (is_array($this->categories[$category])) {
             if (!$this->doNotSortCategoriesBeforeMakingForm) {
                 asort($this->categories[$category]);
@@ -1131,11 +1136,12 @@ class ExtendedTemplateService extends TemplateService
                         $subcat = $params['subcat_name'];
                         $subcat_name = $params['subcat_name'] ? $this->subCategories[$params['subcat_name']][0] : 'Others';
                         if ($i == 0) {
-                            $output .= '<div class="card"><div class="card-header"><h5>' . $subcat_name . '</h5></div><div class="card-body">';
+                            $output .= '<div class="card custom-card"><div class="card-header"><h5>' . $subcat_name . '</h5><button class="btn btn-primary" name="_savedok" form="TypoScriptTemplateModuleController">'.LocalizationUtility::translate('save','ns_feedback').'</button><input type="hidden" name="_savedok" value="1"></div><div class="card-body">';
                         } else {
-                            $output .= '</div></div><div class="card"><div class="card-header"><h5>' . $subcat_name . '</h5></div><div class="card-body">';
+                            $output .= '</div></div><div class="card custom-card"><div class="card-header"><h5>' . $subcat_name . '</h5><button class="btn btn-primary" name="_savedok" form="TypoScriptTemplateModuleController">'.LocalizationUtility::translate('save','ns_feedback').'</button><input type="hidden" name="_savedok" value="1"></div><div class="card-body">';
                         }
                     }
+                    $params['label'] = isset($params['label']) ? $params['label'] : '';
                     $label = $this->getLanguageService()->sL($params['label']);
                     $label_parts = explode(':', $label, 2);
                     if (count($label_parts) === 2) {
@@ -1153,10 +1159,12 @@ class ExtendedTemplateService extends TemplateService
 
                     $idName = htmlspecialchars($idName);
                     $hint = '';
+                    $dV = $params['default_value'];
                     switch ($typeDat['type']) {
                         case 'int':
                         case 'int+':
                             $additionalAttributes = '';
+                            $typeDat['paramstr'] = isset($typeDat['paramstr']) ? $typeDat['paramstr'] : "";
                             if ($typeDat['paramstr']) {
                                 $hint = ' Range: ' . $typeDat['paramstr'];
                             } elseif ($typeDat['type'] === 'int+') {
@@ -1172,14 +1180,28 @@ class ExtendedTemplateService extends TemplateService
                             if (isset($typeDat['max'])) {
                                 $additionalAttributes .= ' max="' . (int)$typeDat['max'] . '" ';
                             }
-
-                            $p_field =
-                                '<input class="form-control" id="' . $idName . '" type="number"'
-                                . ' name="' . $fN . '" value="' . $fV . '"' . ' onChange="uFormUrl(' . $aname . ')"' . $additionalAttributes . ' />';
+                            $dV = isset($dV) ? $dV : ''; 
+                            $p_field ='<div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text custom-reset" data-id="' . $idName . '" id="basic-' . $idName . '">
+                                        <i aria-hidden="true" class="fa fa-repeat"></i>
+                                    </span>
+                                </div>
+                                <input class="form-control" id="' . $idName . '" type="number"'
+                                . ' name="' . $fN . '" value="' . $fV . '"' . ' data-value="' . $dV . '"  aria-describedby="basic-' . $idName . '" onChange="uFormUrl(' . $aname . ')"' . $additionalAttributes . ' />
+                            </div>';
                             break;
                         case 'color':
+                            $dV = isset($dV) ? $dV : '';
                             $p_field = '<div class="ns-ext-color-pick-wrap d-flex align-items-center">
-                                            <input class="" type="color" id="input-' . $idName . '" rel="' . $idName . '" name="' . $fN . '" value="' . $fV . '" />
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text custom-reset" data-id="' . $idName . '" id="basic-' . $idName . '">
+                                                        <i aria-hidden="true" class="fa fa-repeat"></i>
+                                                    </span>
+                                                </div>
+                                                <input class="form-control" type="color" id="' . $idName . '" rel="' . $idName . '" name="' . $fN . '" value="' . $fV . '" data-value="' . $dV . '"  aria-describedby="basic-' . $idName . '"/>
+                                            </div>
                                         </div>';
 
                             if (empty($this->inlineJavaScript[$typeDat['type']])) {
@@ -1242,6 +1264,7 @@ class ExtendedTemplateService extends TemplateService
                             }
                             break;
                         case 'boolean':
+                            $typeDat['paramstr'] = isset($typeDat['paramstr']) ? $typeDat['paramstr'] : '';
                             $sel = $fV ? 'checked' : '';
                             $p_field =
                                 '<input type="hidden" name="' . $fN . '" value="0" />'
@@ -1285,8 +1308,15 @@ class ExtendedTemplateService extends TemplateService
                             $output .= '<hr />';
                             break;
                         default:
-                            $p_field = '<input class="form-control" id="' . $idName . '" type="text" name="' . $fN . '" value="' . $fV . '"'
-                                . '/>';
+                        $dV = isset($dV) ? $dV : '';
+                        $p_field = '<div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text custom-reset" data-id="' . $idName . '" id="basic-' . $idName . '">
+                                <i aria-hidden="true" class="fa fa-repeat"></i>
+                            </span>
+                        </div>
+                        <input class="form-control" id="' . $idName . '" type="text" name="' . $fN . '" value="' . $fV . '" data-value="' . $dV . '" aria-describedby="basic-' . $idName . '" />
+                    </div>';
                     }
                     // Define default names and IDs
                     $checkboxName = 'check[' . $params['name'] . ']';
@@ -1349,7 +1379,7 @@ class ExtendedTemplateService extends TemplateService
     {
         // This runs through the lines of the constants-field of the active template and registers the constants-names
         // and line positions in an array, $this->objReg
-        $this->raw = explode(LF, $constants);
+        $this->raw = explode(LF, (string)$constants);
         $this->rawP = 0;
         // Resetting the objReg if the divider is found!!
         $this->objReg = [];
@@ -1473,6 +1503,14 @@ class ExtendedTemplateService extends TemplateService
      */
     public function ext_procesInput($http_post_vars, $http_post_files, $theConstants, $tplRow)
     {
+        $http_post_vars['data'] = isset($http_post_vars['data']) ? $http_post_vars['data'] : '';
+        $http_post_vars['check'] = isset($http_post_vars['check']) ? $http_post_vars['check'] : '';
+        $http_post_vars['Wdata'] = isset($http_post_vars['Wdata']) ? $http_post_vars['Wdata'] : '';
+        $http_post_vars['W2data'] = isset($http_post_vars['W2data']) ? $http_post_vars['W2data'] : '';
+        $http_post_vars['W3data'] = isset($http_post_vars['W3data']) ? $http_post_vars['W3data'] : '';
+        $http_post_vars['W4data'] = isset($http_post_vars['W4data']) ? $http_post_vars['W4data'] : '';
+        $http_post_vars['W5data'] = isset($http_post_vars['W5data']) ? $http_post_vars['W5data'] : '';
+
         $data = $http_post_vars['data'];
         $check = $http_post_vars['check'];
         $Wdata = $http_post_vars['Wdata'];
@@ -1488,7 +1526,7 @@ class ExtendedTemplateService extends TemplateService
                         // Exploding with linebreak, just to make sure that no multiline input is given!
                         $typeDat = $this->ext_getTypeData($theConstants[$key]['type']);
                         if ($typeDat['type'] != 'textarea') {
-                            list($var) = explode(LF, $var);
+                            list($var) = explode(LF, (string)$var);
                         }
 
                         switch ($typeDat['type']) {
@@ -1553,6 +1591,7 @@ class ExtendedTemplateService extends TemplateService
                                 break;
                             case 'boolean':
                                 if ($var) {
+                                    $typeDat['paramstr'] = isset($typeDat['paramstr']) ? $typeDat['paramstr'] : '';
                                     $var = $typeDat['paramstr'] ? $typeDat['paramstr'] : 1;
                                 }
                                 break;
