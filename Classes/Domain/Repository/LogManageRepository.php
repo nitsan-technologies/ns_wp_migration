@@ -10,8 +10,10 @@ declare(strict_types = 1);
 
 namespace NITSAN\NsWpMigration\Domain\Repository;
 
-use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Extbase\Persistence\Repository;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**
  * Class LogManageRepository.
@@ -23,5 +25,19 @@ class LogManageRepository extends Repository
         $this->defaultOrderings = [
             'uid' => QueryInterface::ORDER_ASCENDING,
         ];
+    }
+
+    public function getAllLogs() {
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_nswpmigration_domain_model_logmanage');
+        $data = $queryBuilder
+            ->select('*')
+            ->from('tx_nswpmigration_domain_model_logmanage')
+            ->where(
+                $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0))
+            )
+            ->orderBy('uid', 'DESC')
+            ->execute()
+            ->fetchAll();
+        return $data;
     }
 }

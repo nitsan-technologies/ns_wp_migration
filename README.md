@@ -1,6 +1,6 @@
 # ns_wp_migration
 
-One-click Migration from WordPress `Posts` to TYPO3 `EXT:blog Pages`
+One-click Migration from WordPress `Posts` to TYPO3 `EXT:blog Pages` and `Ext:news posts`
 
 # Backend Module `WP Migration`
 
@@ -21,5 +21,6 @@ You can use this plugin to `Export Posts-CSV` with this WordPress Plugin https:/
 
 - Auto-migration from WP `Posts` to T3 `Standard Pages`
 - Auto-migration from WP `Posts` to T3 `EXT:news Records`
+- Auto-migration from WP `Posts` to T3 `EXT:blogs Records`
 - Auto-migration from WP `Categories` to T3 `System Categories`
-- Auto-migration from WP `Comments` to T3 `EXT:news_news_comments Records`
+- Auto-migration from WP `Author` to T3 `EXT:blogs and EXT: md_news_author Records`

@@ -122,4 +122,10 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             ->executeStatement();
         return $affectedRows;
     }
+
+    public function assignAuthorToNews($data) {
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_mdnewsauthor_news_newsauthor_mm');
+        $queryBuilder->insert('tx_mdnewsauthor_news_newsauthor_mm')->values($data)->executeStatement();
+        return true;
+    }
 }

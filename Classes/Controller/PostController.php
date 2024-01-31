@@ -89,7 +89,6 @@ class PostController extends AbstractController
             $assign['redirect'] = $_SESSION['redirect'];
             $assign['missing'] = $_SESSION['missing'];
         }
-
         $this->view->assignMultiple($assign);
     }
 
@@ -149,6 +148,7 @@ class PostController extends AbstractController
      */
     function storeData(array $data, string $dockType, int $storageId): array
     {
+        
         $response = [];
         try {
             if ($dockType == 'news') { 
@@ -180,45 +180,65 @@ class PostController extends AbstractController
             $numberOfRecords = count($data);
             $success = 0;
             $fails = 0;
+            $updatedRecords = 0;
+            $added_by = $GLOBALS['BE_USER']->user['uid'];
+            $logManager = GeneralUtility::makeInstance(LogManage::class);
             foreach ($data as $newItems) {
                 if($newItems['post_title']) {
                     // validate news items first
                     $dataItems = $newItems['post_content'];
                     $newsArticle = GeneralUtility::makeInstance(News::class);
+                    
                     if($this->contentRepository->findNewsBySlug($newItems['post_name'])) {
                         $newsId = $this->contentRepository->findNewsBySlug($newItems['post_name']);
                         $newsArticle = $this->newsPostRepository->findByUid($newsId);
                     }
+                    
                     $newsArticle->setTitle($newItems['post_title']);
                     $newsArticle->setPid($storageId);
+                    $newsArticle->setType(0);
                     $newsArticle->setDescription($newItems['post_excerpt']);
                     $newsArticle->setBodytext($dataItems);
                     $newsArticle->setPathSegment($newItems['post_name']);
-                    $newsArticle->setDatetime(strtotime($newItems['post_date'])); // issue regarding to truncate data
+                    $postDate = explode(" ", $newItems['post_date']);
+                    if(isset($postDate[0])){
+                        $date = \DateTime::createFromFormat('d/m/y', $postDate[0]);
+                        $formattedDate = $date->format('Y-m-d');
+                        $datetime = new \DateTime($formattedDate);
+                        $newsArticle->setDatetime($datetime); // issue regarding to truncate data
+                    }
                     $newsArticle->setPathSegment($newItems['post_name']);
-                    if($this->contentRepository->findNewsBySlug($newItems['post_name'])) { 
-                        $this->newsPostRepository->add($newsArticle);
-                    } else {
+                    if($this->contentRepository->findNewsBySlug($newItems['post_name'])) {
                         $this->newsPostRepository->update($newsArticle);
+                        $updatedRecords++;
+                    } else {
+                        $this->newsPostRepository->add($newsArticle);
+                        $success++;
                     }
                     $this->persistenceManager->persistAll();
                     $recordId = $newsArticle->getUid();
-                    if($newItems['tax_category.name']) {
+                    if(isset($newItems['tax_category.name']) && !empty($newItems['tax_category.name'])) {
                         $categories = GeneralUtility::trimExplode(',', $newItems['tax_category.name']);
                         $this->categoryRepository->updateNewsCategoriesCounts($recordId, count($categories));
                         $categories = $this->insertCategories($categories, $storageId, $recordId, 'tx_news_domain_model_news', 1);
                     }
 
-                    if(isset($newItems['author.user_email'])) {
-                        $this->manageAuthorInformation('news', $recordId, $newItems);
+                    if(isset($newItems['author.user_email']) && !empty($newItems['author.user_email'])) {
+                        $this->manageAuthorInformation('news', $recordId, $newItems, $storageId);
                     }
-                    $success++;
                 } else {
-                    // write log for missing value of title
                     $fails++;
                 }
-                    
             }
+
+            $logManager->setPid($storageId);
+            $logManager->setNumberOfRecords($numberOfRecords);
+            $logManager->setTotalSuccess($success);
+            $logManager->setTotalFails($fails);
+            $logManager->setTotalUpdate($updatedRecords);
+            $logManager->setAddedBy($added_by);
+            $this->logManageRepository->add($logManager);
+            $this->persistenceManager->persistAll();
         }
 
         $massage = LocalizationUtility::translate('import.success', 'ns_wp_migration');
@@ -237,8 +257,11 @@ class PostController extends AbstractController
     public function createPagesAndBlog(array $data, int $storageId, $dockType): array
     {
         $response = [];
+        $numberOfRecords = count($data);
         $success = 0;
         $fails = 0;
+        $updatedRecords = 0;
+        $added_by = $GLOBALS['BE_USER']->user['uid'];
         foreach ($data as $pageItem) {
             // Validate Pages Items First
             if($pageItem['post_title']) {
@@ -255,20 +278,27 @@ class PostController extends AbstractController
 
                 if($dockType == 'blog') {
                     $pageData['doktype'] = 137;
-                    $pageData['publish_date'] = strtotime($pageItem['post_date']);
-                    $pageData['crdate_month'] = date('m', strtotime($pageItem['post_date']));
-                    $pageData['crdate_year'] = date('Y', strtotime($pageItem['post_date']));
+                    $postDate = explode(" ", $pageItem['post_date']);
+                    if(isset($postDate[0])){
+                        $date = \DateTime::createFromFormat('d/m/y', $postDate[0]);
+                        $formattedDate = $date->format('Y-m-d');
+                        $pageData['publish_date'] = strtotime($formattedDate);
+                        $pageData['crdate_month'] = date('m', strtotime($formattedDate));
+                        $pageData['crdate_year'] = date('Y', strtotime($formattedDate));
+                    }
                 }
-
+                
                 if($this->contentRepository->findPageBySlug('/'.$pageItem['post_name'])) {
                     $recordId = $this->contentRepository->findPageBySlug('/'.$pageItem['post_name']);
                     $this->contentRepository->updatePageRecord($pageData, $recordId);
+                    $updatedRecords++;
                 } else {
                     $recordId = $this->contentRepository->createPageRecord($pageData);
+                    $success++;
                 }
-
+                
                 // post content crete
-                if (isset($pageItem['post_content'])) {
+                if (isset($pageItem['post_content']) && !empty($pageItem['post_content'])) {
                     $contentElements = ['pid' => $recordId,
                                         'hidden' => 0,
                                         'tstamp' => time(),
@@ -279,9 +309,9 @@ class PostController extends AbstractController
                                         'sectionIndex' => 1];
                     $this->contentRepository->insertContnetElements($contentElements);
                 }
-
+                
                 // Category add and Map
-                if($pageItem['tax_category.name']) {
+                if(isset($pageItem['tax_category.name']) && !empty($pageItem['tax_category.name'])) {
                     $categories = GeneralUtility::trimExplode(',', $pageItem['tax_category.name']);
                     $this->categoryRepository->updateBlogCategoriesCounts($recordId, count($categories));
                     if($dockType == 'blog') {
@@ -290,18 +320,25 @@ class PostController extends AbstractController
                         $categories = $this->insertCategories($categories, $storageId, $recordId, 'pages', 1);
                     }
                 }
-
+                
                 if($dockType == 'blog') { 
                     if(isset($pageItem['author.user_email'])) {
-                        $this->manageAuthorInformation($dockType, $recordId, $pageItem);
+                        $this->manageAuthorInformation($dockType, $recordId, $pageItem, $storageId);
                     }
                 }
-                $success++;
             } else {
-                // write log for missing value of title
                 $fails++;
             }
         }
+        $logManager = GeneralUtility::makeInstance(LogManage::class);
+        $logManager->setPid($storageId);
+        $logManager->setNumberOfRecords($numberOfRecords);
+        $logManager->setTotalSuccess($success);
+        $logManager->setTotalFails($fails);
+        $logManager->setTotalUpdate($updatedRecords);
+        $logManager->setAddedBy($added_by);
+        $this->logManageRepository->add($logManager);
+        $this->persistenceManager->persistAll();
         
         $massage = LocalizationUtility::translate('import.success', 'ns_wp_migration');
         $response['message'] = $massage;
@@ -350,17 +387,7 @@ class PostController extends AbstractController
      */
     public function logmanagerAction()
     {
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_log_manage');
-        $data = $queryBuilder
-            ->select('*')
-            ->from('tx_log_manage')
-            ->where(
-                $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0))
-            )
-            ->orderBy('uid', 'DESC')
-            ->execute()
-            ->fetchAll();
-
+        $data = $this->logManageRepository->getAllLogs();
         $assign = [
             'action' => 'logmanager',
             'constant' => $this->constants,
@@ -424,10 +451,12 @@ class PostController extends AbstractController
      * @param string $record_type
      * @param int $record_id
      */
-    function manageAuthorInformation($record_type, $record_id, $data) {
+    function manageAuthorInformation($record_type, $record_id, $data, $storageId) {
+        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($record_type, __FILE__.''.__LINE__);die;
         if($record_type == 'blog') {
             if (isset($data['author.user_email']) && !empty($data['author.user_email'])) {
                 $author = $this->contentRepository->findAuthorByEmail($data['author.user_email']);
+                \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($author, __FILE__.''.__LINE__);die;
                 if($author) {
                     $authorInfo = $this->authorRepository->findByUid($author);
                     $blogs = $this->blogPostRepository->findByUid($record_id);
@@ -439,19 +468,20 @@ class PostController extends AbstractController
                 } else {
                     // Fresh author 
                     $authorInfo = GeneralUtility::makeInstance(Author::class);
-                    if(isset($data['author.display_name'])) {
+                    if(isset($data['author.display_name']) && !empty($data['author.display_name'])) {
                         $authorInfo->setName($data['author.display_name']);
                         $authorInfo->setSlug(str_replace(" ", "-", strtolower($data['author.display_name'])));
                     }
-                    if(isset($data['author.user_email'])) {
+                    if(isset($data['author.user_email']) && !empty($data['author.user_email'])) {
                         $authorInfo->setEmail($data['author.user_email']);
                     }
-                    if(isset($data['author.user_nicename'])) {
+                    if(isset($data['author.user_nicename']) && !empty($data['author.user_nicename'])) {
                         $authorInfo->setName($data['author.user_nicename']);
                     }
+                    \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($authorInfo, __FILE__.''.__LINE__);die;
                     $blogs = $this->blogPostRepository->findByUid($record_id);
                     if ($blogs) {
-                        $authorInfo->setPosts($blogs);
+                        $authorInfo->addPost($blogs);
                     }
                     $this->authorRepository->add($authorInfo);
                     $this->persistenceManager->persistAll();
@@ -462,31 +492,36 @@ class PostController extends AbstractController
             if(isset($data['author.user_email']) && !empty($data['author.user_email'])) {
                 $newsAuthor = $this->contentRepository->findAuthorByNewsEmail($data['author.user_email']);
                 if($newsAuthor) {
-                    $newsAuthorInfo = $this->newsAuthorRepository->findByUid($newsAuthor);
-                    $blogs = $this->blogPostRepository->findByUid($record_id);
-                    if ($blogs) {
-                        $newsAuthorInfo->setPosts($blogs);
-                        $this->authorRepository->update($newsAuthorInfo);
-                        $this->persistenceManager->persistAll();
+                    $news = $this->newsPostRepository->findByUid($record_id);
+                    if ($news) {
+                        $authorRelation = ['uid_local' => $record_id , 'uid_foreign' => $newsAuthor];
+                        $this->contentRepository->assignAuthorToNews($authorRelation);
                     }
                 } else {
+
                     $newsAuthor = GeneralUtility::makeInstance(NewsAuthor::class);
-                    if(isset($data['author.display_name'])) {
+                    $newsAuthor->setPid($storageId);
+                    if(isset($data['author.display_name']) && !empty($data['author.display_name'])) {
                         $newsAuthor->setFirstname($data['author.display_name']);
                         $newsAuthor->setSlug(str_replace(" ", "-", strtolower($data['author.display_name'])));
                     }
-                    if(isset($data['author.user_email'])) {
+
+                    if(isset($data['author.user_email']) && !empty($data['author.user_email'])) {
                         $newsAuthor->setEmail($data['author.user_email']);
                     }
-                    if(isset($data['author.user_nicename'])) {
+
+                    if(isset($data['author.user_nicename']) && !empty($data['author.user_nicename'])) {
                         $newsAuthor->setLastname($data['author.user_nicename']);
                     }
-                    $blogs = $this->blogPostRepository->findByUid($record_id);
-                    if ($blogs) {
-                        $newsAuthor->setNews($blogs);
-                    }
-                    $this->authorRepository->add($newsAuthor);
+
+                    $news = $this->newsPostRepository->findByUid($record_id);
+                    $this->newsAuthorRepository->add($newsAuthor);
                     $this->persistenceManager->persistAll();
+                    if ($news) {
+                        $authorRelation = ['uid_local' => $record_id , 'uid_foreign' => $newsAuthor->getUid()];
+                        $this->contentRepository->assignAuthorToNews($authorRelation);
+                    }
+
                 }
             }
         }

@@ -6,9 +6,9 @@ CREATE TABLE pages (
 );
 
 #
-# Table structure for table 'tx_log_manage'
+# Table structure for table 'tx_nswpmigration_domain_model_logmanage'
 #
-CREATE TABLE tx_log_manage (
+CREATE TABLE tx_nswpmigration_domain_model_logmanage (
   pid int(11) DEFAULT '0' NOT NULL,
   number_of_records int(11) DEFAULT '0' NOT NULL,
   total_success int(11) DEFAULT '0' NOT NULL,

@@ -86,6 +86,14 @@ return [
                 'eval' => 'required,trim',
             ]
         ],
+        'total_update' => [
+            'label' => $ll . 'tx_log_manage.total_update',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'required,trim',
+            ]
+        ],
         'added_by' => [
             'label' => $ll . 'tx_log_manage.added_by',
             'config' => [
@@ -96,6 +104,12 @@ return [
         ],
         'redirect_json' => [
             'label' => $ll. 'tx_log_manage.added_by',
+            'config' => [
+                'type' => 'text'
+            ]
+         ],
+        'records_log' => [
+            'label' => $ll. 'tx_log_manage.records_log',
             'config' => [
                 'type' => 'text'
             ]

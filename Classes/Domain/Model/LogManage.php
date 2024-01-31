@@ -48,6 +48,8 @@ class LogManage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
      */
     protected $addedBy = 0;
+    protected $totalUpdate = 0;
+    protected $recordsLog = '';
 
     /**
      * createdDate
@@ -119,6 +121,27 @@ class LogManage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
+     * Returns the totalUpdate
+     *
+     * @return int $totalUpdate
+     */
+    public function getTotalUpdate()
+    {
+        return $this->totalUpdate;
+    }
+
+    /**
+     * Sets the totalUpdate
+     *
+     * @param int $totalUpdate
+     * @return void
+     */
+    public function setTotalUpdate($totalUpdate)
+    {
+        $this->totalUpdate = $totalUpdate;
+    }
+
+    /**
      * Returns the addedBy
      *
      * @return int $addedBy
@@ -156,5 +179,26 @@ class LogManage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->createdDate = $createdDate;
         return $this;
+    }
+
+    /**
+     * Returns the recordsLog
+     *
+     * @return string $recordsLog
+     */
+    public function getRecordsLog()
+    {
+        return $this->recordsLog;
+    }
+
+    /**
+     * Sets the recordsLog
+     *
+     * @param string $recordsLog
+     * @return void
+     */
+    public function setRecordsLog($recordsLog)
+    {
+        $this->recordsLog = $recordsLog;
     }
 }
