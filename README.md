@@ -2,6 +2,13 @@
 
 One-click Migration from WordPress `Posts` to TYPO3 `EXT:blog Pages` and `Ext:news posts`
 
+# Pre-Require for Extension
+- TYPO3 V11
+- PHP ^8.0
+- EXT: news (https://extensions.typo3.org/extension/news)
+- EXT: md_news_author (https://extensions.typo3.org/extension/md_news_author)
+- EXT: blog (https://extensions.typo3.org/extension/blog)
+
 # Backend Module `WP Migration`
 
 - Step 1. Install `ns_wp_migration` extension.
