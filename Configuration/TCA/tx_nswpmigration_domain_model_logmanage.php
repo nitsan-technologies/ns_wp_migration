@@ -97,10 +97,14 @@ return [
         'added_by' => [
             'label' => $ll . 'tx_log_manage.added_by',
             'config' => [
-                'type' => 'input',
-                'size' => 30,
-                'eval' => 'required,trim',
-            ]
+                'type' => 'select',
+                'renderType' => 'selectMultipleSideBySide',
+                'foreign_table' => 'be_users',
+                'MM' => 'tx_nswpmigration_domain_model_logmanage_mm',
+                'size' => 10,
+                'autoSizeMax' => 30,
+                'maxitems' => 99
+            ],
         ],
         'redirect_json' => [
             'label' => $ll. 'tx_log_manage.added_by',
@@ -118,8 +122,8 @@ return [
             'label' => $ll . 'tx_log_manage.created_date',
             'config' => [
                 'type' => 'input',
-                'size' => 30,
-                'eval' => 'required,trim',
+                'renderType' => 'inputDateTime',
+                'eval' => 'datetime',
             ]
         ],
         

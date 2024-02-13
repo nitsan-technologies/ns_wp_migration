@@ -15,6 +15,9 @@
             <trans-unit id="tx_log_manage.total_fails" xml:space="preserve">
                 <source>Fails Total</source>
             </trans-unit>
+            <trans-unit id="tx_log_manage.total_update" xml:space="preserve">
+                <source>Total Updated</source>
+            </trans-unit>
             <trans-unit id="tx_log_manage.added_by" xml:space="preserve">
                 <source>Added By</source>
             </trans-unit>

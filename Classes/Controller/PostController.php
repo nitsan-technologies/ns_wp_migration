@@ -2,7 +2,6 @@
 namespace NITSAN\NsWpMigration\Controller;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use T3G\AgencyPack\Blog\Domain\Model\Post;
 use GeorgRinger\News\Domain\Model\News;
@@ -10,7 +9,6 @@ use TYPO3\CMS\Core\Domain\Repository\PageRepository;
 use T3G\AgencyPack\Blog\Domain\Repository\PostRepository;
 use GeorgRinger\News\Domain\Repository\NewsRepository;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
-use TYPO3\CMS\Core\Html\HtmlParser;
 use NITSAN\NsWpMigration\Domain\Repository\CategoryRepository;
 use NITSAN\NsWpMigration\Domain\Repository\ContentRepository;
 use T3G\AgencyPack\Blog\Domain\Model\Author;
@@ -19,8 +17,15 @@ use Mediadreams\MdNewsAuthor\Domain\Model\NewsAuthor;
 use Mediadreams\MdNewsAuthor\Domain\Repository\NewsAuthorRepository;
 use NITSAN\NsWpMigration\Domain\Repository\LogManageRepository;
 use NITSAN\NsWpMigration\Domain\Model\LogManage;
-
+use TYPO3\CMS\Beuser\Domain\Repository\BackendUserRepository;
+use TYPO3\CMS\Core\Resource\ResourceFactory;
+use GeorgRinger\News\Domain\Model\Tag as NewsTag;
+use GeorgRinger\News\Domain\Repository\TagRepository;
+use T3G\AgencyPack\Blog\Domain\Model\Tag as BlogTag;
+use T3G\AgencyPack\Blog\Domain\Repository\TagRepository as blogTagRepository;
 use DOMDocument;
+use HTMLPurifier;
+use HTMLPurifier_Config;
 
 /***
  *
@@ -48,6 +53,9 @@ class PostController extends AbstractController
     protected ?AuthorRepository $authorRepository = null;
     protected ?NewsAuthorRepository $newsAuthorRepository = null;
     protected ?LogManageRepository $logManageRepository = null;
+    protected ?BackendUserRepository $backendUserRepository = null;
+    protected ?TagRepository $newsTagRepository = null;
+    protected ?blogTagRepository $blogTagRepository = null;
 
     public function __construct(
         Post $blogPost,
@@ -59,7 +67,10 @@ class PostController extends AbstractController
         ContentRepository $contentRepository,
         AuthorRepository $authorRepository,
         NewsAuthorRepository $newsAuthorRepository,
-        LogManageRepository $logManageRepository
+        LogManageRepository $logManageRepository,
+        BackendUserRepository $backendUserRepository,
+        TagRepository $newsTagRepository,
+        blogTagRepository $blogTagRepository
     ) {
         $this->blogPost = $blogPost;
         $this->newsPost = $newsPost;
@@ -71,6 +82,9 @@ class PostController extends AbstractController
         $this->authorRepository = $authorRepository;
         $this->newsAuthorRepository = $newsAuthorRepository;
         $this->logManageRepository = $logManageRepository;
+        $this->backendUserRepository = $backendUserRepository;
+        $this->newsTagRepository = $newsTagRepository;
+        $this->blogTagRepository = $blogTagRepository;
     }
 
     /**
@@ -148,23 +162,13 @@ class PostController extends AbstractController
      */
     function storeData(array $data, string $dockType, int $storageId): array
     {
-        
         $response = [];
-        try {
-            if ($dockType == 'news') { 
-                $response = $this->createNewsArticle($data, $storageId);
-                return $response;
-            } else {
-                $response = $this->createPagesAndBlog($data, $storageId, $dockType);
-                return $response;
-            }
-
-        } catch (\Throwable $th) {
-
-            $response['message'] = $th->getMessage();
-            $response['result'] = false;
+        if ($dockType == 'news') { 
+            $response = $this->createNewsArticle($data, $storageId);
             return $response;
-            
+        } else {
+            $response = $this->createPagesAndBlog($data, $storageId, $dockType);
+            return $response;
         }
     }
 
@@ -181,12 +185,12 @@ class PostController extends AbstractController
             $success = 0;
             $fails = 0;
             $updatedRecords = 0;
-            $added_by = $GLOBALS['BE_USER']->user['uid'];
+            $beUserId = $GLOBALS['BE_USER']->user['uid'];
+            $beUser = $this->backendUserRepository->findByUid($beUserId);
             $logManager = GeneralUtility::makeInstance(LogManage::class);
             foreach ($data as $newItems) {
                 if($newItems['post_title']) {
                     // validate news items first
-                    $dataItems = $newItems['post_content'];
                     $newsArticle = GeneralUtility::makeInstance(News::class);
                     
                     if($this->contentRepository->findNewsBySlug($newItems['post_name'])) {
@@ -198,8 +202,12 @@ class PostController extends AbstractController
                     $newsArticle->setPid($storageId);
                     $newsArticle->setType(0);
                     $newsArticle->setDescription($newItems['post_excerpt']);
-                    $newsArticle->setBodytext($dataItems);
+                    if(isset($newItems['post_content']) && !empty($newItems['post_content'])) {
+                        $htmlContent = $this->processPostContentHtml($newItems);
+                        $newsArticle->setBodytext($htmlContent);
+                    }
                     $newsArticle->setPathSegment($newItems['post_name']);
+                    $newsArticle->setTeaser($newItems['post_excerpt']);
                     $postDate = explode(" ", $newItems['post_date']);
                     if(isset($postDate[0])){
                         $date = \DateTime::createFromFormat('d/m/y', $postDate[0]);
@@ -217,26 +225,40 @@ class PostController extends AbstractController
                     }
                     $this->persistenceManager->persistAll();
                     $recordId = $newsArticle->getUid();
+                    
                     if(isset($newItems['tax_category.name']) && !empty($newItems['tax_category.name'])) {
                         $categories = GeneralUtility::trimExplode(',', $newItems['tax_category.name']);
                         $this->categoryRepository->updateNewsCategoriesCounts($recordId, count($categories));
                         $categories = $this->insertCategories($categories, $storageId, $recordId, 'tx_news_domain_model_news', 1);
                     }
 
+                    if(isset($newItems['tax_post_tag.name']) && !empty($newItems['tax_post_tag.name'])) {
+                        $tagsList = GeneralUtility::trimExplode(',', $newItems['tax_post_tag.name']);
+                        $this->categoryRepository->updateNewsTagsCounts($recordId, count($tagsList));
+                        $this->manageTagsForNews($recordId, $tagsList, $storageId);
+                    }
+
+                    if(isset($newItems['image.url']) && !empty($newItems['image.url'])) { 
+                        $this->manageFeaturedImages($recordId, $newItems['image.url'], 'tx_news_domain_model_news', 'fal_media', $storageId, $beUserId);
+                    }
+
                     if(isset($newItems['author.user_email']) && !empty($newItems['author.user_email'])) {
                         $this->manageAuthorInformation('news', $recordId, $newItems, $storageId);
                     }
+
                 } else {
                     $fails++;
                 }
             }
 
-            $logManager->setPid($storageId);
+            $logManager->setPid(1);
             $logManager->setNumberOfRecords($numberOfRecords);
             $logManager->setTotalSuccess($success);
             $logManager->setTotalFails($fails);
             $logManager->setTotalUpdate($updatedRecords);
-            $logManager->setAddedBy($added_by);
+            $dateTime = new \DateTime(date('Y-m-d'));
+            $logManager->setCreatedDate($dateTime);
+            $logManager->setAddedBy($beUser);
             $this->logManageRepository->add($logManager);
             $this->persistenceManager->persistAll();
         }
@@ -261,7 +283,12 @@ class PostController extends AbstractController
         $success = 0;
         $fails = 0;
         $updatedRecords = 0;
-        $added_by = $GLOBALS['BE_USER']->user['uid'];
+        $beUserId = $GLOBALS['BE_USER']->user['uid'];
+        $beUser = $this->backendUserRepository->findByUid($beUserId);
+        $logManager = GeneralUtility::makeInstance(LogManage::class);
+        $logManager->setPid(1);
+        $logManager->setNumberOfRecords($numberOfRecords);
+        
         foreach ($data as $pageItem) {
             // Validate Pages Items First
             if($pageItem['post_title']) {
@@ -273,7 +300,9 @@ class PostController extends AbstractController
                     'crdate' => strtotime($pageItem['post_date']),
                     'pid' => $storageId,
                     'slug' => '/'.$pageItem['post_name'],
+                    'sys_language_uid' => 0,
                     'doktype' => 1,
+                    'description' => $pageItem['post_excerpt']
                 ];
 
                 if($dockType == 'blog') {
@@ -286,25 +315,40 @@ class PostController extends AbstractController
                         $pageData['crdate_month'] = date('m', strtotime($formattedDate));
                         $pageData['crdate_year'] = date('Y', strtotime($formattedDate));
                     }
+                    if(isset($pageItem['author.user_email'])) {
+                        $pageData['authors'] = 1;
+                    }
                 }
                 
                 if($this->contentRepository->findPageBySlug('/'.$pageItem['post_name'])) {
                     $recordId = $this->contentRepository->findPageBySlug('/'.$pageItem['post_name']);
-                    $this->contentRepository->updatePageRecord($pageData, $recordId);
+                    $recordId = $this->contentRepository->updatePageRecord($pageData, $recordId);
                     $updatedRecords++;
                 } else {
                     $recordId = $this->contentRepository->createPageRecord($pageData);
+                    if($dockType == 'blog') {
+                        if(isset($pageItem['author.user_email'])) {
+                            $this->manageAuthorInformation($dockType, $recordId, $pageItem, $storageId);
+                        }
+                    }
                     $success++;
+                }
+
+                if($dockType == 'blog') {
+                    if(isset($pageItem['author.user_email'])) {
+                        $this->manageAuthorInformation($dockType, $recordId, $pageItem, $storageId);
+                    }
                 }
                 
                 // post content crete
                 if (isset($pageItem['post_content']) && !empty($pageItem['post_content'])) {
+                    $htmlContent = $this->processPostContentHtml($pageItem);
                     $contentElements = ['pid' => $recordId,
                                         'hidden' => 0,
                                         'tstamp' => time(),
                                         'crdate' => time(),
                                         'CType' => 'text',
-                                        'bodytext' => $pageItem['post_content'],
+                                        'bodytext' => $htmlContent,
                                         'colPos' => 0,
                                         'sectionIndex' => 1];
                     $this->contentRepository->insertContnetElements($contentElements);
@@ -320,26 +364,32 @@ class PostController extends AbstractController
                         $categories = $this->insertCategories($categories, $storageId, $recordId, 'pages', 1);
                     }
                 }
-                
-                if($dockType == 'blog') { 
-                    if(isset($pageItem['author.user_email'])) {
-                        $this->manageAuthorInformation($dockType, $recordId, $pageItem, $storageId);
+
+                if($dockType == 'blog') {
+                    if(isset($pageItem['tax_post_tag.name']) && !empty($pageItem['tax_post_tag.name'])) {
+                        $tagsList = GeneralUtility::trimExplode(',', $pageItem['tax_post_tag.name']);
+                        $this->contentRepository->updateBlogsTagsCounts($recordId, count($tagsList));
+                        $this->manageTagsForBlogs($recordId, $tagsList, $storageId);
+                    }
+
+                    if(isset($pageItem['image.url']) && !empty($pageItem['image.url'])) { 
+                        $this->manageFeaturedImages($recordId, $pageItem['image.url'], 'pages', 'featured_image', $storageId, $beUserId);
                     }
                 }
+                
             } else {
                 $fails++;
             }
         }
-        $logManager = GeneralUtility::makeInstance(LogManage::class);
-        $logManager->setPid($storageId);
-        $logManager->setNumberOfRecords($numberOfRecords);
+
         $logManager->setTotalSuccess($success);
         $logManager->setTotalFails($fails);
         $logManager->setTotalUpdate($updatedRecords);
-        $logManager->setAddedBy($added_by);
+        $dateTime = new \DateTime(date('Y-m-d'));
+        $logManager->setCreatedDate($dateTime);
+        $logManager->setAddedBy($beUser);
         $this->logManageRepository->add($logManager);
         $this->persistenceManager->persistAll();
-        
         $massage = LocalizationUtility::translate('import.success', 'ns_wp_migration');
         $response['message'] = $massage;
         $response['result'] = true;
@@ -349,35 +399,52 @@ class PostController extends AbstractController
     /**
      * Process data and return post types array
      * @param array $data
-     * @param int $uid
-     * @return 
+     * @return string
      */
-    function processData(array $data, int $uid): array
+    function processPostContentHtml(array $data): string
     {
-        $contetnElements = array();
+        $doc = new DOMDocument();
+        $config = HTMLPurifier_Config::createDefault();
+        $purifier = new HTMLPurifier($config);
+        $cleanHtml = $purifier->purify($data['post_content']);
+        $htmlString = $cleanHtml;
+        $resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
+        
+        // Create a DOMDocument object
+        $dom = new DOMDocument();
+        // Load HTML content into the DOMDocument
+        $dom->loadHTML($htmlString);
 
-        $parseObj = GeneralUtility::makeInstance(HtmlParser::class);
-        $tags = 'p, h1, h2, h3, h4, h5, h6, div, figure, section';
-        $contentItems = $parseObj->splitIntoBlock($tags, $data['post_content']);
-        foreach ($contentItems as $key => $value) {
-            
+        // Get all image tags in the HTML
+        $imageTags = $dom->getElementsByTagName('img');
+
+        // Loop through each image tag
+        foreach ($imageTags as $img) {
+            // Get the value of the src attribute
+            $src = $img->getAttribute('src');
+            if($src) {
+                $fileName = basename($src);
+                $folder = 'fileadmin/user_upload/';
+                $dstFolder = \TYPO3\CMS\Core\Core\Environment::getPublicPath() .'/'. $folder;
+                if (!file_exists($dstFolder)) {
+                    GeneralUtility::mkdir_deep($dstFolder);
+                }
+                $out = file_get_contents($src);
+                file_put_contents($dstFolder . '/' . $fileName, $out);
+                // Get TYPO3 file storage
+                $fileStorage = $resourceFactory->getDefaultStorage();
+                $folder = $fileStorage->getFolder('user_upload');
+                $fileObject = $fileStorage->getFileInFolder($fileName, $folder);
+                // Get the accessible URL of the file
+                $accessibleUrl = $fileObject->getPublicUrl();
+                $img->setAttribute('src', $accessibleUrl);
+            }
         }
 
-        return $contetnElements;
-    }
+        // Get the modified HTML content
+        $htmlString = $dom->saveHTML();
+        return $htmlString;
 
-    /**
-     * Write logs for missing information about post types
-     * @param array $data
-     * @return bool
-     */
-    function writeLogs(array $data): bool
-    {
-        try {
-            return true;
-        } catch (\Throwable $th) {
-            return false;
-        }
     }
 
     /**
@@ -451,23 +518,17 @@ class PostController extends AbstractController
      * @param string $record_type
      * @param int $record_id
      */
-    function manageAuthorInformation($record_type, $record_id, $data, $storageId) {
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($record_type, __FILE__.''.__LINE__);die;
+    function manageAuthorInformation(string $record_type, int $record_id, $data, $storageId) {
         if($record_type == 'blog') {
             if (isset($data['author.user_email']) && !empty($data['author.user_email'])) {
-                $author = $this->contentRepository->findAuthorByEmail($data['author.user_email']);
-                \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($author, __FILE__.''.__LINE__);die;
+                $author = $this->contentRepository->findAuthorByEmail($data['author.user_email'], $storageId);
                 if($author) {
-                    $authorInfo = $this->authorRepository->findByUid($author);
-                    $blogs = $this->blogPostRepository->findByUid($record_id);
-                    if ($blogs) {
-                        $authorInfo->setPosts($blogs);
-                        $this->authorRepository->update($author);
-                        $this->persistenceManager->persistAll();
-                    }
+                    $mapingData = ['uid_local' => $record_id, 'uid_foreign'=> $author];
+                    $this->contentRepository->assignAuthorToBlogs($mapingData);
                 } else {
                     // Fresh author 
                     $authorInfo = GeneralUtility::makeInstance(Author::class);
+                    $authorInfo->setPid($storageId);
                     if(isset($data['author.display_name']) && !empty($data['author.display_name'])) {
                         $authorInfo->setName($data['author.display_name']);
                         $authorInfo->setSlug(str_replace(" ", "-", strtolower($data['author.display_name'])));
@@ -478,19 +539,22 @@ class PostController extends AbstractController
                     if(isset($data['author.user_nicename']) && !empty($data['author.user_nicename'])) {
                         $authorInfo->setName($data['author.user_nicename']);
                     }
-                    \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($authorInfo, __FILE__.''.__LINE__);die;
                     $blogs = $this->blogPostRepository->findByUid($record_id);
                     if ($blogs) {
                         $authorInfo->addPost($blogs);
                     }
+
                     $this->authorRepository->add($authorInfo);
                     $this->persistenceManager->persistAll();
-                }  
+                    $author = $authorInfo->getUid();
+                    $mapingData = ['uid_local' => $record_id, 'uid_foreign'=> $author];
+                    $this->contentRepository->assignAuthorToBlogs($mapingData);
+                }
                 
             }
         } else {
             if(isset($data['author.user_email']) && !empty($data['author.user_email'])) {
-                $newsAuthor = $this->contentRepository->findAuthorByNewsEmail($data['author.user_email']);
+                $newsAuthor = $this->contentRepository->findAuthorByNewsEmail($data['author.user_email'], $storageId);
                 if($newsAuthor) {
                     $news = $this->newsPostRepository->findByUid($record_id);
                     if ($news) {
@@ -525,5 +589,117 @@ class PostController extends AbstractController
                 }
             }
         }
+    }
+
+    /**
+     * Manage Tags for News and Blogs
+     * @param int $recordId
+     * @param array $tagList
+     * @param int $storageId
+     */
+    function manageTagsForNews(int $recordId, array $tagList, int $storageId) {
+        $tagItemList = [];
+        if ($tagList) {
+            
+            foreach ($tagList as $key => $value) {
+                $slug = str_replace(" ", "-", strtolower($value));
+                $tagItem = $this->categoryRepository->checkIsTagExist($slug);
+                if(empty($tagItem)) {
+                    $tagItem = GeneralUtility::makeInstance(NewsTag::class);
+                    $tagItem->setTitle($value);
+                    $tagItem->setSlug($slug);
+                    $tagItem->setPid($storageId);
+                    $this->newsTagRepository->add($tagItem);
+                    $this->persistenceManager->persistAll();
+                    $tagId = $tagItem->getUid();
+                    $this->categoryRepository->mapTagItems($recordId, $tagId);
+                } else {
+                    $this->categoryRepository->mapTagItems($recordId, $tagItem);
+                    array_push($tagItemList, $tagItem);
+                }
+            }
+        }
+        return $tagItemList;
+    }
+
+    /**
+     * Manage Tags for News and Blogs
+     * @param int $recordId
+     * @param array $tagList
+     * @param int $storageId
+     */
+    function manageTagsForBlogs(int $recordId, array $tagList, int $storageId) {
+        $tagItemList = [];
+        if ($tagList) {
+            
+            foreach ($tagList as $key => $value) {
+                $slug = str_replace(" ", "-", strtolower($value));
+                $tagItem = $this->contentRepository->checkIsTagExist($slug);
+                if(empty($tagItem)) {
+                    $tagItem = GeneralUtility::makeInstance(BlogTag::class);
+                    $tagItem->setTitle($value);
+                    $tagItem->setPid($storageId);
+                    $this->blogTagRepository->add($tagItem);
+                    $this->persistenceManager->persistAll();
+                    $tagId = $tagItem->getUid();
+                    $this->contentRepository->mapTagItems($recordId, $tagId);
+                } else {
+                    $this->contentRepository->mapTagItems($recordId, $tagItem);
+                    array_push($tagItemList, $tagItem);
+                }
+            }
+        }
+        return $tagItemList;
+    }
+
+    /**
+     * Manage featured Images
+     * @param int $recordId
+     * @param string $image
+     * @param string $table
+     * @param string $field
+     * @param int $storageId
+     * @param int $beUserId
+     */
+     function manageFeaturedImages($recordId, $image, $table, $field, $storageId, $beUserId) {
+        $urlDecode = parse_url($image);
+        $paths = $urlDecode['path'];
+        $path = trim(str_replace('/wp-content','',$paths));
+        $url = $image;
+        $fileName = basename($url);
+        $mimetype = 'image/'.pathinfo($fileName, PATHINFO_EXTENSION);
+        if($table == 'pages') {
+            $folder = '/fileadmin/blog';
+            $folderName = 'blog';
+        } else {
+            $folder = '/fileadmin/news';
+            $folderName = 'news';
+        }
+        $resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
+        $dstFolder = \TYPO3\CMS\Core\Core\Environment::getPublicPath() . $folder;
+        
+        if (!file_exists($dstFolder)) {
+            GeneralUtility::mkdir_deep($dstFolder);
+        }
+
+        $out = file_get_contents($url);
+        file_put_contents($dstFolder . '/' . $fileName, $out);
+        // Get TYPO3 file storage
+        $fileStorage = $resourceFactory->getDefaultStorage();
+        $folder = $fileStorage->getFolder($folderName);
+        $fileObject = $fileStorage->getFileInFolder($fileName, $folder);
+        $featureImageId = $fileObject->getUid();
+
+        $imageData = ['pid' => 0,
+                    'cruser_id' =>  $beUserId,
+                    'deleted' => '0',
+                    'uid_local' => $featureImageId,
+                    'uid_foreign' => $recordId,
+                    'tablenames' => $table,
+                    'fieldname' => $field,
+                    'table_local' => 'sys_file'
+        ];
+
+        $this->contentRepository->refSystemFile($recordId, $imageData);
     }
 }

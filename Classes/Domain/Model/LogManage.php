@@ -11,6 +11,10 @@ namespace NITSAN\NsWpMigration\Domain\Model;
  *  (c) 2020 T3: Milan <sanjay@nitsan.in>, NITSAN Technologies Pvt Ltd
  *
  ***/
+
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+use TYPO3\CMS\Beuser\Domain\Model\BackendUser;
+
 /**
  * LogManage
  */
@@ -42,15 +46,17 @@ class LogManage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $totalFails = 0;
 
     /**
-     * addedBy
-     *
-     * @var int
-     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Beuser\Domain\Model\BackendUser>
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
-    protected $addedBy = 0;
+    protected $addedBy = null;
     protected $totalUpdate = 0;
     protected $recordsLog = '';
 
+    public function __construct()
+    {
+        $this->addedBy = new ObjectStorage();
+    }
     /**
      * createdDate
      * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
@@ -144,7 +150,7 @@ class LogManage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the addedBy
      *
-     * @return int $addedBy
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Beuser\Domain\Model\BackendUser> addedBy
      */
     public function getAddedBy()
     {
@@ -154,10 +160,10 @@ class LogManage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the addedBy
      *
-     * @param int $addedBy
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Beuser\Domain\Model\BackendUser> $addedBy
      * @return void
      */
-    public function setAddedBy($addedBy)
+    public function setAddedBy(BackendUser $addedBy)
     {
         $this->addedBy = $addedBy;
     }

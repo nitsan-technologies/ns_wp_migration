@@ -121,4 +121,55 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             ->execute();
         return $affectedRows;
     }
+
+    /**
+     * @param int $newsId
+     * @param int $counts
+     */
+    public function updateNewsTagsCounts($newsId, $counts) {
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_news_domain_model_news');
+        $affectedRows = $queryBuilder
+            ->update('tx_news_domain_model_news')
+            ->where(
+                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($newsId, \PDO::PARAM_INT))
+            )
+            ->set('tags', $counts)
+            ->execute();
+        return $affectedRows;
+    }
+
+    /**
+     * @param string $slug
+     */
+    public function checkIsTagExist(string $slug) {
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_news_domain_model_tag');
+        $category = $queryBuilder
+            ->select('uid')
+            ->from('tx_news_domain_model_tag')
+            ->where(
+                $queryBuilder->expr()->eq('slug', $queryBuilder->createNamedParameter($slug))
+                )
+            ->executeQuery()
+            ->fetchOne();
+        return $category;
+    }
+    
+    /**
+     * @param int $slug
+     * @param int $tagId
+     */
+    public function mapTagItems($newsId, $tagId) {
+        $tagItems = ['uid_local' => $newsId,
+            'uid_foreign' => $tagId
+        ];
+
+        $queryCatBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_news_domain_model_news_tag_mm');
+    
+        $affectedRows = $queryCatBuilder
+            ->insert('tx_news_domain_model_news_tag_mm')
+            ->values($tagItems)
+            ->execute();
+
+        return $affectedRows;
+    }
 }

@@ -84,7 +84,7 @@ class TypoScriptTemplateConstantEditorModuleFunctionController
         // Get the row of the first VISIBLE template of the page. whereclause like the frontend.
         $this->templateRow = $this->templateService->ext_getFirstTemplate($pageId, $template_uid);
         if (!is_array($this->templateRow)) {
-            if ($rootlineUtility[0]['is_siteroot']) {
+            if (isset($rootlineUtility[0])) {
                 $pageId = $rootlineUtility[0]['uid'];
             }
         }
