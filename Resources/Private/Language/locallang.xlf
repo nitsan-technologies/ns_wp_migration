@@ -39,6 +39,12 @@
 			<trans-unit id="import.success">
 				<source>Data import Successfully please check the logs for more informations.</source>
 			</trans-unit>
+			<trans-unit id="error.pageId">
+				<source>Storage page is not found</source>
+			</trans-unit>
+			<trans-unit id="error.invalidFile">
+				<source>Invalid file format : Please upload file (CSV)</source>
+			</trans-unit>
         </body>
     </file>
 </xliff>

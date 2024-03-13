@@ -24,7 +24,7 @@ require_once $__dir . '/HTMLPurifier/Definition.php';
 require_once $__dir . '/HTMLPurifier/CSSDefinition.php';
 require_once $__dir . '/HTMLPurifier/ChildDef.php';
 require_once $__dir . '/HTMLPurifier/Config.php';
-require_once $__dir . '/HTMLPurifier/ConfigSchema.php';
+//require_once $__dir . '/HTMLPurifier/ConfigSchema.php';
 require_once $__dir . '/HTMLPurifier/ContentSets.php';
 require_once $__dir . '/HTMLPurifier/Context.php';
 require_once $__dir . '/HTMLPurifier/DefinitionCache.php';

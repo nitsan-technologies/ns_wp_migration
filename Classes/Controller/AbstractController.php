@@ -7,8 +7,6 @@ use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
-use NITSAN\NsWpMigration\NsTemplate\TypoScriptTemplateConstantEditorModuleFunctionController;
-use NITSAN\NsWpMigration\NsTemplate\TypoScriptTemplateModuleController;
 
 /***
  *
@@ -33,37 +31,11 @@ abstract class AbstractController extends ActionController implements LoggerAwar
 
     protected $constantObj;
     protected $constants;
-
-    /**
-     * @var TypoScriptTemplateModuleController
-     */
-    protected $pObj;
-    
     
     public function initializeAction() : void
     {
         $this->persistenceManager = GeneralUtility::makeInstance(PersistenceManager::class);
         $this->logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
-        $this->setConfiguration();
-    }
-
-    /**
-     * Initializes this object
-     *
-     * @return void
-     */
-    public function initializeObject()
-    {
-        $this->constantObj = GeneralUtility::makeInstance(TypoScriptTemplateConstantEditorModuleFunctionController::class);
-    }
-
-    /*
-     * Api configuration
-     */
-    private function setConfiguration()
-    {
-        $this->constantObj->init($this->pObj);
-        $this->constants = $this->constantObj->main();
     }
 
     /**
@@ -92,41 +64,6 @@ abstract class AbstractController extends ActionController implements LoggerAwar
         } else {
             return false;
         }
-    }
-
-    /**
-     * Validate the fileData
-     * @param array $fileData
-     * @return bool
-     */
-    function validateFileData(array $fileData): bool
-    {
-        if ($fileData) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /**
-     * Trim html and remove unwanted space from the htmls 
-     */
-    function minifier($code)
-    {
-        $search = array(
-
-            // Remove whitespaces after tags
-            '/\>[^\S ]+/s',
-
-            // Remove whitespaces before tags
-            '/[^\S ]+\</s',
-
-            // Remove multiple whitespace sequences
-            '/(\s)+/s'
-        );
-        $replace = array('>', '<', '\\1');
-        $code = preg_replace($search, $replace, $code);
-        return $code;
     }
 
 }

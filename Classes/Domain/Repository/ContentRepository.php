@@ -50,16 +50,11 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
                 $randomString => $pageItems,
             ],
         ];
-        // Create an instance of DataHandler
         $dataHandler = GeneralUtility::makeInstance(DataHandler::class);
-        // Start processing the data
         $dataHandler->start($newPageData, []);
-        // Set the admin flag for admin mode
         $dataHandler->admin = $isAdmin;
-        // Process the data map
         $dataHandler->process_datamap();
         if ($dataHandler->errorLog) {
-            // Handle errors
             \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($dataHandler->errorLog,__FILE__.''.__LINE__);die;
         }
         $dataHandler->clear_cacheCmd('pages');
@@ -148,6 +143,22 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     }
 
     public function assignAuthorToBlogs($data) {
+
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_blog_post_author_mm');
+        $existingRecord = $queryBuilder
+        ->select('*')
+        ->from('tx_blog_post_author_mm')
+        ->where(
+            $queryBuilder->expr()->eq('uid_local', $data['uid_local']),
+            $queryBuilder->expr()->eq('uid_foreign', $data['uid_foreign'])
+        )
+        ->execute()
+        ->fetch();
+        
+        if ($existingRecord) {
+            return 0;
+        }
+
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_blog_post_author_mm');
         $queryBuilder->insert('tx_blog_post_author_mm')->values($data)->executeStatement();
         return true;

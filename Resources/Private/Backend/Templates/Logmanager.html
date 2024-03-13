@@ -1,45 +1,18 @@
 <html xmlns:f="https://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 <f:layout name="Default" />
 <f:section name="content">
-    <f:comment>
-        <div class="ns-ext-form-wrap">
-            <f:variable name="menuName"><f:translate key="{action}" /></f:variable>
-            <div class="log-listing">
-                <table class="table">
-                    <thead>
-                        <th>Id</th>
-                        <th>Created By</th>
-                        <th>Total Records</th>
-                        <th>Total Success</th>
-                        <th>Total Fails</th>
-                        <th>Total Updated</th>
-                    </thead>
-                    <tbody>
-                        <f:if condition="{logs-data}">
-                            <f:for each="{logs-data}" as="item">
-                                <tr>
-                                    <td>{item.uid}</td>
-                                    <td>{item.added_by}</td>
-                                    <td>{item.number_of_records}</td>
-                                    <td>{item.total_success}</td>
-                                    <td>{item.total_fails}</td>
-                                    <td>{item.total_update}</td>
-                                </tr>
-                            </f:for>
-                        </f:if>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </f:comment>
-    <f:be.tableList tableName="tx_nswpmigration_domain_model_logmanage" 
-    fieldList="{0: 'number_of_records', 1: 'total_success', 2: 'total_fails', 3: 'total_update', 4: 'created_date'}" 
-    storagePid="1" 
+    <f:be.tableList tableName="tx_nswpmigration_domain_model_logmanage" fieldList="{0: 'number_of_records', 1: 'total_success', 2: 'total_update', 3: 'created_date'}"
+    storagePid="1"
+    levels="9"
     recordsPerPage="10"
+    sortField="name"
+    sortDescending="true"
+    readOnly="true"
     enableClickMenu="false"
     enableControlPanels="true"
     clickTitleMode="info"
-    readOnly="true" />
+    />
+
 </f:section>
 
 </html>

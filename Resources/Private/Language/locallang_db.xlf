@@ -4,7 +4,7 @@
         <header/>
         <body>
             <trans-unit id="tx_log_manage" xml:space="preserve">
-                <source>Blog: Tag</source>
+                <source>Blog: Logs</source>
             </trans-unit>
             <trans-unit id="tx_log_manage.number_of_records" xml:space="preserve">
                 <source>Total Records</source>

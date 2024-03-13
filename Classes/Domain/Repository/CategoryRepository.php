@@ -159,6 +159,27 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param int $tagId
      */
     public function mapTagItems($newsId, $tagId) {
+        
+        // Extract UID if $tagId is an object
+        if (is_object($tagId) && method_exists($tagId, 'getUid')) {
+            $tagId = $tagId->getUid();
+        }
+
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_news_domain_model_news_tag_mm');
+        $existingRecord = $queryBuilder
+        ->select('*')
+        ->from('tx_news_domain_model_news_tag_mm')
+        ->where(
+            $queryBuilder->expr()->eq('uid_local', $newsId),
+            $queryBuilder->expr()->eq('uid_foreign', $tagId)
+        )
+        ->execute()
+        ->fetch();
+        
+        if ($existingRecord) {
+            return 0;
+        }
+
         $tagItems = ['uid_local' => $newsId,
             'uid_foreign' => $tagId
         ];

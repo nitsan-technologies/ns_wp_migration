@@ -1,12 +1,16 @@
 <f:form action="importform" controller="Post" id="importHandler" class="ns-submit-form" enctype="multipart/form-data" method="POST">
-        <f:flashMessages />
+        <div id="typo3-docbody">
+            <div id="typo3-inner-docbody">
+                <f:flashMessages />
+            </div>
+        </div>
         <div class="form-group">
             <label for="csvFile">Please Select Post File (CSV)</label>
-            <f:form.upload name="dataFile" class="form-control" additionalAttributes="{required:'true'}" property="file" />
+            <f:form.upload name="dataFile" class="form-control" additionalAttributes="{required:'true'}" property="file" style="height: 40px;" />
         </div>
         <div class="form-group">
             <label for="postType">Select Post Types</label>
-            <f:form.select name="postType" class="form-control">
+            <f:form.select name="postType" class="form-control" style="height: 40px;">
                 <f:form.select.option value="page">Page</f:form.select.option>
                 <f:form.select.option value="news">News</f:form.select.option>
                 <f:form.select.option value="blog">Blog</f:form.select.option>
@@ -14,7 +18,7 @@
         </div>
         <div class="form-group">
             <label for="storage_id">Please Insert Storage Folder Id</label>
-            <f:form.textfield name="storageId" type="number" class="form-control" additionalAttributes="{required:'true'}" placeholder="Insert Storage Page Id" />
+            <f:form.textfield name="storageId" type="number" class="form-control" additionalAttributes="{required:'true'}" placeholder="Insert Storage Page Id" style="height: 40px;" />
         </div>
         <div class="form-group">
             <f:form.submit class="ns-submit-btn ns-btn-submit-send import-action-submit" id="submit_import" value="{f:translate(key:'form.submitButton')}" />

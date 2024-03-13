@@ -20,12 +20,12 @@
         "Wordpress"
     ],
     "require": {
-        "typo3/cms-core": "11.5",
+        "typo3/cms-core": "^11.5.24 || ^12.4.2",
         "ezyang/htmlpurifier": "^4.14",
-        "t3g/blog": "12.0.0",
-        "georgringer/news": "11.1.2",
-        "mediadreams/md_news_author":"6.0.3",
-        "nitsan/ns-basetheme": "11.5.10"
+        "t3g/blog": "^12.0.0",
+        "georgringer/news": "^11.4",
+        "mediadreams/md_news_author":"^7.0",
+        "nitsan/ns-basetheme": "^11.4 || ^12.1"
     },
     "require-dev": {
         "typo3/testing-framework": "^6.9.0"

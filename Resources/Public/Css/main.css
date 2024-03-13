@@ -174,3 +174,8 @@ hr{
     height: 100px;
     width: 100px;
 }
+
+form#importHandler input, 
+form#importHandler select {
+    height: 40px;
+}
