@@ -16,7 +16,7 @@ $ll = 'LLL:EXT:ns_wp_migration/Resources/Private/Language/locallang_db.xlf:';
 return [
     'ctrl' => [
         'title' => $ll . 'tx_log_manage',
-        'label' => 'uid',
+        'label' => 'created_date',
         'label_alt' => 'sys_language_uid',
         // Display Language after Label
         'label_alt_force' => 0,
@@ -35,6 +35,11 @@ return [
             'default' => 'record-blog-tag'
         ],
         'searchFields' => 'uid',
+    ],
+    'types' => [
+        0 => [
+            'showitem' => 'number_of_records, total_success, total_update, created_date, --palette--;;paletteCore,title, --palette--;;paletteDescription',
+        ],
     ],
     'columns' => [
         'pid' => [

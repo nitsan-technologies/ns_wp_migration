@@ -33,7 +33,6 @@ use Mediadreams\MdNewsAuthor\Domain\Repository\NewsAuthorRepository;
 use T3G\AgencyPack\Blog\Domain\Repository\TagRepository as blogTagRepository;
 use TYPO3\CMS\Core\Page\AssetCollector;
 
-
 /***
  *
  * This file is part of the "[Nitsan] NS Wp Migration" Extension for TYPO3 CMS.
@@ -140,13 +139,15 @@ class PostController extends AbstractController
             } else {
                 $this->addFlashMessage($massage, 'Error', ContextualFeedbackSeverity::ERROR);
             }
-            $response = new RedirectResponse($importAction);
-            return $response;
+            return new RedirectResponse($importAction);
         }
 
         if ($this->pageRepository->getPage($requestData['storageId'])) {
             if (isset($_FILES['dataFile'])) {
-                $response = $this->importCsvData($_FILES['dataFile'], $requestData['postType'], (int)$requestData['storageId']);
+                $response = $this->importCsvData(
+                    $_FILES['dataFile'],
+                    $requestData['postType'],
+                    (int)$requestData['storageId']);
             }
         } else{
             $massage = LocalizationUtility::translate('error.pageId', 'ns_wp_migration');
@@ -155,8 +156,7 @@ class PostController extends AbstractController
             } else {
                 $this->addFlashMessage($massage, 'Error', ContextualFeedbackSeverity::ERROR);
             }
-            $response = new RedirectResponse($importAction);
-            return $response;
+            return new RedirectResponse($importAction);
         }
 
         if($response == 0) {
@@ -174,13 +174,13 @@ class PostController extends AbstractController
     }
 
     /**
-     * Get the csv files and 
+     * Get the csv files and
      * @param array $file
      * @param string $dockType
      * @param int $storageId
      * @return int
      */
-    public function importCsvData(array $file, string $dockType, int $storageId)
+    public function importCsvData(array $file, string $dockType, int $storageId): int
     {
         if ($this->checkValideFile($file)) {
 
@@ -193,8 +193,7 @@ class PostController extends AbstractController
                 $record++;
             }
             $this->storeData($data, $dockType, $storageId);
-            $response =  1;
-            return $response;
+            return 1;
 
         } else {
 
@@ -205,9 +204,7 @@ class PostController extends AbstractController
                 $this->addFlashMessage($massage, 'Error', ContextualFeedbackSeverity::ERROR);
             }
 
-            $response = 0;
-            return $response;
-
+            return 0;
         }
     }
 
@@ -220,13 +217,10 @@ class PostController extends AbstractController
      */
     function storeData(array $data, string $dockType, int $storageId): array
     {
-        $response = [];
         if ($dockType == 'news') {
-            $response = $this->createNewsArticle($data, $storageId);
-            return $response;
+            return $this->createNewsArticle($data, $storageId);
         } else {
-            $response = $this->createPagesAndBlog($data, $storageId, $dockType);
-            return $response;
+            return $this->createPagesAndBlog($data, $storageId, $dockType);
         }
     }
 
@@ -237,7 +231,7 @@ class PostController extends AbstractController
      * @return array
      */
     public function createNewsArticle(array $data, int $storageId): array
-    {   
+    {
         if ($data) {
             $numberOfRecords = count($data);
             $success = 0;
@@ -391,9 +385,9 @@ class PostController extends AbstractController
                     }
                 }
                 
-                if($this->contentRepository->findPageBySlug('/'.$pageItem['post_name'])) {
-                    $recordId = $this->contentRepository->findPageBySlug('/'.$pageItem['post_name']);
-                    $recordId = $this->contentRepository->updatePageRecord($pageData, $recordId);
+                $existingRecordId = $this->contentRepository->findPageBySlug('/'.$pageItem['post_name'], $storageId);
+                if($existingRecordId) {
+                    $recordId = $this->contentRepository->updatePageRecord($pageData, $existingRecordId);
                     $updatedRecords++;
                 } else {
                     $recordId = $this->contentRepository->createPageRecord($pageData);
@@ -443,8 +437,14 @@ class PostController extends AbstractController
                         $this->manageTagsForBlogs($recordId, $tagsList, $storageId);
                     }
 
-                    if(isset($pageItem['image.url']) && !empty($pageItem['image.url'])) { 
-                        $this->manageFeaturedImages($recordId, $pageItem['image.url'], 'pages', 'featured_image', $storageId, $beUserId);
+                    if(isset($pageItem['image.url']) && !empty($pageItem['image.url'])) {
+                        $this->manageFeaturedImages(
+                            $recordId,
+                            $pageItem['image.url'],
+                            'pages',
+                            'featured_image',
+                            $storageId,
+                            $beUserId);
                     }
                 }
                 
@@ -534,26 +534,8 @@ class PostController extends AbstractController
             'constant' => $this->constants,
             'logs-data' => $data
         ];
-        $this->assetCollector->addJavaScript('jquery-migrations-wp', 'EXT:ns_wp_migration/Resources/Public/JavaScript/Jquery.js');
-        $this->assetCollector->addJavaScript('main-migrations-wp', 'EXT:ns_wp_migration/Resources/Public/JavaScript/Main.js');
-        $this->assetCollector->addStyleSheet('configuration-css-migration-wp', 'EXT:ns_wp_migration/Resources/Public/Css/configuration.css');
-        $this->assetCollector->addStyleSheet('bootstrap4-css-migration-wp', 'EXT:ns_wp_migration/Resources/Public/bootstrap4.3.1.min.css');
-        $this->assetCollector->addStyleSheet('global-css-migration-wp', 'EXT:ns_wp_migration/Resources/Public/Css/global.css');
-        $this->assetCollector->addStyleSheet('main-css-migration-wp', 'EXT:ns_wp_migration/Resources/Public/Css/main.css');
-        $this->assetCollector->addStyleSheet('extension-css-migration-wp', 'EXT:ns_wp_migration/Resources/Public/Css/extension.css');
         $this->view->assignMultiple($assign);
         return $this->htmlResponse();
-    }
-
-    /**
-     * Upload Image
-     * @param string $image
-     * @return array $image
-     */
-    function uploadImage(string $image): array 
-    {
-        $response = [];
-        return $response;
     }
 
     /**
@@ -571,9 +553,7 @@ class PostController extends AbstractController
         if ($categories) {
             $categoriesID = '';
             foreach ($categories as $key => $value) {
-                if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() < 12) {
-                    $categoriesID = $this->categoryRepository->checkIsExist($value, $storageId);
-                }
+                $categoriesID = $this->categoryRepository->checkIsExist($value, $storageId);
                 array_push($categoriesLists, $categoriesID);
                 if(empty($categoriesID)) {
                     $slug = str_replace(" ", "-", strtolower($value));
@@ -605,9 +585,7 @@ class PostController extends AbstractController
         if($record_type == 'blog') {
             if (isset($data['author.user_email']) && !empty($data['author.user_email'])) {
                 $author = '';
-                if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() < 12) {
-                    $author = $this->contentRepository->findAuthorByEmail($data['author.user_email'], $storageId);
-                }
+                $author = $this->contentRepository->findAuthorByEmail($data['author.user_email'], $storageId);
                 if($author) {
                     $mapingData = ['uid_local' => $record_id, 'uid_foreign'=> $author];
                     $this->contentRepository->assignAuthorToBlogs($mapingData);
@@ -720,10 +698,9 @@ class PostController extends AbstractController
     function manageTagsForBlogs(int $recordId, array $tagList, int $storageId) {
         $tagItemList = [];
         if ($tagList) {
-            
             foreach ($tagList as $key => $value) {
                 $slug = str_replace(" ", "-", strtolower($value));
-                $tagItem = $this->contentRepository->checkIsTagExist($slug);
+                $tagItem = $this->contentRepository->checkIsTagExist($slug, $storageId);
                 if(empty($tagItem)) {
                     $tagItem = GeneralUtility::makeInstance(BlogTag::class);
                     $tagItem->setTitle($value);
@@ -750,10 +727,8 @@ class PostController extends AbstractController
      * @param int $storageId
      * @param int $beUserId
      */
-     function manageFeaturedImages($recordId, $image, $table, $field, $storageId, $beUserId) {
-        $urlDecode = parse_url($image);
-        $paths = $urlDecode['path'];
-        $path = trim(str_replace('/wp-content','',$paths));
+     function manageFeaturedImages($recordId, $image, $table, $field, $storageId, $beUserId) 
+     {
         $url = $image;
         $fileName = basename($url);
         if($table == 'pages') {
@@ -783,8 +758,7 @@ class PostController extends AbstractController
                     'uid_local' => $featureImageId,
                     'uid_foreign' => $recordId,
                     'tablenames' => $table,
-                    'fieldname' => $field
-        ];
+                    'fieldname' => $field];
 
         if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() < 12) {
             $imageData['cruser_id'] = $beUserId;

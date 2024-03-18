@@ -67,8 +67,8 @@ class HTMLPurifier_ConfigSchema
      * @return HTMLPurifier_ConfigSchema
      */
     public static function makeFromSerial()
-    {   
-        $contents = file_get_contents(HTMLPURIFIER_PREFIX . '/HTMLPurifier/ConfigSchema/schema.ser');
+    {
+        $contents = file_get_contents(dirname(__FILE__) . '/ConfigSchema/schema.ser');
         $r = unserialize($contents);
         if (!$r) {
             $hash = sha1($contents);

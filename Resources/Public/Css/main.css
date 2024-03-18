@@ -175,7 +175,6 @@ hr{
     width: 100px;
 }
 
-form#importHandler input, 
-form#importHandler select {
-    height: 40px;
+typo3-recordlist-record-download-button.btn.btn-sm.btn-default {
+    display: none;
 }

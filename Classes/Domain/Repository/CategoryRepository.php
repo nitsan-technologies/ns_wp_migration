@@ -46,48 +46,62 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @return int $category
      */
     public function insertCategory($item, $recordId, $recordType): int
-    {   
-
+    {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('sys_category');
-        $affectedRows = $queryBuilder
+        $queryBuilder
             ->insert('sys_category')
             ->values($item)
             ->execute();
 
         $lastCatUid = $queryBuilder->getConnection()->lastInsertId();
-        $queryCatBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('sys_category_record_mm');
+        $queryCatBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+        ->getQueryBuilderForTable('sys_category_record_mm');
         $catInsertData = ['uid_local' => $lastCatUid,
             'uid_foreign' => $recordId,
             'tablenames' => $recordType,
             'fieldname' => 'categories'
         ];
 
-        $affectedRows = $queryCatBuilder
+        return $queryCatBuilder
             ->insert('sys_category_record_mm')
             ->values($catInsertData)
             ->execute();
-
-        return $affectedRows;
     }
 
     /**
      * Refrance the categories in the database
      */
     public function mapcategories($categoriesID,$recordId, $recordType ) {
+
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+        ->getQueryBuilderForTable('sys_category_record_mm');
+        $existingRecord = $queryBuilder
+        ->select('*')
+        ->from('sys_category_record_mm')
+        ->where(
+            $queryBuilder->expr()->eq('uid_local', $categoriesID),
+            $queryBuilder->expr()->eq('uid_foreign', $recordId)
+        )
+        ->execute()
+        ->fetch();
+        
+        if ($existingRecord) {
+            return 0;
+        }
+
         $catInsertData = ['uid_local' => $categoriesID,
             'uid_foreign' => $recordId,
             'tablenames' => $recordType,
             'fieldname' => 'categories'
         ];
         
-        $queryCatBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('sys_category_record_mm');
+        $queryCatBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+        ->getQueryBuilderForTable('sys_category_record_mm');
         
-        $affectedRows = $queryCatBuilder
+        return $queryCatBuilder
             ->insert('sys_category_record_mm')
             ->values($catInsertData)
             ->execute();
-
-        return $affectedRows;
     }
 
     /**
@@ -95,15 +109,15 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param int $counts
      */
     public function updateNewsCategoriesCounts($newsId, $counts) {
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_news_domain_model_news');
-        $affectedRows = $queryBuilder
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+        ->getQueryBuilderForTable('tx_news_domain_model_news');
+        return $queryBuilder
             ->update('tx_news_domain_model_news')
             ->where(
                 $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($newsId, \PDO::PARAM_INT))
             )
             ->set('categories', $counts)
             ->execute();
-        return $affectedRows;
     }
 
     /**
@@ -112,14 +126,13 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      */
     public function updateBlogCategoriesCounts($blogId, $counts) {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('pages');
-        $affectedRows = $queryBuilder
+        return $queryBuilder
             ->update('pages')
             ->where(
                 $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($blogId, \PDO::PARAM_INT))
             )
             ->set('categories', $counts)
             ->execute();
-        return $affectedRows;
     }
 
     /**
@@ -127,23 +140,24 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param int $counts
      */
     public function updateNewsTagsCounts($newsId, $counts) {
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_news_domain_model_news');
-        $affectedRows = $queryBuilder
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+        ->getQueryBuilderForTable('tx_news_domain_model_news');
+        return $queryBuilder
             ->update('tx_news_domain_model_news')
             ->where(
                 $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($newsId, \PDO::PARAM_INT))
             )
             ->set('tags', $counts)
             ->execute();
-        return $affectedRows;
     }
 
     /**
      * @param string $slug
      */
     public function checkIsTagExist(string $slug) {
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_news_domain_model_tag');
-        $category = $queryBuilder
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+        ->getQueryBuilderForTable('tx_news_domain_model_tag');
+        return $queryBuilder
             ->select('uid')
             ->from('tx_news_domain_model_tag')
             ->where(
@@ -151,7 +165,6 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
                 )
             ->executeQuery()
             ->fetchOne();
-        return $category;
     }
     
     /**
@@ -165,7 +178,8 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             $tagId = $tagId->getUid();
         }
 
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_news_domain_model_news_tag_mm');
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+        ->getQueryBuilderForTable('tx_news_domain_model_news_tag_mm');
         $existingRecord = $queryBuilder
         ->select('*')
         ->from('tx_news_domain_model_news_tag_mm')
@@ -184,13 +198,12 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             'uid_foreign' => $tagId
         ];
 
-        $queryCatBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_news_domain_model_news_tag_mm');
+        $queryCatBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+        ->getQueryBuilderForTable('tx_news_domain_model_news_tag_mm');
     
-        $affectedRows = $queryCatBuilder
+        return $queryCatBuilder
             ->insert('tx_news_domain_model_news_tag_mm')
             ->values($tagItems)
             ->execute();
-
-        return $affectedRows;
     }
 }
