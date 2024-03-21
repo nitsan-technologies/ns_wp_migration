@@ -178,3 +178,7 @@ hr{
 typo3-recordlist-record-download-button.btn.btn-sm.btn-default {
     display: none;
 }
+
+typo3-recordlist-record-download-button {
+    display: none;
+}

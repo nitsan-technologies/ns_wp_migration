@@ -39,11 +39,32 @@
 			<trans-unit id="import.success">
 				<source>Data import Successfully please check the logs for more informations.</source>
 			</trans-unit>
+			<trans-unit id="import.fail">
+				<source>Log create fails something went wrongs.</source>
+			</trans-unit>
 			<trans-unit id="error.pageId">
 				<source>Storage page is not found</source>
 			</trans-unit>
 			<trans-unit id="error.invalidFile">
 				<source>Invalid file format : Please upload file (CSV)</source>
+			</trans-unit>
+			<trans-unit id="label.fileSelect">
+				<source>Please Select Post File (CSV)</source>
+			</trans-unit>
+			<trans-unit id="label.postType">
+				<source>Select Post Types</source>
+			</trans-unit>
+			<trans-unit id="label.storageFolder">
+				<source>Please Insert Storage Folder Id</source>
+			</trans-unit>
+			<trans-unit id="postType.page">
+				<source>Page</source>
+			</trans-unit>
+			<trans-unit id="postType.news">
+				<source>News</source>
+			</trans-unit>
+			<trans-unit id="postType.Blog">
+				<source>Blog</source>
 			</trans-unit>
         </body>
     </file>

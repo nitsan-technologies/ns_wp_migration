@@ -43,7 +43,7 @@ abstract class AbstractController extends ActionController implements LoggerAwar
      * @param array $file
      * @return bool
      */
-    function checkValideFile(array $file): bool
+    public function checkValideFile(array $file): bool
     {
         $fileMimes = [
             'text/x-comma-separated-values',

@@ -8,18 +8,20 @@ use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 (static function() {
     
-    $GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets']['ps-import'] = 'EXT:ns_wp_migration/Configuration/RTE/Default.yaml';
+    $GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets']['default'] = 'EXT:ns_wp_migration/Configuration/RTE/Default.yaml';
     // PageTS
-    ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:ns_wp_migration/Configuration/TsConfig/Page/RTE.tsconfig">');
+    ExtensionManagementUtility::addPageTSConfig('
+        @import EXT:ns_wp_migration/Configuration/TsConfig/Page/RTE.tsconfig'
+    );
     if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() < 12) {
-        $PostController = PostController::class;
+        $postController = PostController::class;
         ExtensionUtility::registerModule(
             'Nitsan.NsWpMigration',
             'web',
             'wp_migrate',
             '',
             [
-                $PostController =>  'import, importform, logmanager'
+                $postController =>  'import, importform, logmanager'
             ],
             [
                 'access' => 'user,group',
@@ -27,5 +29,8 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
                 'labels' => 'LLL:EXT:ns_wp_migration/Resources/Private/Language/locallang_psimportexport.xlf',
             ]
         );
+    } else {
+        $GLOBALS['TYPO3_CONF_VARS']['BE']['stylesheets']['ns_wp_migration'] = 'EXT:ns_wp_migration/Resources/Public/Css/';
+        $GLOBALS['TYPO3_CONF_VARS']['BE']['stylesheets']['ns_wp_migration'] = 'EXT:ns_wp_migration/Resources/Public/fontawesome/css/';
     }
 })();

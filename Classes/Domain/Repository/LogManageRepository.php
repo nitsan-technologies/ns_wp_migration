@@ -27,9 +27,13 @@ class LogManageRepository extends Repository
         ];
     }
 
-    public function getAllLogs() {
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_nswpmigration_domain_model_logmanage');
-        $data = $queryBuilder
+    /**
+     * @return array
+     */
+    public function getAllLogs(): array {
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+        ->getQueryBuilderForTable('tx_nswpmigration_domain_model_logmanage');
+        return $queryBuilder
             ->select('*')
             ->from('tx_nswpmigration_domain_model_logmanage')
             ->where(
@@ -38,6 +42,5 @@ class LogManageRepository extends Repository
             ->orderBy('uid', 'DESC')
             ->execute()
             ->fetchAll();
-        return $data;
     }
 }

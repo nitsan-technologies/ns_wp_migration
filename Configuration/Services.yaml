@@ -22,4 +22,4 @@ services:
       $newsTagRepository: '@GeorgRinger\News\Domain\Repository\TagRepository'
       $blogTagRepository: '@T3G\AgencyPack\Blog\Domain\Repository\TagRepository'
       $uriBuilder: '@TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder'
-      $assetCollector: '@TYPO3\CMS\Core\Page\AssetCollector'
+      $moduleTemplateFactory: '@TYPO3\CMS\Backend\Template\ModuleTemplateFactory'

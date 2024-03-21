@@ -1,0 +1,21 @@
+<f:form action="importform" controller="Post" id="importHandler" class="ns-submit-form" enctype="multipart/form-data" method="POST">
+        <div class="form-group">
+            <label for="import-manager-file"><f:translate key="label.fileSelect" /></label>
+            <f:form.upload name="dataFile" id="import-manager-file" class="form-control" additionalAttributes="{required:'true', accept: '.csv'}" property="file" />
+        </div>
+        <div class="form-group">
+            <label for="postType"><f:translate key="label.postType" /></label>
+            <f:form.select name="postType" class="form-control" id="postType">
+                <f:form.select.option value="page"><f:translate key="postType.page" /></f:form.select.option>
+                <f:form.select.option value="news"><f:translate key="postType.news" /></f:form.select.option>
+                <f:form.select.option value="blog"><f:translate key="postType.Blog" /></f:form.select.option>
+            </f:form.select>
+        </div>
+        <div class="form-group">
+            <label for="storage_id"><f:translate key="label.storageFolder" /></label>
+            <f:form.textfield name="storageId" id="storage_id" type="number" class="form-control" additionalAttributes="{required:'true'}" placeholder="Insert Storage Page Id" />
+        </div>
+        <div class="form-group">
+            <f:form.submit class="ns-submit-btn ns-btn-submit-send import-action-submit" id="submit_import" value="{f:translate(key:'form.submitButton')}" />
+        </div>
+</f:form>

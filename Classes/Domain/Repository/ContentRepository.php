@@ -1,10 +1,9 @@
 <?php
+
 namespace  NITSAN\NsWpMigration\Domain\Repository;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
-use Doctrine\DBAL\Driver\Exception;
-use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Utility\StringUtility;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
 
@@ -26,7 +25,7 @@ use TYPO3\CMS\Core\DataHandling\DataHandler;
 class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
     /**
-     * @param array $content
+     * @param array $contentElement
      * @return int
      */
     public function insertContnetElements($contentElement): int
@@ -61,8 +60,11 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         return $dataHandler->substNEWwithIDs[$randomString];
     }
 
-
-    public function updatePageRecord($data, $recordId) {
+    /**
+     * Remove and create a new pages
+     * @return int
+     */
+    public function updatePageRecord($data, $recordId): int {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('pages');
         $queryBuilder
             ->delete('pages')
@@ -76,8 +78,9 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     /**
      * @param string $email
      * @param int $pid
+     * @return int
      */
-    public function findAuthorByEmail($email, $pid) {
+    public function findAuthorByEmail($email, $pid): int {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
         ->getQueryBuilderForTable('tx_blog_domain_model_author');
         $author = $queryBuilder
@@ -89,14 +92,15 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
                 )
             ->executeQuery()
             ->fetchOne();
-        return $author;
+        return (int)$author;
     }
 
     /**
      * @param string $email
      * @param int $pid
+     * @return string
      */
-    public function findAuthorByNewsEmail($email, $pid) {
+    public function findAuthorByNewsEmail($email, $pid): string {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
         ->getQueryBuilderForTable('tx_mdnewsauthor_domain_model_newsauthor');
         return $queryBuilder
@@ -109,8 +113,10 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             ->executeQuery()
             ->fetchOne();
     }
-    
-    public function findNewsBySlug($slug) {
+    /**
+     * @return string
+     */
+    public function findNewsBySlug($slug): string {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
         ->getQueryBuilderForTable('tx_news_domain_model_news');
         return $queryBuilder
@@ -123,7 +129,10 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             ->fetchOne();
     }
 
-    public function findPageBySlug($slug, $storageId) {
+    /**
+     * @return string
+     */
+    public function findPageBySlug($slug, $storageId): string {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('pages');
         return $queryBuilder
             ->select('uid')
@@ -136,7 +145,10 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             ->fetchOne();
     }
 
-    public function assignAuthorToNews($data) {
+    /**
+     * @return bool
+     */
+    public function assignAuthorToNews($data): bool {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
         ->getQueryBuilderForTable('tx_mdnewsauthor_news_newsauthor_mm');
         $existingRecord = $queryBuilder
@@ -150,7 +162,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         ->fetch();
         
         if ($existingRecord) {
-            return 0;
+            return false;
         }
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
         ->getQueryBuilderForTable('tx_mdnewsauthor_news_newsauthor_mm');
@@ -158,34 +170,40 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         return true;
     }
 
-    public function assignAuthorToBlogs($data) {
+    /**
+     * @return bool
+     */
+    public function assignAuthorToBlogs($data): bool {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
         ->getQueryBuilderForTable('tx_blog_post_author_mm');
         $existingRecord = $queryBuilder
-        ->select('*')
-        ->from('tx_blog_post_author_mm')
-        ->where(
-            $queryBuilder->expr()->eq('uid_local', $data['uid_local']),
-            $queryBuilder->expr()->eq('uid_foreign', $data['uid_foreign'])
+            ->select('*')
+            ->from('tx_blog_post_author_mm')
+            ->where(
+                $queryBuilder->expr()->eq(
+                    'uid_local', $queryBuilder->createNamedParameter($data['uid_local'], \PDO::PARAM_INT)),
+                $queryBuilder->expr()->eq(
+                    'uid_foreign', $queryBuilder->createNamedParameter($data['uid_foreign'], \PDO::PARAM_INT))
         )
         ->execute()
         ->fetch();
         
         if ($existingRecord) {
-            return 0;
+            return false;
+        } else {
+            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable('tx_blog_post_author_mm');
+            $queryBuilder->insert('tx_blog_post_author_mm')->values($data)->executeStatement();
+            return true;
         }
-
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-        ->getQueryBuilderForTable('tx_blog_post_author_mm');
-        $queryBuilder->insert('tx_blog_post_author_mm')->values($data)->executeStatement();
-        return true;
     }
 
     /**
      * @param int $blogId
      * @param int $counts
+     * @return int
      */
-    public function updateBlogsTagsCounts($blogId, $counts) {
+    public function updateBlogsTagsCounts($blogId, $counts): int {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('pages');
         return $queryBuilder
             ->update('pages')
@@ -199,15 +217,17 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     /**
      * @param string $slug
      * @param int $storageId
+     * @return string
      */
-    public function checkIsTagExist(string $slug, int $storageId) {
+    public function checkIsTagExist(string $slug, int $storageId): string {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
         ->getQueryBuilderForTable('tx_blog_domain_model_tag');
         return $queryBuilder
             ->select('uid')
             ->from('tx_blog_domain_model_tag')
             ->where(
-                $queryBuilder->expr()->eq('slug', $queryBuilder->createNamedParameter($slug))
+                $queryBuilder->expr()->eq('title', $queryBuilder->createNamedParameter($slug)),
+                $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($storageId, \PDO::PARAM_INT))
                 )
             ->executeQuery()
             ->fetchOne();
@@ -215,14 +235,15 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 
     /**
      * @param int $tagId
+     * @return int
      */
-    public function mapTagItems($blogId, $tagId) {
+    public function mapTagItems($blogId, $tagId): int {
 
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-        ->getQueryBuilderForTable('tx_blog_post_author_mm');
+        ->getQueryBuilderForTable('tx_blog_tag_pages_mm');
         $existingRecord = $queryBuilder
         ->select('*')
-        ->from('tx_blog_post_author_mm')
+        ->from('tx_blog_tag_pages_mm')
         ->where(
             $queryBuilder->expr()->eq('uid_local', $blogId),
             $queryBuilder->expr()->eq('uid_foreign', $tagId)
@@ -232,37 +253,37 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         
         if ($existingRecord) {
             return 0;
+        } {
+            $tagItems = ['uid_local' => $blogId,
+                'uid_foreign' => $tagId
+            ];
+            $queryTagBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable('tx_blog_tag_pages_mm');
+            return $queryTagBuilder
+                ->insert('tx_blog_tag_pages_mm')
+                ->values($tagItems)
+                ->execute();
         }
-
-        $tagItems = ['uid_local' => $blogId,
-            'uid_foreign' => $tagId
-        ];
-        
-        $queryTagBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-        ->getQueryBuilderForTable('tx_blog_tag_pages_mm');
-    
-        return $queryTagBuilder
-            ->insert('tx_blog_tag_pages_mm')
-            ->values($tagItems)
-            ->execute();
     }
 
     /**
-     * set feature image in system file
+     * set feature image in system file\
+     * @return int
      */
-    public function setFeatureImage($imageData) {
+    public function setFeatureImage($imageData): int {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('sys_file');
         $queryBuilder
             ->insert('sys_file')
             ->values($imageData)
             ->execute();
-        return $queryBuilder->getConnection()->lastInsertId();
+        return (int)$queryBuilder->getConnection()->lastInsertId();
     }
 
     /**
      * Refrenance feature image in system file
+     * @return int
      */
-    public function refSystemFile($uid, $imageData) {
+    public function refSystemFile($uid, $imageData): int {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
         ->getQueryBuilderForTable('sys_file_reference');
 
@@ -278,6 +299,36 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             ->values($imageData)
             ->execute();
 
-        return $queryBuilder->getConnection()->lastInsertId();
+        return (int)$queryBuilder->getConnection()->lastInsertId();
+    }
+
+    /**
+     * @return int
+     */
+    public function changeTypeforImage($uid): int {
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+        ->getQueryBuilderForTable('sys_file');
+        return $queryBuilder
+            ->update('sys_file')
+            ->where(
+                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
+            )
+            ->set('type', '2')
+            ->execute();
+    }
+
+    /**
+     * @return int
+     */
+    public function updateBlogAuthor($blogId): int {
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+        ->getQueryBuilderForTable('pages');
+        return $queryBuilder
+            ->update('pages')
+            ->where(
+                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($blogId, \PDO::PARAM_INT))
+            )
+            ->set('author', '1')
+            ->execute();
     }
 }
