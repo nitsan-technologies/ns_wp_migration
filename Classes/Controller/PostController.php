@@ -144,11 +144,12 @@ class PostController extends AbstractController
         if (!$requestData['storageId']) {
             $massage = LocalizationUtility::translate('storageId.require', 'ns_wp_migration');
             if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() < 12) {
-                $this->addFlashMessage($massage, FlashMessage::ERROR);
+                $this->addFlashMessage($massage, 'Error', FlashMessage::ERROR);
+                return $this->redirect('import');
             } else {
                 $this->addFlashMessage($massage, 'Error', ContextualFeedbackSeverity::ERROR);
+                return new RedirectResponse($importAction);
             }
-            return new RedirectResponse($importAction);
         }
 
         if ($this->pageRepository->getPage($requestData['storageId'])) {
@@ -169,20 +170,25 @@ class PostController extends AbstractController
             }
         } else{
             $massage = LocalizationUtility::translate('error.pageId', 'ns_wp_migration');
-            if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() < 12) { 
-                $this->addFlashMessage($massage, FlashMessage::ERROR);
+            if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() < 12) {
+                $this->addFlashMessage($massage, 'Error', FlashMessage::ERROR);
+                return $this->redirect('import');
             } else {
                 $this->addFlashMessage($massage, 'Error', ContextualFeedbackSeverity::ERROR);
+                return new RedirectResponse($importAction);
             }
-            return new RedirectResponse($importAction);
         }
 
         if($response == 0) {
-            $response = new RedirectResponse($importAction);
+            if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() < 12) {
+                $response = $this->redirect('import');
+            } else {
+                $response = new RedirectResponse($importAction);
+            }
         } else {
             $massage = LocalizationUtility::translate('import.success', 'ns_wp_migration');
             if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() < 12) {
-                $this->addFlashMessage($massage, FlashMessage::OK);
+                $this->addFlashMessage($massage, 'Success', FlashMessage::OK);
                 $response = $this->redirect('logmanager');
             } else {
                 $this->addFlashMessage($massage, 'Success', ContextualFeedbackSeverity::OK);
@@ -218,7 +224,7 @@ class PostController extends AbstractController
 
             $massage = LocalizationUtility::translate('error.invalidFile', 'ns_wp_migration');
             if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() < 12) {
-                $this->addFlashMessage($massage, FlashMessage::ERROR);
+                $this->addFlashMessage($massage, 'Error', FlashMessage::ERROR);
             } else {
                 $this->addFlashMessage($massage, 'Error', ContextualFeedbackSeverity::ERROR);
             }
