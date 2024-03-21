@@ -21,7 +21,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
             'wp_migrate',
             '',
             [
-                $postController =>  'import, importform, logmanager'
+                $postController =>  'import, importform, logmanager, downloadSample'
             ],
             [
                 'access' => 'user,group',

@@ -48,6 +48,9 @@
 			<trans-unit id="error.invalidFile">
 				<source>Invalid file format : Please upload file (CSV)</source>
 			</trans-unit>
+			<trans-unit id="error.invalidfileData">
+				<source>Data is not match as per requirement! Please download sample csv file.</source>
+			</trans-unit>
 			<trans-unit id="label.fileSelect">
 				<source>Please Select Post File (CSV)</source>
 			</trans-unit>

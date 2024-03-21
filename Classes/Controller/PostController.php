@@ -26,6 +26,7 @@ use GeorgRinger\News\Domain\Repository\TagRepository;
 use Mediadreams\MdNewsAuthor\Domain\Model\NewsAuthor;
 use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
 use GeorgRinger\News\Domain\Repository\NewsRepository;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use T3G\AgencyPack\Blog\Domain\Repository\PostRepository;
 use T3G\AgencyPack\Blog\Domain\Repository\AuthorRepository;
 use NITSAN\NsWpMigration\Domain\Repository\ContentRepository;
@@ -217,8 +218,20 @@ class PostController extends AbstractController
                 $data[$record] = array_combine($columns, $row);
                 $record++;
             }
-            $this->storeData($data, $dockType, $storageId);
-            return 1;
+
+            if(is_array($data) && isset($data[1]) && isset($data[1]['post_title'])  && isset($data[1]['post_type'])) {
+                $this->storeData($data, $dockType, $storageId);
+                return 1;
+            } else {
+                $massage = LocalizationUtility::translate('error.invalidfileData', 'ns_wp_migration');
+                if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() < 12) {
+                    $this->addFlashMessage($massage, 'Error', FlashMessage::ERROR);
+                } else {
+                    $this->addFlashMessage($massage, 'Error', ContextualFeedbackSeverity::ERROR);
+                }
+                return 0;
+            }
+            
 
         } else {
 
@@ -840,6 +853,21 @@ class PostController extends AbstractController
     protected function initializeModuleTemplate(ServerRequestInterface $request): ModuleTemplate
     {
         return $this->moduleTemplateFactory->create($request);
+    }
+
+    /**
+     * Get the sample file for downloadings
+     */
+    protected function downloadSampleAction() {
+        $file = ExtensionManagementUtility::extPath('ns_wp_migration') . 'Resources/Public/sample.csv';
+        if (file_exists($file)) {
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename="sample.csv"');
+            header('Content-Length: ' . filesize(GeneralUtility::getFileAbsFileName($file)));
+            // Read the file and output its contents
+            readfile(GeneralUtility::getFileAbsFileName($file));
+            exit;
+        }
     }
 
 }

@@ -16,6 +16,7 @@
             <f:form.textfield name="storageId" id="storage_id" type="number" class="form-control" additionalAttributes="{required:'true'}" placeholder="Insert Storage Page Id" />
         </div>
         <div class="form-group">
-            <f:form.submit class="ns-submit-btn ns-btn-submit-send import-action-submit" id="submit_import" value="{f:translate(key:'form.submitButton')}" />
+            <f:form.submit class="btn btn-secondary" id="submit_import" value="{f:translate(key:'form.submitButton')}" />
+            <f:link.action action="downloadSample" controller="Post" class="btn btn-secondary">Download Sample</f:link.action>
         </div>
 </f:form>

@@ -1,13 +1,20 @@
+{namespace ns=NITSAN\NsWpMigration\ViewHelpers}
 <html xmlns:f="https://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 <f:layout name="Default" />
 <f:section name="content">
-    <f:be.tableList tableName="tx_nswpmigration_domain_model_logmanage" fieldList="{0: 'number_of_records', 1: 'total_success', 2: 'total_update', 3: 'created_date'}"
-    storagePid="1"
-    levels="9"
-    recordsPerPage="10"
-    readOnly="true"
-    />
-
+        <ns:be.tableList
+				tableName="tx_nswpmigration_domain_model_logmanage"
+                fieldList="{0: 'number_of_records', 1: 'total_success', 2: 'total_update', 3: 'created_date'}"
+                enableClickMenu="false"
+				recordsPerPage="10" 
+				sortField="name"
+				enableClickMenu="true"
+				readOnly="false"
+                storagePid="1"
+                levels="100"
+				enableControlPanels="true"
+				clickTitleMode="edit"
+		/>
 </f:section>
 
 </html>

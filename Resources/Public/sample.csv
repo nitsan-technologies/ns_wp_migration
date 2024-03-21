@@ -1,0 +1,191 @@
+ID,post_author,post_date,post_date_gmt,post_content,post_title,post_excerpt,post_status,comment_status,ping_status,post_password,post_name,to_ping,pinged,post_modified,post_modified_gmt,post_content_filtered,post_parent,guid,menu_order,post_type,post_mime_type,comment_count,post_thumbnail,author.ID,author.user_login,author.user_nicename,author.user_email,author.user_url,author.display_name,image.id,image.url,image.title,image.alt,image.caption,image.description,parent.id,parent.name,parent.slug,custom_fields._edit_lock,custom_fields._edit_last,custom_fields._wp_page_template,custom_fields._thumbnail_id,tax_category.name,tax_category.slug,tax_category.id,tax_category.hierarchy::id,tax_category.hierarchy::name,tax_category.hierarchy::slug,tax_post_tag.name,tax_post_tag.slug,tax_post_tag.id,tax_post_tag.hierarchy::id,tax_post_tag.hierarchy::name,tax_post_tag.hierarchy::slug,tax_post_format.name,tax_post_format.slug,tax_post_format.id,tax_post_format.hierarchy::id,tax_post_format.hierarchy::name,tax_post_format.hierarchy::slug
+7,1,26/07/23 13:16,26/07/23 13:16,"<!-- wp:paragraph -->
+<p>Sem cursus ex velit natoque ridiculus. Vehicula elementum aliquam tortor habitant eros eget natoque mus hendrerit non. Leo platea mollis sapien felis elit penatibus suscipit curabitur. Dictumst pede commodo cursus vitae pharetra efficitur gravida ultricies luctus ad. Tortor fames enim integer non scelerisque.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Vehicula congue neque lectus mi montes ullamcorper iaculis class duis. Congue dis sapien risus blandit nisi sodales dictumst. Non at donec nullam condimentum luctus libero fringilla purus dignissim posuere. Odio lacus erat habitasse et dui rhoncus ante eget nostra enim ad. Imperdiet taciti sollicitudin euismod vel consectetur eros. Vestibulum vel aenean dis conubia dignissim. Adipiscing hendrerit nullam dictumst libero pellentesque. Pulvinar iaculis nam sociosqu nullam nulla urna vulputate cras dui.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {""level"":4} -->
+<h4 class=""wp-block-heading"">Risus diam sit finibus id ligula cubilia pulvinar</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Nostra imperdiet nisi sem primis parturient consectetur scelerisque cras. Felis magnis cras natoque facilisis class quisque turpis primis tincidunt mus. Senectus finibus nisl fringilla semper ut torquent vivamus letius. Placerat letius dapibus sociosqu felis dictumst. Aliquet sem eget vestibulum tortor enim condimentum urna consequat pellentesque justo netus. Purus dui nibh senectus netus eros cursus consectetuer tellus. Laoreet lacus aliquet montes nisi facilisi sed fames metus.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Fringilla eu facilisis libero pellentesque taciti tellus curabitur. Lacus vulputate maecenas ultrices per nascetur augue at habitant himenaeos vehicula feugiat. Interdum parturient finibus dui tortor hendrerit elementum pulvinar dictum curabitur fames. Nascetur leo massa consectetur mi felis sed himenaeos.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {""sizeSlug"":""large"",""linkDestination"":""none""} -->
+<figure class=""wp-block-image size-large""><img src=""https://t3planet.com/fileadmin/_processed_/e/6/csm_why_t3planet_inner_2%401.5x_19a4cb92a7.png"" alt=""""/></figure>
+<!-- /wp:image -->
+
+<!-- wp:columns -->
+<div class=""wp-block-columns""><!-- wp:column -->
+<div class=""wp-block-column""><!-- wp:paragraph -->
+<p>Nibh malesuada nunc lorem curabitur potenti in placerat posuere. Euismod commodo aliquam non ornare aliquet dictum. Adipiscing efficitur inceptos luctus pede vehicula magna laoreet lorem si. Netus mus habitasse libero ridiculus augue ligula blandit pharetra. Habitant ex vulputate class maximus quisque erat netus tincidunt.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Facilisi aptent nisi malesuada primis risus. Nulla sociosqu per curae elementum eleifend. Sollicitudin convallis erat augue magna porta inceptos lacus tincidunt venenatis dictumst. Egestas ultricies tellus ut feugiat congue a erat consectetuer neque aliquet. Gravida cursus si velit placerat viverra donec. Orci finibus elementum feugiat consequat vehicula mollis mattis massa elit metus a. Vulputate cursus habitant faucibus torquent rutrum.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class=""wp-block-column""><!-- wp:paragraph -->
+<p>Nibh malesuada nunc lorem curabitur potenti in placerat posuere. Euismod commodo aliquam non ornare aliquet dictum. Adipiscing efficitur inceptos luctus pede vehicula magna laoreet lorem si. Netus mus habitasse libero ridiculus augue ligula blandit pharetra. Habitant ex vulputate class maximus quisque erat netus tincidunt.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Facilisi aptent nisi malesuada primis risus. Nulla sociosqu per curae elementum eleifend. Sollicitudin convallis erat augue magna porta inceptos lacus tincidunt venenatis dictumst. Egestas ultricies tellus ut feugiat congue a erat consectetuer neque aliquet. Gravida cursus si velit placerat viverra donec. Orci finibus elementum feugiat consequat vehicula mollis mattis massa elit metus a. Vulputate cursus habitant faucibus torquent rutrum.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns -->",What is Internet ?,"Lorem ipsum dolor sit amet consectetur adipiscing elit curae torquent tristique ligula mollis, quis sagittis dignissim sapien nam dapibus dui imperdiet ultrices pellentesque aenean. Pell",publish,open,open,,what-is-internet,,,06/02/24 12:13,06/02/24 12:13,,0,https://nswordpress.ddev.site/?p=7,0,post,,0,https://nswordpress.ddev.site/wp-content/uploads/2024/02/q_v8g3y-mra.jpg,1,navdeep,navdeep,navdeep.nitsan@gmail.com,https://nswordpress.ddev.site,navdeep,49,https://nitsantech.com/fileadmin/ns_theme_nitsan/home/Home_page_NITSAN.jpg,Photo by NEOM,a person standing in front of a mountain range,,,,,,1707221457:1,1,default,49,"DataHandler,Event,Internet","datahandler,event,internet","4,3,5","4,3,5","DataHandler,Event,Internet","datahandler,event,internet","awareness,event,handler","awareness,event,handler","12,7,8","12,7,8","awareness,event,handler","awareness,event,handler",,,,,,
+11,1,26/07/23 13:19,26/07/23 13:19,"<!-- wp:paragraph -->
+<p>Cras euismod nulla elit sit platea natoque consectetur. Phasellus sapien ac donec platea est libero elit diam parturient natoque porttitor. Nam aliquet cubilia orci penatibus nostra habitasse purus.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {""level"":4} -->
+<h4 class=""wp-block-heading"">Habitasse felis vivamus iaculis sociosqu amet finibus arcu</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Maecenas sociosqu in ullamcorper nunc malesuada pretium lobortis condimentum ante. Magna ridiculus adipiscing platea ullamcorper quisque. Sagittis etiam diam semper ullamcorper ultrices. Maximus congue lacinia elementum primis sollicitudin suscipit ultrices quis pede luctus cursus. Facilisis si sit ut habitasse scelerisque. Ad curabitur hac tempor in habitasse ullamcorper eleifend eget lacinia mollis adipiscing. Eros placerat ligula est feugiat dui fringilla dictumst erat. Semper elementum maecenas taciti ligula auctor turpis vehicula mi hac quam facilisis.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Pretium adipiscing feugiat suscipit quam dapibus quisque vehicula vivamus fames massa velit. Porttitor condimentum nam nascetur magnis tempor convallis. Torquent feugiat phasellus sem iaculis dis lobortis platea pellentesque tempus. Nunc hendrerit nostra quisque ad ut quis. Quisque imperdiet conubia hendrerit primis mattis nulla. Ad platea volutpat id rhoncus amet neque tempor fusce congue lectus. Posuere integer netus in blandit venenatis dictumst taciti morbi vivamus ridiculus.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {""sizeSlug"":""large"",""linkDestination"":""none""} -->
+<figure class=""wp-block-image size-large""><img src=""https://t3planet.com/fileadmin/ns_theme_t3planet/Home/T3Planet_New_home_page_baner.png"" alt=""""/></figure>
+<!-- /wp:image -->
+
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>first </li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>second</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>third</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>four</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Magna nostra praesent senectus scelerisque montes lectus velit pulvinar. Vestibulum duis nulla ligula ultricies lacinia. Purus morbi tempus leo platea blandit litora vulputate proin auctor felis consectetur. Libero nam primis ante augue duis sit purus molestie sollicitudin condimentum. Proin phasellus quis accumsan placerat mauris vestibulum aenean curae fringilla.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Neque curae placerat rutrum molestie semper massa torquent potenti. Feugiat imperdiet litora urna senectus etiam vel maecenas. Egestas urna elit praesent lectus risus lacus. Nam in gravida suspendisse dictum ullamcorper. Laoreet erat ullamcorper molestie taciti morbi sodales. Platea dapibus ipsum condimentum nibh sem vehicula. Ipsum tortor condimentum curae malesuada ornare phasellus.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>Ridiculus proin sed at purus semper elit donec accumsan mauris urna ante. </li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Ornare est praesent rutrum massa dapibus imperdiet. </li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Vestibulum sem dapibus nec consectetuer felis ridiculus aptent.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li> Finibus nunc curabitur dapibus maximus rhoncus faucibus gravida.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li> Ipsum eros euismod urna auctor nibh vel lobortis ante massa quam id.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->",What dataHandler ?,,publish,open,open,,what-datahandler,,,06/02/24 11:09,06/02/24 11:09,,0,https://nswordpress.ddev.site/?p=11,0,post,,0,,1,navdeep,navdeep,navdeep.nitsan@gmail.com,https://nswordpress.ddev.site,navdeep,,,,,,,,,,1707217719:1,1,default,,"DataHandler,Internet","datahandler,internet","4,5","4,5","DataHandler,Internet","datahandler,internet",,,,,,,,,,,,
+14,1,26/07/23 13:22,26/07/23 13:22,"<!-- wp:paragraph -->
+<p>Sociosqu ultricies vivamus amet felis lacinia. Senectus interdum mi consectetuer consequat phasellus hendrerit suscipit ornare mus. Nibh vel justo iaculis est mattis quis accumsan vestibulum.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>Aptent facilisi parturient malesuada sapien torquent adipiscing. </li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Tincidunt potenti risus sem dolor consectetuer habitasse natoque laoreet libero. </li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Natoque pulvinar egestas non rutrum lacinia ad accumsan porta mollis etiam. </li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Pharetra nostra malesuada turpis parturient adipiscing donec quis pulvinar proin. </li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Dictum duis netus interdum pellentesque integer habitant aliquam consequat ac ante amet. </li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Torquent augue suspendisse rutrum lacinia ullamcorper blandit litora ut pulvinar purus semper. </li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Tellus eros enim mauris risus parturient congue quam faucibus vivamus mi ex.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading {""level"":4} -->
+<h4 class=""wp-block-heading"">Conubia facilisis augue elit aliquam vivamus rhoncus enim</h4>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Torquent fringilla inceptos cursus fames magnis aliquam leo primis euismod facilisis sit. Felis ad ipsum habitant tincidunt interdum. Per scelerisque letius nisi pretium fames integer rutrum proin iaculis dignissim. Ornare hendrerit sollicitudin tempor placerat nec maximus orci. Odio fermentum turpis sagittis sociosqu ridiculus ullamcorper ultrices sodales accumsan non. Vulputate sapien finibus suspendisse risus purus natoque lacinia vel augue ultricies non. Eleifend taciti nam ridiculus netus tortor a aenean mauris. Odio vehicula phasellus habitasse orci duis.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Libero egestas pulvinar si quam lectus. Ad litora fermentum torquent risus ornare pulvinar egestas. Montes ut rhoncus letius elementum sodales blandit ipsum habitant. Eget cubilia molestie primis parturient senectus.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {""sizeSlug"":""large"",""linkDestination"":""none""} -->
+<figure class=""wp-block-image size-large""><img src=""https://t3planet.com/fileadmin/ns_theme_t3planet/Templates/Multipurpose/T3_Bootstrap/Infographics/T3Karma_Developed_With.png"" alt=""""/></figure>
+<!-- /wp:image -->",What is eventHandler ?,,publish,open,open,,what-is-eventhandler,,,06/02/24 11:07,06/02/24 11:07,,0,https://nswordpress.ddev.site/?p=14,0,post,,0,,1,navdeep,navdeep,navdeep.nitsan@gmail.com,https://nswordpress.ddev.site,navdeep,,,,,,,,,,1707217511:1,1,default,,Event,event,3,3,Event,event,,,,,,,,,,,,
+40,1,06/02/24 11:11,06/02/24 11:11,"<!-- wp:paragraph -->
+<p>Lorem ipsum dolor sit amet consectetur adipiscing elit litora, ornare conubia nisl sociis vestibulum ridiculus posuere, leo quis cubilia hendrerit morbi per odio. Massa phasellus urna rhoncus parturient tincidunt litora blandit vitae, et quis purus curae pharetra sociosqu ad consequat, dapibus dignissim mus proin iaculis molestie nascetur. Posuere fermentum primis egestas ornare tempor rutrum justo, aliquam nisl risus suscipit laoreet lacinia, at aptent a velit sociosqu cum. Netus semper dictumst lobortis neque quisque rhoncus himenaeos ullamcorper ultricies mattis, vivamus dis conubia nibh laoreet sociis curabitur volutpat class aenean, venenatis pellentesque molestie tristique purus vestibulum consequat feugiat nam. Ante lobortis justo faucibus ultrices quis non sollicitudin at, etiam suspendisse elementum magnis nibh neque fames, accumsan cubilia dis mi augue praesent habitant. Luctus dui facilisis varius class vestibulum tristique laoreet, parturient interdum litora praesent tortor mollis facilisi, duis feugiat suscipit ante proin massa.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {""sizeSlug"":""large""} -->
+<figure class=""wp-block-image size-large""><img src=""https://t3planet.com/fileadmin/ns_theme_t3planet/Services/TYPO3-Customization-Services-T3Planet.jpg"" alt=""""/></figure>
+<!-- /wp:image -->",Data Driven Architecture,,publish,open,open,,data-driven-architecture,,,06/02/24 11:14,06/02/24 11:14,,0,https://nswordpress.ddev.site/?p=40,0,post,,0,https://nswordpress.ddev.site/wp-content/uploads/2023/11/0e1bf117-a3df-4bcd-89c2-d904222c1be0.jpg,1,navdeep,navdeep,navdeep.nitsan@gmail.com,https://nswordpress.ddev.site,navdeep,28,https://nitsantech.com/fileadmin/ns_theme_ns2019/Culture/Celebrating_13th_Anniversary_of_NITSAN/13th_Anniversary/Edited-3.jpg,Kitten being held in a white bathrobe.,,,,,,,1707218308:1,,,28,Event,event,3,3,Event,event,"data,event,handler,test","data,event,handler,test","9,7,8,6","9,7,8,6","data,event,handler,test","data,event,handler,test",,,,,,
+44,1,06/02/24 11:23,06/02/24 11:23,"<!-- wp:paragraph -->
+<p>Lorem ipsum dolor sit amet consectetur adipiscing elit, eros potenti velit nam accumsan placerat eget, magna non dis sed ut malesuada. Fames convallis vivamus euismod hac dignissim enim sapien ante, vel venenatis montes nec condimentum nullam proin quisque, malesuada leo molestie sed aliquam eu etiam. Scelerisque tristique magna mus tortor massa eleifend duis, imperdiet sed porta vulputate phasellus pharetra, facilisi et cubilia tempus dictum ultrices. Velit cras cursus arcu pretium natoque proin nec auctor, varius egestas quis vel rutrum imperdiet torquent nostra interdum, mauris congue feugiat habitasse parturient a aptent. Euismod blandit mauris lacinia laoreet mollis cum, habitant sem vivamus tristique potenti hendrerit gravida, egestas erat aptent sociis orci.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p></p>
+<!-- /wp:paragraph -->",bound the boundaries,"Lorem ipsum dolor sit amet consectetur adipiscing elit integer erat, proin cum habitasse nunc ullamcorper hac purus eget, risus fames primis duis class nibh ut gravida. Ultrices hac luctus ligula litora torquent suscipit vehicula aptent justo, gravida maecenas ullamcorper himenaeos tempus ridiculus pharetra aliquam cursus, vivamus diam semper metus phasellus dictum commodo magna. Enim senectus gravida luctus lectus tempus eros sagittis, commodo vestibulum cras fames",publish,open,open,,bound-the-boundaries,,,06/02/24 11:23,06/02/24 11:23,,0,https://nswordpress.ddev.site/?p=44,0,post,,0,https://nswordpress.ddev.site/wp-content/uploads/2024/02/ctfj9zqjsh4.jpg,1,navdeep,navdeep,navdeep.nitsan@gmail.com,https://nswordpress.ddev.site,navdeep,45,https://nitsantech.com/fileadmin/ns_theme_ns2019/Culture/Celebrating_13th_Anniversary_of_NITSAN/13th_Anniversary/Edited-1-1__1_.jpg,Photo by Brock Wegner,a woman sitting in a bathtub holding a candle,,,,,,1707218556:1,,,45,Internet,internet,5,5,Internet,internet,"event,hello,test","event,hello,test","7,10,6","7,10,6","event,hello,test","event,hello,test",,,,,,
+47,1,06/02/24 11:33,06/02/24 11:33,"<!-- wp:paragraph -->
+<p>Lorem ipsum dolor sit amet consectetur adipiscing elit, commodo dignissim a massa libero penatibus nisl egestas, euismod ultricies himenaeos nullam blandit nam. Magnis congue hendrerit maecenas justo inceptos sed turpis habitasse elementum, donec vulputate cum cursus dictumst curabitur consequat felis mus, laoreet viverra nascetur ornare a proin tortor commodo. Vivamus dapibus eu dictum quisque eget convallis cursus nam accumsan, bibendum lacus mattis habitant fermentum sociis taciti torquent ante proin, nunc nascetur magnis fringilla velit viverra sociosqu vitae. Aliquet placerat ligula eget gravida est nostra pellentesque vel mollis dictumst nam mattis porta, sed facilisi odio tempus morbi montes mi dui magna libero mus. Proin varius sed pulvinar nec vivamus duis parturient magna nullam rutrum ridiculus hac non, convallis mi ultrices etiam lacus elementum commodo at aliquam gravida cum. Est fames tempor sociosqu neque penatibus ac vivamus enim tellus aliquet, luctus rhoncus fermentum conubia malesuada dapibus turpis vulputate. Eros auctor ante senectus feugiat turpis rhoncus tortor ultrices tempor, id hendrerit a eu malesuada hac penatibus sed, sapien congue laoreet lobortis iaculis nam interdum magna. Nostra tortor pulvinar nisi cum orci tempus posuere nullam, taciti felis mollis hac class erat consequat vulputate, justo sed ridiculus sociosqu himenaeos lacinia curae.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {""sizeSlug"":""large""} -->
+<figure class=""wp-block-image size-large""><img src=""https://t3planet.com/fileadmin/_processed_/e/6/csm_why_t3planet_inner_2%401.5x_19a4cb92a7.png"" alt=""""/></figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>Lorem ipsum dolor sit amet consectetur adipiscing elit magnis, urna aenean vulputate maecenas fermentum neque suspendisse mollis porttitor, ullamcorper per et augue tincidunt hac inceptos. Dis ultricies quisque ligula semper urna tellus conubia sapien sociosqu, mollis volutpat commodo mi morbi neque justo quam facilisis, nec velit magna proin mus eget dapibus a.</p>
+<!-- /wp:paragraph -->",self discipline,"Lorem ipsum dolor sit amet consectetur adipiscing elit integer, vitae lectus pretium orci rutrum ligula habitasse imperdiet, fames ac sed taciti bibendum lacus cubilia. Nibh leo curae cursus placerat odio diam congue, vel est fringilla sem feugiat eget fermentum magna, parturient arcu lacinia quis pretium eleifend.",publish,open,open,,self-discipline,,,06/02/24 11:33,06/02/24 11:33,,0,https://nswordpress.ddev.site/?p=47,0,post,,0,https://nswordpress.ddev.site/wp-content/uploads/2024/02/ctfj9zqjsh4.jpg,1,navdeep,navdeep,navdeep.nitsan@gmail.com,https://nswordpress.ddev.site,navdeep,45,https://nitsantech.com/fileadmin/ns_theme_ns2019/Culture/Celebrating_13th_Anniversary_of_NITSAN/13th_Anniversary/Edited-4.jpg,Photo by Brock Wegner,a woman sitting in a bathtub holding a candle,,,,,,1707219219:1,,,45,Awareness,awareness,11,11,Awareness,awareness,"awareness,selfhelp","awareness,selfhelp","12,13","12,13","awareness,selfhelp","awareness,selfhelp",,,,,,

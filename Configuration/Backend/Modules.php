@@ -19,7 +19,7 @@ return [
         'extensionName' => 'ns_wp_migration',
         'navigationComponent' => '@typo3/backend/page-tree/page-tree-element',
         'controllerActions' => [
-            PostController::class => 'import, importform, logmanager',
+            PostController::class => 'import, importform, logmanager, downloadSample',
         ],
     ],
 ];
