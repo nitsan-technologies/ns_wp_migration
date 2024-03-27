@@ -9,7 +9,7 @@ define([
         "ordering": false,
         "searching": false,
         "language": {
-            "lengthMenu": "Display _MENU_ Categories",
+            "lengthMenu": "Display _MENU_ Logs",
             "emptyTable": "No Logs Available",
             "zeroRecords": "No matching Logs found"
         },
