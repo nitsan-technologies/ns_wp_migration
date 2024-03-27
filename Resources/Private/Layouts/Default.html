@@ -1,19 +1,26 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-	<f:be.pageRenderer 
-	pageTitle="{f:translate(key: 'pagetitle')}"
-	includeRequireJsModules="{0:'TYPO3/CMS/NsWpMigration/Main'}"
-	includeCssFiles="{0: '{f:uri.resource(path:\'Css/extension.css\')}'
-}"
-/>
 <f:if condition="{version} == 11">
-	<script src="{f:uri.resource(path:'JavaScript/Main.js')}"></script>
+	<f:then>
+		<script src="{f:uri.resource(path:'JavaScript/Jquery.js')}"></script>
+		<script src="{f:uri.resource(path:'JavaScript/Datatables.js')}"></script>
+		<script src="{f:uri.resource(path:'JavaScript/Mainv11.js')}"></script>
+	</f:then>
+	<f:else>
+		<f:be.pageRenderer
+		includeRequireJsModules="{
+			0:'TYPO3/CMS/NsWpMigration/Main',
+		}"
+		/>
+	</f:else>
 </f:if>
 <link rel="stylesheet" href="{f:uri.resource(path: 'EXT:backend/Resources/Public/Css/backend.css')}?{bust}" />
 <link rel="stylesheet" type="text/css" href="{f:uri.resource(path:'Css/configuration.css', extensionName: 'ns_wp_migration')}" media="all">
 <link rel="stylesheet" type="text/css" href="{f:uri.resource(path:'Vendor/bootstrap4.3.1.min.css', extensionName: 'ns_wp_migration')}" media="all">
 <link rel="stylesheet" type="text/css" href="{f:uri.resource(path:'Css/global.css', extensionName: 'ns_wp_migration')}" media="all">
-<link rel="stylesheet" type="text/css" href="{f:uri.resource(path:'Css/main.css', extensionName: 'ns_wp_migration')}" media="all">
 <link rel="stylesheet" type="text/css" href="{f:uri.resource(path:'Css/extension.css', extensionName: 'ns_wp_migration')}" media="all">
+<link rel="stylesheet" type="text/css" href="{f:uri.resource(path:'Css/font-awesome.css', extensionName: 'ns_wp_migration')}" media="all">
+<link rel="stylesheet" type="text/css" href="{f:uri.resource(path:'Css/extension.css', extensionName: 'ns_wp_migration')}" media="all">
+<link rel="stylesheet" type="text/css" href="{f:uri.resource(path:'Css/main.css', extensionName: 'ns_wp_migration')}" media="all">
 
 
 <div class="typo3-fullDoc">

@@ -1,20 +1,36 @@
-{namespace ns=NITSAN\NsWpMigration\ViewHelpers}
 <html xmlns:f="https://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 <f:layout name="Default" />
 <f:section name="content">
-        <ns:be.tableList
-				tableName="tx_nswpmigration_domain_model_logmanage"
-                fieldList="{0: 'number_of_records', 1: 'total_success', 2: 'total_update', 3: 'created_date'}"
-                enableClickMenu="false"
-				recordsPerPage="10" 
-				sortField="name"
-				enableClickMenu="true"
-				readOnly="false"
-                storagePid="1"
-                levels="100"
-				enableControlPanels="true"
-				clickTitleMode="edit"
-		/>
+	<div class="ns-ext-table-block-wrap">
+		<div class="card custom-card">
+			<div class="card-body">
+				<div class="ns-ext-table-wrap ns-ext-list-table-wrap ns-ext-list-table-with-delete">
+					<table class="table ns-ext-logmanager-datatable ns-ext-datatable" id="loglist-table">
+						<thead class="thead-light">
+							<tr>
+								<th><f:translate key="log.totalRecord" /></th>
+								<th><f:translate key="log.totalInserted" /></th>
+								<th><f:translate key="log.totalUpdate" /></th>
+								<th><f:translate key="log.storageFolder" /></th>
+								<th><f:translate key="log.totalImportDate" /></th>
+							</tr>
+						</thead>
+						<tbody>
+							<f:for each="{loglist}" as="log">
+								<tr>
+									<td>{log.number_of_records}</td>
+									<td>{log.total_success}</td>
+									<td>{log.total_update}</td>
+									<td>{log.pid}</td>
+									<td><f:format.date format="Y-m-d">{log.created_date}</f:format.date></td>
+								</tr>
+							</f:for>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
 </f:section>
 
 </html>

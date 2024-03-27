@@ -599,10 +599,18 @@ class PostController extends AbstractController
         $assign = [
             'action' => 'logmanager',
             'constant' => $this->constants,
-            'logs-data' => $data
+            'loglist' => $data
         ];
-        $this->view->assignMultiple($assign);
-        return $this->htmlResponse();
+        if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() < 12) {
+            $assign['version'] = 11;
+            $this->view->assignMultiple($assign);
+            return $this->htmlResponse();
+        } else {
+            $assign['version'] = 12;
+            $view = $this->initializeModuleTemplate($this->request);
+            $view->assignMultiple($assign);
+            return $view->renderResponse();
+        }
     }
 
     /**

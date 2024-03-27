@@ -69,6 +69,21 @@
 			<trans-unit id="postType.Blog">
 				<source>Blog</source>
 			</trans-unit>
+			<trans-unit id="log.totalRecord">
+				<source>Total Records</source>
+			</trans-unit>
+			<trans-unit id="log.totalUpdate">
+				<source>Total Update</source>
+			</trans-unit>
+			<trans-unit id="log.totalInserted">
+				<source>Total Inserted</source>
+			</trans-unit>
+			<trans-unit id="log.totalImportDate">
+				<source>Import date</source>
+			</trans-unit>
+			<trans-unit id="log.storageFolder">
+				<source>Record Storage ID</source>
+			</trans-unit>
         </body>
     </file>
 </xliff>

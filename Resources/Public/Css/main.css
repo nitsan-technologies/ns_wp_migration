@@ -182,3 +182,7 @@ typo3-recordlist-record-download-button.btn.btn-sm.btn-default {
 typo3-recordlist-record-download-button {
     display: none;
 }
+.typo3-fullDoc {
+    overflow-y: auto;
+    height: 100%;
+}
