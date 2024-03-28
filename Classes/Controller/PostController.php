@@ -103,15 +103,10 @@ class PostController extends AbstractController
      */
     public function importAction(array $data = []): ResponseInterface
     {
-        session_start();
         $assign = [
             'action' => 'import',
             'constant' => $this->constants
         ];
-        if ($data) {
-            $assign['redirect'] = $_SESSION['redirect'];
-            $assign['missing'] = $_SESSION['missing'];
-        }
 
         if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() < 12) {
             $assign['version'] = 11;
@@ -381,6 +376,7 @@ class PostController extends AbstractController
                 $massage = LocalizationUtility::translate('import.fail', 'ns_wp_migration');
                 $response['message'] = $massage;
                 $response['result'] = false;
+                $this->logger->error($th->getMessage(),$response);
             }
             
         }
@@ -632,7 +628,7 @@ class PostController extends AbstractController
         $categoriesLists = [];
         if ($categories) {
             $categoriesID = '';
-            foreach ($categories as $key => $value) {
+            foreach ($categories as $value) {
                 $categoriesID = $this->categoryRepository->checkIsExist($value, $storageId);
                 array_push($categoriesLists, $categoriesID);
                 if(empty($categoriesID)) {
@@ -750,7 +746,7 @@ class PostController extends AbstractController
         $tagItemList = [];
         $tagItem = [];
         if ($tagList) {
-            foreach ($tagList as $key => $value) {
+            foreach ($tagList as $value) {
                 $slug = str_replace(" ", "-", strtolower($value));
                 $tagItem = $this->categoryRepository->checkIsTagExist($slug, $storageId);
                 if(empty($tagItem)) {
@@ -781,7 +777,7 @@ class PostController extends AbstractController
     private function manageTagsForBlogs(int $recordId, array $tagList, int $storageId): array {
         $tagItemList = [];
         if ($tagList) {
-            foreach ($tagList as $key => $value) {
+            foreach ($tagList as $value) {
                 $tagName = trim($value);
                 $tagItem = $this->contentRepository->checkIsTagExist($tagName, $storageId);
                 if(empty($tagItem)) {
@@ -814,13 +810,14 @@ class PostController extends AbstractController
     {
         $url = $image;
         $fileName = basename($url);
+        $folder = '/fileadmin/news';
+        $folderName = 'news';
+
         if($table == 'pages') {
             $folder = '/fileadmin/blog';
             $folderName = 'blog';
-        } else {
-            $folder = '/fileadmin/news';
-            $folderName = 'news';
         }
+
         $resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
         $dstFolder = \TYPO3\CMS\Core\Core\Environment::getPublicPath() . $folder;
         

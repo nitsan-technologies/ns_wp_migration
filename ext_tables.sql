@@ -19,18 +19,3 @@ CREATE TABLE tx_nswpmigration_domain_model_logmanage (
   records_log text DEFAULT NULL,
   created_date bigint(20) DEFAULT '0' NOT NULL
 );
-
-#
-# Table structure for table 'tx_mdnewsauthorx_news_newsauthor_mm'
-#
-CREATE TABLE tx_nswpmigration_domain_model_logmanage_mm (
-
-    uid_local int(11) unsigned DEFAULT '0' NOT NULL,
-    uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
-    sorting int(11) unsigned DEFAULT '0' NOT NULL,
-    sorting_foreign int(11) unsigned DEFAULT '0' NOT NULL,
-
-    KEY uid_local (uid_local),
-    KEY uid_foreign (uid_foreign)
-
-);

@@ -58,12 +58,8 @@ abstract class AbstractController extends ActionController implements LoggerAwar
             'application/vnd.msexcel',
             'text/plain'
         ];
-
-        if (in_array($file['type'], $fileMimes)) {
-            return true;
-        } else {
-            return false;
-        }
+        
+        return in_array($file['type'], $fileMimes) ? true  : false;
     }
 
 }

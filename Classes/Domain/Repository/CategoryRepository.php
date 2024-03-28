@@ -10,7 +10,7 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  *
- *  (c) 2023 T3: Navdeep <sanjay@nitsan.in>, NITSAN Technologies Pvt Ltd
+ *  (c) 2023 T3: Navdeepsinh Jethwa <sanjay@nitsan.in>, NITSAN Technologies Pvt Ltd
  *
  ***/
 
@@ -71,7 +71,8 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * Refrance the categories in the database
      * @return int
      */
-    public function mapcategories($categoriesID,$recordId, $recordType ): int {
+    public function mapcategories($categoriesID,$recordId, $recordType ): int
+    {
 
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
         ->getQueryBuilderForTable('sys_category_record_mm');
@@ -109,7 +110,8 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param int $counts
      * @return int
      */
-    public function updateNewsCategoriesCounts($newsId, $counts): int {
+    public function updateNewsCategoriesCounts($newsId, $counts): int
+    {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
         ->getQueryBuilderForTable('tx_news_domain_model_news');
         return $queryBuilder
@@ -126,7 +128,8 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param int $counts
      * @return int
      */
-    public function updateBlogCategoriesCounts($blogId, $counts): int {
+    public function updateBlogCategoriesCounts($blogId, $counts): int
+    {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('pages');
         return $queryBuilder
             ->update('pages')
@@ -142,7 +145,8 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param int $counts
      * @return int
      */
-    public function updateNewsTagsCounts($newsId, $counts): int {
+    public function updateNewsTagsCounts($newsId, $counts): int
+    {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
         ->getQueryBuilderForTable('tx_news_domain_model_news');
         return $queryBuilder
@@ -159,7 +163,8 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param int $storageId
      * @return string
      */
-    public function checkIsTagExist(string $slug, int $storageId): string {
+    public function checkIsTagExist(string $slug, int $storageId): string
+    {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
         ->getQueryBuilderForTable('tx_news_domain_model_tag');
         return $queryBuilder
@@ -178,7 +183,8 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param int $tagId
      * @return int
      */
-    public function mapTagItems($newsId, $tagId): int {
+    public function mapTagItems($newsId, $tagId): int
+    {
 
         // Extract UID if $tagId is an object
         if (is_object($tagId) && method_exists($tagId, 'getUid')) {

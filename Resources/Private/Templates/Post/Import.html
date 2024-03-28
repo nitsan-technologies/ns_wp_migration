@@ -4,40 +4,6 @@
 	<div class="ns-ext-form-wrap">
 		<f:variable name="menuName"><f:translate key="{action}" /></f:variable>
 		<f:render partial="Importmanager" arguments="{_all}" />
-		<f:if condition="{redirect}">
-			<div class="redirect-section">
-				<h3><f:translate key="redirect_rule" /></h3>
-				<hr/>
-				<f:for each="{redirect}" as="item">
-					<div class="item-list" style="margin-bottom: 20px;">
-						<p style="margin-bottom: 5px;">RedirectMatch 301 {item.past-url} {item.active-url}</p>
-					</div>
-				</f:for>
-			</div>
-		</f:if>
-		<f:if condition="{missing}">
-			<hr/>
-			<div class="redirect-section">
-				<h3><f:translate key="missing_rule" /></h3>
-				<span><f:translate key="missing_rule_validation" /></span>
-				<hr/>
-				<f:for each="{missing}" as="item">
-					<f:for each="{item}" as="i">
-						<div class="item-list" style="margin-bottom: 20px;">
-							<p style="margin-bottom: 5px;"><b><f:translate key="missing_rowno" /></b> {i.rowno}</p>
-							<p style="margin-bottom: 5px;"><b><f:translate key="missing_column" /></b> {i.value}</p>
-						</div>
-					</f:for>
-				</f:for>
-			</div>
-		</f:if>
 	</div>
 </f:section>
-<script type="text/javascript">
-	document.getElementById('submit').onclick = function() {
-		console.log("test");
-		this.disabled = true;
-		document.getElementById("importHandler").submit();
-	}
-</script>
 </html>

@@ -8,7 +8,7 @@ namespace NITSAN\NsWpMigration\Domain\Model;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  *
- *  (c) 2020 T3: Milan <sanjay@nitsan.in>, NITSAN Technologies Pvt Ltd
+ *  (c) 2020 T3: Navdeepsinh Jethwa <sanjay@nitsan.in>, NITSAN Technologies Pvt Ltd
  *
  ***/
 
@@ -68,7 +68,7 @@ class LogManage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return int $numberOfRecords
      */
-    public function getNumberOfRecords()
+    public function getNumberOfRecords(): int
     {
         return $this->numberOfRecords;
     }
@@ -79,7 +79,7 @@ class LogManage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param int $numberOfRecords
      * @return void
      */
-    public function setNumberOfRecords($numberOfRecords)
+    public function setNumberOfRecords($numberOfRecords): void
     {
         $this->numberOfRecords = $numberOfRecords;
     }
@@ -89,7 +89,7 @@ class LogManage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return int $totalSuccess
      */
-    public function getTotalSuccess()
+    public function getTotalSuccess(): int
     {
         return $this->totalSuccess;
     }
@@ -100,7 +100,7 @@ class LogManage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param int $totalSuccess
      * @return void
      */
-    public function setTotalSuccess($totalSuccess)
+    public function setTotalSuccess($totalSuccess): void
     {
         $this->totalSuccess = $totalSuccess;
     }
@@ -110,7 +110,7 @@ class LogManage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return int $totalFails
      */
-    public function getTotalFails()
+    public function getTotalFails(): int
     {
         return $this->totalFails;
     }
@@ -121,7 +121,7 @@ class LogManage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param int $totalFails
      * @return void
      */
-    public function setTotalFails($totalFails)
+    public function setTotalFails($totalFails): void
     {
         $this->totalFails = $totalFails;
     }
@@ -131,7 +131,7 @@ class LogManage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return int $totalUpdate
      */
-    public function getTotalUpdate()
+    public function getTotalUpdate(): int
     {
         return $this->totalUpdate;
     }
@@ -142,7 +142,7 @@ class LogManage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param int $totalUpdate
      * @return void
      */
-    public function setTotalUpdate($totalUpdate)
+    public function setTotalUpdate($totalUpdate): void
     {
         $this->totalUpdate = $totalUpdate;
     }
@@ -152,7 +152,7 @@ class LogManage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Beuser\Domain\Model\BackendUser> addedBy
      */
-    public function getAddedBy()
+    public function getAddedBy(): ObjectStorage
     {
         return $this->addedBy;
     }
@@ -163,7 +163,7 @@ class LogManage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Beuser\Domain\Model\BackendUser> $addedBy
      * @return void
      */
-    public function setAddedBy(BackendUser $addedBy)
+    public function setAddedBy(BackendUser $addedBy): void
     {
         $this->addedBy = $addedBy;
     }
@@ -192,7 +192,7 @@ class LogManage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string $recordsLog
      */
-    public function getRecordsLog()
+    public function getRecordsLog(): string
     {
         return $this->recordsLog;
     }
@@ -203,7 +203,7 @@ class LogManage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @param string $recordsLog
      * @return void
      */
-    public function setRecordsLog($recordsLog)
+    public function setRecordsLog($recordsLog): void
     {
         $this->recordsLog = $recordsLog;
     }

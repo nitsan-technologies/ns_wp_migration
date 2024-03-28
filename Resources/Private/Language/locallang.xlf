@@ -84,6 +84,9 @@
 			<trans-unit id="log.storageFolder">
 				<source>Record Storage ID</source>
 			</trans-unit>
+			<trans-unit id="download.samplefile">
+				<source>Download Sample</source>
+			</trans-unit>
         </body>
     </file>
 </xliff>

@@ -15,7 +15,7 @@ use TYPO3\CMS\Core\DataHandling\DataHandler;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  *
- *  (c) 2023 T3: Navdeep <sanjay@nitsan.in>, NITSAN Technologies Pvt Ltd
+ *  (c) 2023 T3: Navdeepsinh Jethwa <sanjay@nitsan.in>, NITSAN Technologies Pvt Ltd
  *
  ***/
 
@@ -80,7 +80,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param int $pid
      * @return int
      */
-    public function findAuthorByEmail($email, $pid): int {
+    public function findAuthorByEmail($email, $pid): int
+    {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
         ->getQueryBuilderForTable('tx_blog_domain_model_author');
         $author = $queryBuilder
@@ -100,7 +101,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param int $pid
      * @return string
      */
-    public function findAuthorByNewsEmail($email, $pid): string {
+    public function findAuthorByNewsEmail($email, $pid): string
+    {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
         ->getQueryBuilderForTable('tx_mdnewsauthor_domain_model_newsauthor');
         return $queryBuilder
@@ -116,7 +118,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     /**
      * @return string
      */
-    public function findNewsBySlug($slug): string {
+    public function findNewsBySlug($slug): string
+    {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
         ->getQueryBuilderForTable('tx_news_domain_model_news');
         return $queryBuilder
@@ -132,7 +135,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     /**
      * @return string
      */
-    public function findPageBySlug($slug, $storageId): string {
+    public function findPageBySlug($slug, $storageId): string
+    {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('pages');
         return $queryBuilder
             ->select('uid')
@@ -148,7 +152,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     /**
      * @return bool
      */
-    public function assignAuthorToNews($data): bool {
+    public function assignAuthorToNews($data): bool
+    {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
         ->getQueryBuilderForTable('tx_mdnewsauthor_news_newsauthor_mm');
         $existingRecord = $queryBuilder
@@ -173,7 +178,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     /**
      * @return bool
      */
-    public function assignAuthorToBlogs($data): bool {
+    public function assignAuthorToBlogs($data): bool
+    {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
         ->getQueryBuilderForTable('tx_blog_post_author_mm');
         $existingRecord = $queryBuilder
@@ -203,7 +209,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param int $counts
      * @return int
      */
-    public function updateBlogsTagsCounts($blogId, $counts): int {
+    public function updateBlogsTagsCounts($blogId, $counts): int
+    {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('pages');
         return $queryBuilder
             ->update('pages')
@@ -219,7 +226,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param int $storageId
      * @return string
      */
-    public function checkIsTagExist(string $slug, int $storageId): string {
+    public function checkIsTagExist(string $slug, int $storageId): string
+    {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
         ->getQueryBuilderForTable('tx_blog_domain_model_tag');
         return $queryBuilder
@@ -237,7 +245,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param int $tagId
      * @return int
      */
-    public function mapTagItems($blogId, $tagId): int {
+    public function mapTagItems($blogId, $tagId): int
+    {
 
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
         ->getQueryBuilderForTable('tx_blog_tag_pages_mm');
@@ -270,7 +279,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * set feature image in system file\
      * @return int
      */
-    public function setFeatureImage($imageData): int {
+    public function setFeatureImage($imageData): int
+    {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('sys_file');
         $queryBuilder
             ->insert('sys_file')
@@ -283,7 +293,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * Refrenance feature image in system file
      * @return int
      */
-    public function refSystemFile($uid, $imageData): int {
+    public function refSystemFile($uid, $imageData): int
+    {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
         ->getQueryBuilderForTable('sys_file_reference');
 
@@ -305,7 +316,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     /**
      * @return int
      */
-    public function changeTypeforImage($uid): int {
+    public function changeTypeforImage($uid): int
+    {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
         ->getQueryBuilderForTable('sys_file');
         return $queryBuilder
@@ -320,7 +332,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     /**
      * @return int
      */
-    public function updateBlogAuthor($blogId): int {
+    public function updateBlogAuthor($blogId): int
+    {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
         ->getQueryBuilderForTable('pages');
         return $queryBuilder

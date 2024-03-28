@@ -6,6 +6,7 @@ declare(strict_types = 1);
  *
  * For the full copyright and license information, please read the
  * LICENSE file that was distributed with this source code.
+ * (c) 2023 T3: Navdeepsinh Jethwa <sanjay@nitsan.in>, NITSAN Technologies Pvt Ltd
  */
 
 namespace NITSAN\NsWpMigration\Domain\Repository;
@@ -30,7 +31,8 @@ class LogManageRepository extends Repository
     /**
      * @return array
      */
-    public function getAllLogs(): array {
+    public function getAllLogs(): array
+    {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
         ->getQueryBuilderForTable('tx_nswpmigration_domain_model_logmanage');
         return $queryBuilder
