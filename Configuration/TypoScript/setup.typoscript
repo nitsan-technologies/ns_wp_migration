@@ -1,9 +1,6 @@
 
 # Module configuration
 module.tx_nswpmigration {
-    persistence {
-        storagePid = {$module.tx_nswpmigration.persistence.storagePid}
-    }
     view {
         templateRootPaths.0 = EXT:ns_wp_migration/Resources/Private/Backend/Templates/
         templateRootPaths.1 = {$module.tx_nswpmigration.view.templateRootPath}

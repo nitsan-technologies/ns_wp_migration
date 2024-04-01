@@ -1,4 +1,4 @@
-<f:form action="importform" controller="Post" id="importHandler" class="ns-submit-form" enctype="multipart/form-data" method="POST">
+<f:form action="importForm" id="importHandler" class="ns-wp-import-form ns-ext-form" enctype="multipart/form-data">
         <div class="form-group">
             <label for="import-manager-file"><f:translate key="label.fileSelect" /></label>
             <f:form.upload name="dataFile" id="import-manager-file" class="form-control" additionalAttributes="{required:'true', accept: '.csv'}" property="file" />
@@ -13,10 +13,10 @@
         </div>
         <div class="form-group">
             <label for="storage_id"><f:translate key="label.storageFolder" /></label>
-            <f:form.textfield name="storageId" id="storage_id" type="number" class="form-control" additionalAttributes="{required:'true'}" placeholder="Insert Storage Page Id" />
+            <f:form.textfield name="storageId" id="storage_id" type="number" class="form-control" additionalAttributes="{required:'true'}" placeholder="{f:translate(key: 'placeholder.StorageFolder')}" />
         </div>
         <div class="form-group">
-            <f:form.submit class="btn btn-secondary" id="submit_import" value="{f:translate(key:'form.submitButton')}" />
-            <f:link.action action="downloadSample" controller="Post" class="btn btn-secondary"><f:translate key="download.samplefile" /></f:link.action>
+            <f:form.submit class="btn btn-gray" id="submit_import" value="{f:translate(key:'form.submitButton')}" />
+            <f:link.action action="downloadSample" controller="Post" class="btn btn-gray"><f:translate key="download.samplefile" /></f:link.action>
         </div>
 </f:form>

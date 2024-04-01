@@ -1,6 +1,7 @@
 <?php
 namespace  NITSAN\NsWpMigration\Domain\Repository;
 
+use Doctrine\DBAL\Result;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 /***
@@ -50,7 +51,7 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         $queryBuilder
             ->insert('sys_category')
             ->values($item)
-            ->execute();
+            ->executeStatement();
 
         $lastCatUid = $queryBuilder->getConnection()->lastInsertId();
         $queryCatBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
@@ -64,7 +65,7 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         return $queryCatBuilder
             ->insert('sys_category_record_mm')
             ->values($catInsertData)
-            ->execute();
+            ->executeStatement();
     }
 
     /**
@@ -83,11 +84,11 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             $queryBuilder->expr()->eq('uid_local', $categoriesID),
             $queryBuilder->expr()->eq('uid_foreign', $recordId)
         )
-        ->execute()
+        ->executeQuery()
         ->fetch();
         
         if ($existingRecord) {
-            return 0;
+            return (int)$existingRecord['uid_local'];
         }
 
         $catInsertData = ['uid_local' => $categoriesID,
@@ -102,7 +103,7 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         return $queryCatBuilder
             ->insert('sys_category_record_mm')
             ->values($catInsertData)
-            ->execute();
+            ->executeStatement();
     }
 
     /**
@@ -120,7 +121,7 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
                 $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($newsId, \PDO::PARAM_INT))
             )
             ->set('categories', $counts)
-            ->execute();
+            ->executeStatement();
     }
 
     /**
@@ -137,7 +138,7 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
                 $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($blogId, \PDO::PARAM_INT))
             )
             ->set('categories', $counts)
-            ->execute();
+            ->executeStatement();
     }
 
     /**
@@ -155,7 +156,7 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
                 $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($newsId, \PDO::PARAM_INT))
             )
             ->set('tags', $counts)
-            ->execute();
+            ->executeStatement();
     }
 
     /**
@@ -185,7 +186,6 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      */
     public function mapTagItems($newsId, $tagId): int
     {
-
         // Extract UID if $tagId is an object
         if (is_object($tagId) && method_exists($tagId, 'getUid')) {
             $tagId = $tagId->getUid();
@@ -200,11 +200,11 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             $queryBuilder->expr()->eq('uid_local', $newsId),
             $queryBuilder->expr()->eq('uid_foreign', $tagId)
         )
-        ->execute()
+        ->executeQuery()
         ->fetch();
         
         if ($existingRecord) {
-            return 0;
+            return $existingRecord['uid_local'];
         }
 
         $tagItems = ['uid_local' => $newsId,
@@ -217,6 +217,6 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         return $queryCatBuilder
             ->insert('tx_news_domain_model_news_tag_mm')
             ->values($tagItems)
-            ->execute();
+            ->executeStatement();
     }
 }

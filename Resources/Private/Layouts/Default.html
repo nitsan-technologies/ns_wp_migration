@@ -14,12 +14,8 @@
 	</f:else>
 </f:if>
 <link rel="stylesheet" href="{f:uri.resource(path: 'EXT:backend/Resources/Public/Css/backend.css')}?{bust}" />
-<link rel="stylesheet" type="text/css" href="{f:uri.resource(path:'Css/configuration.css', extensionName: 'ns_wp_migration')}" media="all">
 <link rel="stylesheet" type="text/css" href="{f:uri.resource(path:'Vendor/bootstrap4.3.1.min.css', extensionName: 'ns_wp_migration')}" media="all">
 <link rel="stylesheet" type="text/css" href="{f:uri.resource(path:'Css/global.css', extensionName: 'ns_wp_migration')}" media="all">
-<link rel="stylesheet" type="text/css" href="{f:uri.resource(path:'Css/extension.css', extensionName: 'ns_wp_migration')}" media="all">
-<link rel="stylesheet" type="text/css" href="{f:uri.resource(path:'Css/font-awesome.css', extensionName: 'ns_wp_migration')}" media="all">
-<link rel="stylesheet" type="text/css" href="{f:uri.resource(path:'Css/extension.css', extensionName: 'ns_wp_migration')}" media="all">
 <link rel="stylesheet" type="text/css" href="{f:uri.resource(path:'Css/main.css', extensionName: 'ns_wp_migration')}" media="all">
 
 
@@ -51,8 +47,8 @@
 									</f:link.action>
 								</li>
 								<li class="nav-item {f:if(condition: '{action}==logmanager', then: 'active')}">
-									<f:link.action action="logmanager" class="nav-link" additionalAttributes="{data-toggle:'tooltip',data-placement:'bottom'}" title="{f:translate(key: 'log_manager')}">
-										<em class="fa fas fa-gear" aria-hidden="true"></em><f:translate key="log_manager" />
+									<f:link.action action="logManager" class="nav-link" additionalAttributes="{data-toggle:'tooltip',data-placement:'bottom'}" title="{f:translate(key: 'log_manager')}">
+										<em class="fa fas fa-eye" aria-hidden="true"></em><f:translate key="log_manager" />
 									</f:link.action>
 								</li>
 							</ul>

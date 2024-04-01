@@ -186,3 +186,7 @@ typo3-recordlist-record-download-button {
     overflow-y: auto;
     height: 100%;
 }
+
+.ns-ext-form-wrap .ns-ext-form.ns-wp-import-form {
+    margin-top: 0;
+}

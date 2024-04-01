@@ -9,7 +9,7 @@ $(function() {
         },
     });
 });
-
+$('.ns-ext-table-block-wrap .dataTables_length select,\ .ns-ext-table-wrap .dataTables_filter input').addClass('form-control');
 document.addEventListener("click", function(e) {
     if(e.target.id == "submit_import") {
         const fileInput = document.getElementById('import-manager-file');

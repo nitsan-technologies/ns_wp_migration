@@ -87,6 +87,18 @@
 			<trans-unit id="download.samplefile">
 				<source>Download Sample</source>
 			</trans-unit>
+			<trans-unit id="placeholder.StorageFolder">
+				<source>Insert Storage Page Id</source>
+			</trans-unit>
+			<trans-unit id="extensionconfiguration.mediapath">
+				<source>Media Storage Path</source>
+			</trans-unit>
+			<trans-unit id="extensionconfiguration.newsmediapath">
+				<source>News Media Storage Path</source>
+			</trans-unit>
+			<trans-unit id="extensionconfiguration.blogmediapath">
+				<source>Blog Media Storage Path</source>
+			</trans-unit>
         </body>
     </file>
 </xliff>

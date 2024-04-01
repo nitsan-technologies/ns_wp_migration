@@ -5,12 +5,12 @@ declare(strict_types=1);
 use NITSAN\NsWpMigration\Controller\PostController;
 
 /**
- * Definitions for modules provided by EXT:examples
+ * Definitions for modules provided by EXT:ns_wp_migration
  */
 return [
     'importModule' => [
-        'parent' => '',
-        'position' => 'web',
+        'parent' => 'nitsan_module',
+        'position' => ['before' => 'top'],
         'access' => 'user',
         'icon'   => 'EXT:ns_wp_migration/Resources/Public/Icons/icon.svg',
         'labels' => 'LLL:EXT:ns_wp_migration/Resources/Private/Language/locallang_psimportexport.xlf',
@@ -19,7 +19,7 @@ return [
         'extensionName' => 'ns_wp_migration',
         'navigationComponent' => '@typo3/backend/page-tree/page-tree-element',
         'controllerActions' => [
-            PostController::class => 'import, importform, logmanager, downloadSample',
+            PostController::class => 'import, importForm, logManager, downloadSample',
         ],
     ],
 ];

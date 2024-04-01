@@ -27,9 +27,7 @@ abstract class AbstractController extends ActionController implements LoggerAwar
 
     use LoggerAwareTrait;
   
-    protected $persistenceManager = null;
-
-    protected $constantObj;
+    protected ?PersistenceManager $persistenceManager = null;
     protected $constants;
     
     public function initializeAction() : void
@@ -59,7 +57,7 @@ abstract class AbstractController extends ActionController implements LoggerAwar
             'text/plain'
         ];
         
-        return in_array($file['type'], $fileMimes) ? true  : false;
+        return in_array($file['type'], $fileMimes);
     }
 
 }

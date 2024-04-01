@@ -1,0 +1,12 @@
+################
+### FEATURES ###
+################
+
+# cat=Path; type=string; label=LLL:EXT:ns_wp_migration/Resources/Private/Language/locallang.xlf:extensionconfiguration.mediapath
+storagePath = fileadmin/user_upload/
+
+# cat=Path; type=string; label=LLL:EXT:ns_wp_migration/Resources/Private/Language/locallang.xlf:extensionconfiguration.newsmediapath
+newsStoragePath = /fileadmin/news
+
+# cat=Path; type=string; label=LLL:EXT:ns_wp_migration/Resources/Private/Language/locallang.xlf:extensionconfiguration.blogmediapath
+blogStoragePath = /fileadmin/blog

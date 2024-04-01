@@ -6,6 +6,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\StringUtility;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
+use Doctrine\DBAL\Result;
 
 
 /***
@@ -38,9 +39,9 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 
     /**
      * @param array $pageItems
-     * @return int
+     * @return mixed
      */
-    public function createPageRecord($pageItems): int
+    public function createPageRecord($pageItems): mixed
     {
         $isAdmin = $GLOBALS['BE_USER']->user['admin'] ?? 0;
         $randomString = StringUtility::getUniqueId('NEW');
@@ -54,7 +55,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         $dataHandler->admin = $isAdmin;
         $dataHandler->process_datamap();
         if ($dataHandler->errorLog) {
-            \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($dataHandler->errorLog,__FILE__.''.__LINE__);die;
+            return $dataHandler->errorLog;
         }
         $dataHandler->clear_cacheCmd('pages');
         return $dataHandler->substNEWwithIDs[$randomString];
@@ -163,7 +164,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             $queryBuilder->expr()->eq('uid_local', $data['uid_local']),
             $queryBuilder->expr()->eq('uid_foreign', $data['uid_foreign'])
         )
-        ->execute()
+        ->executeQuery()
         ->fetch();
         
         if ($existingRecord) {
@@ -191,17 +192,17 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
                 $queryBuilder->expr()->eq(
                     'uid_foreign', $queryBuilder->createNamedParameter($data['uid_foreign'], \PDO::PARAM_INT))
         )
-        ->execute()
+        ->executeQuery()
         ->fetch();
         
         if ($existingRecord) {
             return false;
-        } else {
-            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getQueryBuilderForTable('tx_blog_post_author_mm');
-            $queryBuilder->insert('tx_blog_post_author_mm')->values($data)->executeStatement();
-            return true;
         }
+        
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable('tx_blog_post_author_mm');
+        $queryBuilder->insert('tx_blog_post_author_mm')->values($data)->executeStatement();
+        return true;
     }
 
     /**
@@ -218,7 +219,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
                 $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($blogId, \PDO::PARAM_INT))
             )
             ->set('tags', $counts)
-            ->execute();
+            ->executeStatement();
     }
 
     /**
@@ -257,22 +258,22 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             $queryBuilder->expr()->eq('uid_local', $blogId),
             $queryBuilder->expr()->eq('uid_foreign', $tagId)
         )
-        ->execute()
+        ->executeQuery()
         ->fetch();
         
         if ($existingRecord) {
-            return 0;
-        } {
-            $tagItems = ['uid_local' => $blogId,
+            return $existingRecord;
+        }
+
+        $tagItems = ['uid_local' => $blogId,
                 'uid_foreign' => $tagId
             ];
-            $queryTagBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+        $queryTagBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('tx_blog_tag_pages_mm');
-            return $queryTagBuilder
+        return $queryTagBuilder
                 ->insert('tx_blog_tag_pages_mm')
                 ->values($tagItems)
-                ->execute();
-        }
+                ->executeStatement();
     }
 
     /**
@@ -285,7 +286,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         $queryBuilder
             ->insert('sys_file')
             ->values($imageData)
-            ->execute();
+            ->executeStatement();
         return (int)$queryBuilder->getConnection()->lastInsertId();
     }
 
@@ -308,7 +309,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         $queryBuilder
             ->insert('sys_file_reference')
             ->values($imageData)
-            ->execute();
+            ->executeStatement();
 
         return (int)$queryBuilder->getConnection()->lastInsertId();
     }
@@ -326,7 +327,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
                 $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
             )
             ->set('type', '2')
-            ->execute();
+            ->executeStatement();
     }
 
     /**
@@ -342,6 +343,6 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
                 $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($blogId, \PDO::PARAM_INT))
             )
             ->set('author', '1')
-            ->execute();
+            ->executeStatement();
     }
 }

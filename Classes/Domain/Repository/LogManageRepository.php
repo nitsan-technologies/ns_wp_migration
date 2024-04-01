@@ -42,7 +42,7 @@ class LogManageRepository extends Repository
                 $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0))
             )
             ->orderBy('uid', 'DESC')
-            ->execute()
+            ->executeQuery()
             ->fetchAll();
     }
 }
