@@ -1,191 +1,182 @@
-ID,post_author,post_date,post_date_gmt,post_content,post_title,post_excerpt,post_status,comment_status,ping_status,post_password,post_name,to_ping,pinged,post_modified,post_modified_gmt,post_content_filtered,post_parent,guid,menu_order,post_type,post_mime_type,comment_count,post_thumbnail,author.ID,author.user_login,author.user_nicename,author.user_email,author.user_url,author.display_name,image.id,image.url,image.title,image.alt,image.caption,image.description,parent.id,parent.name,parent.slug,custom_fields._edit_lock,custom_fields._edit_last,custom_fields._wp_page_template,custom_fields._thumbnail_id,tax_category.name,tax_category.slug,tax_category.id,tax_category.hierarchy::id,tax_category.hierarchy::name,tax_category.hierarchy::slug,tax_post_tag.name,tax_post_tag.slug,tax_post_tag.id,tax_post_tag.hierarchy::id,tax_post_tag.hierarchy::name,tax_post_tag.hierarchy::slug,tax_post_format.name,tax_post_format.slug,tax_post_format.id,tax_post_format.hierarchy::id,tax_post_format.hierarchy::name,tax_post_format.hierarchy::slug
-7,1,26/07/23 13:16,26/07/23 13:16,"<!-- wp:paragraph -->
-<p>Sem cursus ex velit natoque ridiculus. Vehicula elementum aliquam tortor habitant eros eget natoque mus hendrerit non. Leo platea mollis sapien felis elit penatibus suscipit curabitur. Dictumst pede commodo cursus vitae pharetra efficitur gravida ultricies luctus ad. Tortor fames enim integer non scelerisque.</p>
-<!-- /wp:paragraph -->
+ID,post_author,post_date,post_date_gmt,post_content,post_title,post_excerpt,post_status,comment_status,ping_status,post_password,post_name,to_ping,pinged,post_modified,post_modified_gmt,post_content_filtered,post_parent,guid,menu_order,post_type,post_mime_type,comment_count,post_thumbnail,author.ID,author.user_login,author.user_nicename,author.user_email,author.user_url,author.display_name,image.id,image.url,image.title,image.alt,image.caption,image.description,parent.id,parent.name,parent.slug,custom_fields._edit_last,custom_fields._edit_lock,custom_fields._thumbnail_id,custom_fields._yoast_wpseo_primary_category,custom_fields._yoast_wpseo_focuskw,custom_fields._yoast_wpseo_metadesc,custom_fields._yoast_wpseo_linkdex,custom_fields._yoast_wpseo_content_score,custom_fields._yoast_wpseo_estimated-reading-time-minutes,custom_fields._yoast_wpseo_wordproof_timestamp,custom_fields._yoast_wpseo_opengraph-title,custom_fields._yoast_wpseo_opengraph-description,custom_fields._yoast_wpseo_opengraph-image,custom_fields._yoast_wpseo_opengraph-image-id,custom_fields._yoast_wpseo_twitter-title,custom_fields._yoast_wpseo_twitter-description,custom_fields._yoast_wpseo_twitter-image,custom_fields._yoast_wpseo_twitter-image-id,custom_fields._wp_old_slug,custom_fields._wp_trash_meta_status,custom_fields._wp_trash_meta_time,custom_fields._wp_desired_post_slug,custom_fields._wp_trash_meta_comments_status,tax_category.name,tax_category.slug,tax_category.id,tax_category.hierarchy::id,tax_category.hierarchy::name,tax_category.hierarchy::slug,tax_post_tag.name,tax_post_tag.slug,tax_post_tag.id,tax_post_tag.hierarchy::id,tax_post_tag.hierarchy::name,tax_post_tag.hierarchy::slug,tax_post_format.name,tax_post_format.slug,tax_post_format.id,tax_post_format.hierarchy::id,tax_post_format.hierarchy::name,tax_post_format.hierarchy::slug
+1,1,"2023-10-06 06:31:06","2023-10-06 06:31:06","<!-- wp:paragraph -->
+<p>Welcome to WordPress. This is your first post. Edit or delete it, then start writing!</p>
+<!-- /wp:paragraph -->","Hello world!",,trash,open,open,,hello-world__trashed,,,"2024-03-19 07:30:13","2024-03-19 07:30:13",,0,https://wordpress.thebetaspace.com/?p=1,0,post,,1,,1,admin,admin,vishal@nitsantech.com,https://wordpress.thebetaspace.com,admin,,,,,,,,,,,1696588058:1,,,,,,,,,,,,,,,,,,publish,1710833413,hello-world,"a:1:{i:1;s:1:""1"";}",Uncategorized,uncategorized,1,1,Uncategorized,uncategorized,,,,,,,,,,,,
+15,1,"2024-03-19 07:27:31","2024-03-19 07:27:31",,asdasdas,,trash,open,open,,asdasdas__trashed,,,"2024-03-19 07:30:06","2024-03-19 07:30:06",,0,https://wordpress.thebetaspace.com/?p=15,0,post,,0,,1,admin,admin,vishal@nitsantech.com,https://wordpress.thebetaspace.com,admin,,,,,,,,,,1,1710833111:1,,,,,,,,,,,,,,,,,,publish,1710833406,asdasdas,,Uncategorized,uncategorized,1,1,Uncategorized,uncategorized,adas,adas,4,4,adas,adas,,,,,,
+18,1,"2024-03-19 07:32:41","2024-03-19 07:32:41","<h1><strong>T3OpenAI 2.0: AI-Powered Content Creation with New Features</strong></h1>
+<img class="" wp-image-19 aligncenter"" src=""https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/ccccc-300x200.jpg"" alt="""" width=""389"" height=""259"" />
 
-<!-- wp:paragraph -->
-<p>Vehicula congue neque lectus mi montes ullamcorper iaculis class duis. Congue dis sapien risus blandit nisi sodales dictumst. Non at donec nullam condimentum luctus libero fringilla purus dignissim posuere. Odio lacus erat habitasse et dui rhoncus ante eget nostra enim ad. Imperdiet taciti sollicitudin euismod vel consectetur eros. Vestibulum vel aenean dis conubia dignissim. Adipiscing hendrerit nullam dictumst libero pellentesque. Pulvinar iaculis nam sociosqu nullam nulla urna vulputate cras dui.</p>
-<!-- /wp:paragraph -->
+<strong>Ready-to-Use ChatGPT Sidebar:</strong> Say goodbye to time-consuming context switching! The all-new ChatGPT Sidebar integrates with your TYPO3 backend, allowing you to interact with ChatGPT directly. Generate ideas, brainstorm content, and real-time assistance without leaving your editing backend.
 
-<!-- wp:heading {""level"":4} -->
-<h4 class=""wp-block-heading"">Risus diam sit finibus id ligula cubilia pulvinar</h4>
-<!-- /wp:heading -->
+<strong>One-Click SEO Optimization:</strong> Ease your SEO efforts with the one-click SEO optimization feature. Simply provide relevant keywords, and T3OpenAI 2.0 will automatically generate optimized meta descriptions, titles, and other SEO elements.
 
-<!-- wp:paragraph -->
-<p>Nostra imperdiet nisi sem primis parturient consectetur scelerisque cras. Felis magnis cras natoque facilisis class quisque turpis primis tincidunt mus. Senectus finibus nisl fringilla semper ut torquent vivamus letius. Placerat letius dapibus sociosqu felis dictumst. Aliquet sem eget vestibulum tortor enim condimentum urna consequat pellentesque justo netus. Purus dui nibh senectus netus eros cursus consectetuer tellus. Laoreet lacus aliquet montes nisi facilisi sed fames metus.</p>
-<!-- /wp:paragraph -->
+<strong>Upgraded Content Assistant:</strong> The Content Assistant receives a significant upgrade in T3OpenAI 2.0. Expect accuracy, improved suggestion quality, and a range of content formats supported for you to craft compelling and engaging content effortlessly.
 
-<!-- wp:paragraph -->
-<p>Fringilla eu facilisis libero pellentesque taciti tellus curabitur. Lacus vulputate maecenas ultrices per nascetur augue at habitant himenaeos vehicula feugiat. Interdum parturient finibus dui tortor hendrerit elementum pulvinar dictum curabitur fames. Nascetur leo massa consectetur mi felis sed himenaeos.</p>
-<!-- /wp:paragraph -->
+<strong>Improved Chat Style Module:</strong> Improve your content's tone and style with the Chat Style Module. Choose from a variety of predefined styles or create custom styles to ensure your content aligns perfectly with your brand voice and target audience.
 
-<!-- wp:image {""sizeSlug"":""large"",""linkDestination"":""none""} -->
-<figure class=""wp-block-image size-large""><img src=""https://t3planet.com/fileadmin/_processed_/e/6/csm_why_t3planet_inner_2%401.5x_19a4cb92a7.png"" alt=""""/></figure>
-<!-- /wp:image -->
+<strong>Content Generation Options:</strong> T3OpenAI 2.0 expands your content creation options with control over the content generation process. Choose the specific content element type for your TYPO3 AI Pages and produce the exact content you need.","This is a Blog Titel 1",,publish,open,open,,this-is-a-blog-titel-1,,,"2024-04-02 09:40:32","2024-04-02 09:40:32",,0,https://wordpress.thebetaspace.com/?p=18,0,post,,0,https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/ccccc.jpg,1,admin,admin,vishal@nitsantech.com,https://wordpress.thebetaspace.com,admin,19,https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/ccccc.jpg,ccccc,,,,,,,1,1712050696:1,19,,Vestibulum,"Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.",43,90,2,,"Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.","Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.",https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/dfgddfg-1024x683.jpg,22,"Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.","Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.",https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_7-1024x768.jpg,38,,,,,,"Category 1",category-1,6,6,"Category 1",category-1,"Category 1,Titel 1","category-1,titel-1","7,5","7,5","Category 1,Titel 1","category-1,titel-1",,,,,,
+21,1,"2024-03-19 07:36:26","2024-03-19 07:36:26","<h1>TYPO3 Templates &amp; Extensions Releases Highlights - February 2024</h1>
+<img class=""alignnone size-medium wp-image-22 aligncenter"" src=""https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/dfgddfg-300x200.jpg"" alt="""" width=""300"" height=""200"" />
+<div id=""c18765"" class=""frame frame-default frame-type-textpic frame-layout-0"">
+<div class=""ce-textpic ce-center ce-above"">
+<div class=""ce-bodytext"">
 
-<!-- wp:columns -->
-<div class=""wp-block-columns""><!-- wp:column -->
-<div class=""wp-block-column""><!-- wp:paragraph -->
-<p>Nibh malesuada nunc lorem curabitur potenti in placerat posuere. Euismod commodo aliquam non ornare aliquet dictum. Adipiscing efficitur inceptos luctus pede vehicula magna laoreet lorem si. Netus mus habitasse libero ridiculus augue ligula blandit pharetra. Habitant ex vulputate class maximus quisque erat netus tincidunt.</p>
-<!-- /wp:paragraph -->
+This blog has covered the trends, preferences, and insights surrounding the CMS choices of World’s City Websites along with EU city websites. It covers the study of 4 specific Open source CMS - TYPO3, Joomla, Wordpress and Drupal. Through comprehensive research and analysis, we aim to shed light on the factors influencing Open source CMS selection, the prevalence of open-source solutions, and the rise of TYPO3 CMS in the European city website landscape.
 
-<!-- wp:paragraph -->
-<p>Facilisi aptent nisi malesuada primis risus. Nulla sociosqu per curae elementum eleifend. Sollicitudin convallis erat augue magna porta inceptos lacus tincidunt venenatis dictumst. Egestas ultricies tellus ut feugiat congue a erat consectetuer neque aliquet. Gravida cursus si velit placerat viverra donec. Orci finibus elementum feugiat consequat vehicula mollis mattis massa elit metus a. Vulputate cursus habitant faucibus torquent rutrum.</p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:column -->
+Before moving any further, Special thanks to <strong>Grzegorz Pietrzak</strong> for their contributions to data collection and analysis. Please find the source of this study <a href=""https://docs.google.com/spreadsheets/d/1ltYXKHoWdmKWrHjWeHcqt4oaSb-2nEejjac_jOm_G0E/edit"" target=""_blank"" rel=""nofollow noopener noreferrer"">here</a>.
 
-<!-- wp:column -->
-<div class=""wp-block-column""><!-- wp:paragraph -->
-<p>Nibh malesuada nunc lorem curabitur potenti in placerat posuere. Euismod commodo aliquam non ornare aliquet dictum. Adipiscing efficitur inceptos luctus pede vehicula magna laoreet lorem si. Netus mus habitasse libero ridiculus augue ligula blandit pharetra. Habitant ex vulputate class maximus quisque erat netus tincidunt.</p>
-<!-- /wp:paragraph -->
+</div>
+</div>
+</div>
+<div class=""table-of-content""><nav>
+<ol>
+ 	<li><a title=""Study on Open Source Trends in World’s City Websites"" href=""https://t3planet.com/blog/typo3-statistics-share-of-opensource-cms-in-worlds-city-websites/#c18768"">Study on Open Source Trends in World’s City Websites</a></li>
+ 	<li><a title=""Key Open Source CMS Statistics "" href=""https://t3planet.com/blog/typo3-statistics-share-of-opensource-cms-in-worlds-city-websites/#c18769"">Key Open Source CMS Statistics</a></li>
+ 	<li><a title=""Analysis of CMS Preferences in World &amp; European City Websites"" href=""https://t3planet.com/blog/typo3-statistics-share-of-opensource-cms-in-worlds-city-websites/#c18770"">Analysis of CMS Preferences in World &amp; European City Websites</a></li>
+ 	<li><a title=""Comparative Analysis of Open Source CMS Trends"" href=""https://t3planet.com/blog/typo3-statistics-share-of-opensource-cms-in-worlds-city-websites/#c18782"">Comparative Analysis of Open Source CMS Trends</a></li>
+ 	<li><a title=""TYPO3 Rising Market Share"" href=""https://t3planet.com/blog/typo3-statistics-share-of-opensource-cms-in-worlds-city-websites/#c18783"">TYPO3 Rising Market Share</a></li>
+ 	<li><a title=""Implications and Insights"" href=""https://t3planet.com/blog/typo3-statistics-share-of-opensource-cms-in-worlds-city-websites/#c18784"">Implications and Insights</a></li>
+ 	<li><a title=""Conclusion"" href=""https://t3planet.com/blog/typo3-statistics-share-of-opensource-cms-in-worlds-city-websites/#c18786"">Conclusion</a></li>
+</ol>
+</nav></div>","This is a Blog Titel 2",,publish,open,open,,this-is-a-blog-titel-2,,,"2024-04-02 08:21:39","2024-04-02 08:21:39",,0,https://wordpress.thebetaspace.com/?p=21,0,post,,0,https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/dfgddfg.jpg,1,admin,admin,vishal@nitsantech.com,https://wordpress.thebetaspace.com,admin,22,https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/dfgddfg.jpg,dfgddfg,,,,,,,1,1712045961:1,22,,Vestibulum,"Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.",41,90,2,,"Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.","Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.",https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_33-1024x683.jpg,47,"Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.","Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.",https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/nature_2-1024x683.jpg,51,,,,,,"Category 2",category-2,8,8,"Category 2",category-2,"Titel 2",titel-2,9,9,"Titel 2",titel-2,,,,,,
+24,1,"2024-03-19 07:39:06","2024-03-19 07:39:06","<h1><img class=""alignnone size-medium wp-image-25"" src=""https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_4-300x200.jpg"" alt="""" width=""300"" height=""200"" /> Study on Open Source Trends in World’s City Websites <i class=""fa fa-link"" aria-hidden=""true""></i></h1>
+&nbsp;
+<h3>Purpose of the Study</h3>
+The primary objective of this research is to examine the CMS preferences of EU city websites, along with World’s City Websites and identify emerging trends in digital governance. By analyzing data from a diverse range of European cities, we seek to understand the factors driving CMS adoption, evaluate the significance of open-source solutions, and provide insights for policymakers and web developers.
+<h3>Research Methodology</h3>
+For this study, adopted a multi-step approach to collect and analyze data from various city websites:
 
-<!-- wp:paragraph -->
-<p>Facilisi aptent nisi malesuada primis risus. Nulla sociosqu per curae elementum eleifend. Sollicitudin convallis erat augue magna porta inceptos lacus tincidunt venenatis dictumst. Egestas ultricies tellus ut feugiat congue a erat consectetuer neque aliquet. Gravida cursus si velit placerat viverra donec. Orci finibus elementum feugiat consequat vehicula mollis mattis massa elit metus a. Vulputate cursus habitant faucibus torquent rutrum.</p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:column --></div>
-<!-- /wp:columns -->",What is Internet ?,"Lorem ipsum dolor sit amet consectetur adipiscing elit curae torquent tristique ligula mollis, quis sagittis dignissim sapien nam dapibus dui imperdiet ultrices pellentesque aenean. Pell",publish,open,open,,what-is-internet,,,06/02/24 12:13,06/02/24 12:13,,0,https://nswordpress.ddev.site/?p=7,0,post,,0,https://nswordpress.ddev.site/wp-content/uploads/2024/02/q_v8g3y-mra.jpg,1,navdeep,navdeep,navdeep.nitsan@gmail.com,https://nswordpress.ddev.site,navdeep,49,https://nitsantech.com/fileadmin/ns_theme_nitsan/home/Home_page_NITSAN.jpg,Photo by NEOM,a person standing in front of a mountain range,,,,,,1707221457:1,1,default,49,"DataHandler,Event,Internet","datahandler,event,internet","4,3,5","4,3,5","DataHandler,Event,Internet","datahandler,event,internet","awareness,event,handler","awareness,event,handler","12,7,8","12,7,8","awareness,event,handler","awareness,event,handler",,,,,,
-11,1,26/07/23 13:19,26/07/23 13:19,"<!-- wp:paragraph -->
-<p>Cras euismod nulla elit sit platea natoque consectetur. Phasellus sapien ac donec platea est libero elit diam parturient natoque porttitor. Nam aliquet cubilia orci penatibus nostra habitasse purus.</p>
-<!-- /wp:paragraph -->
+<strong>Retrieval of City List: </strong>
+Retrieved a comprehensive list of European cities from Wikipedia to ensure inclusivity and representation across different regions.
 
-<!-- wp:heading {""level"":4} -->
-<h4 class=""wp-block-heading"">Habitasse felis vivamus iaculis sociosqu amet finibus arcu</h4>
-<!-- /wp:heading -->
+<strong>Extraction of City URLs: </strong>
+City website URLs were extracted from relevant Wiki articles to facilitate further analysis and data collection.
 
-<!-- wp:paragraph -->
-<p>Maecenas sociosqu in ullamcorper nunc malesuada pretium lobortis condimentum ante. Magna ridiculus adipiscing platea ullamcorper quisque. Sagittis etiam diam semper ullamcorper ultrices. Maximus congue lacinia elementum primis sollicitudin suscipit ultrices quis pede luctus cursus. Facilisis si sit ut habitasse scelerisque. Ad curabitur hac tempor in habitasse ullamcorper eleifend eget lacinia mollis adipiscing. Eros placerat ligula est feugiat dui fringilla dictumst erat. Semper elementum maecenas taciti ligula auctor turpis vehicula mi hac quam facilisis.</p>
-<!-- /wp:paragraph -->
+<strong>CMS Detection: </strong>
+Using a local instance of Wappalyzer, we identified the CMS utilized by each city website.
 
-<!-- wp:paragraph -->
-<p>Pretium adipiscing feugiat suscipit quam dapibus quisque vehicula vivamus fames massa velit. Porttitor condimentum nam nascetur magnis tempor convallis. Torquent feugiat phasellus sem iaculis dis lobortis platea pellentesque tempus. Nunc hendrerit nostra quisque ad ut quis. Quisque imperdiet conubia hendrerit primis mattis nulla. Ad platea volutpat id rhoncus amet neque tempor fusce congue lectus. Posuere integer netus in blandit venenatis dictumst taciti morbi vivamus ridiculus.</p>
-<!-- /wp:paragraph -->
+<strong>Manual Verification</strong>
+To ensure accuracy, a manual check was performed to validate the CMS detection results and identify any discrepancies.
 
-<!-- wp:image {""sizeSlug"":""large"",""linkDestination"":""none""} -->
-<figure class=""wp-block-image size-large""><img src=""https://t3planet.com/fileadmin/ns_theme_t3planet/Home/T3Planet_New_home_page_baner.png"" alt=""""/></figure>
-<!-- /wp:image -->
+<strong>CMS Assessment: </strong>
+Utilizing a local instance of CMSeeK, conducted a detailed assessment to double check the same","This is a Blog Titel 3",,publish,open,open,,this-is-a-blog-titel-3,,,"2024-04-02 08:20:11","2024-04-02 08:20:11",,0,https://wordpress.thebetaspace.com/?p=24,0,post,,0,https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_4.jpg,1,admin,admin,vishal@nitsantech.com,https://wordpress.thebetaspace.com,admin,25,https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_4.jpg,office_4,,,,,,,1,1712045871:1,25,,Vestibulum,"Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.",37,90,2,,"Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.","Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.",https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_10-1024x684.jpg,44,"Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.","Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.",https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/ccccc-1024x683.jpg,19,,,,,,"Category 3",category-3,10,10,"Category 3",category-3,"This is a Blog Titel 3,Titel 3","this-is-a-blog-titel-3,titel-3","13,12","13,12","This is a Blog Titel 3,Titel 3","this-is-a-blog-titel-3,titel-3",,,,,,
+27,1,"2024-03-19 07:40:00","2024-03-19 07:40:00","<header>
+<h1>Key Open Source CMS Statistics <i class=""fa fa-link"" aria-hidden=""true""></i></h1>
+</header>
+<div class=""ce-textpic ce-center ce-above"">
+<div class=""ce-bodytext"">
+<h3>European City Websites Overview</h3>
+The analysis confide a diverse array of European city websites, including:
+<ul>
+ 	<li>World largest cities</li>
+ 	<li>World capitals</li>
+ 	<li>EU largest cities</li>
+ 	<li>Polish cities</li>
+ 	<li>US largest cities</li>
+ 	<li>UK cities</li>
+ 	<li>German largest cities</li>
+ 	<li>Benelux cities</li>
+ 	<li>French cities</li>
+ 	<li>Belgium cities</li>
+ 	<li>Netherland cities</li>
+ 	<li>Luxemburg cities</li>
+</ul>
+These categories were chosen based on their relevance and significance in understanding regional CMS preferences. By examining city websites from various regions, we aimed to capture the diversity of CMS choices and discern any regional patterns or preferences.
 
-<!-- wp:list -->
-<ul><!-- wp:list-item -->
-<li>first </li>
-<!-- /wp:list-item -->
+</div>
+</div>","This is a Blog Titel 4",,publish,open,open,,this-is-a-blog-titel-4,,,"2024-04-02 08:19:22","2024-04-02 08:19:22",,0,https://wordpress.thebetaspace.com/?p=27,0,post,,0,https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_5.jpg,1,admin,admin,vishal@nitsantech.com,https://wordpress.thebetaspace.com,admin,28,https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_5.jpg,office_5,,,,,,,1,1712045821:1,28,,Vestibulum,"Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.",23,90,1,,"Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.","Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.",https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_33-1024x683.jpg,47,"Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.","Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.",https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_7-1024x768.jpg,38,,,,,,"Category 4",category-4,11,11,"Category 4",category-4,"This is a Blog Titel 4",this-is-a-blog-titel-4,14,14,"This is a Blog Titel 4",this-is-a-blog-titel-4,,,,,,
+30,1,"2024-03-19 07:40:22","2024-03-19 07:40:22",,"This is a Blog Titel 5",,trash,open,open,,__trashed,,,"2024-03-19 07:40:22","2024-03-19 07:40:22",,0,https://wordpress.thebetaspace.com/?p=30,0,post,,0,,1,admin,admin,vishal@nitsantech.com,https://wordpress.thebetaspace.com,admin,,,,,,,,,,1,1710834010:1,,,,,,,,,,,,,,,,,,draft,1710834022,,,Uncategorized,uncategorized,1,1,Uncategorized,uncategorized,,,,,,,,,,,,
+32,1,"2024-03-19 07:41:56","2024-03-19 07:41:56","<h1>Analysis of CMS Preferences in World &amp; European City Websites <a class=""glightbox"" href=""https://t3planet.com/blog/fileadmin/user_upload/T3Terminal_Blog/TYPO3_Statistics/World-Largest-Cities.png"" data-glightbox=""gallery""><picture class=""8758""><img class=""lazy image-embed-item lz-entered lz-loaded"" title=""World Largest Cities"" src=""https://t3planet.com/blog/fileadmin/user_upload/T3Terminal_Blog/TYPO3_Statistics/World-Largest-Cities.png"" alt=""World Largest Cities"" width=""727"" height=""472"" data-src=""/blog/fileadmin/user_upload/T3Terminal_Blog/TYPO3_Statistics/World-Largest-Cities.png"" data-ll-status=""loaded"" /></picture></a><i class=""fa fa-link"" aria-hidden=""true""></i></h1>
+<h3>World Largest Cities:</h3>
+In the category of world's largest cities, Drupal holds a modest presence at <strong>5.19%</strong>, indicating a moderate adoption rate. Wordpress emerges as the dominant CMS with a usage rate of <strong>15.80%</strong>, followed by <a href=""https://t3planet.com/blog/typo3-vs-joomla/"">Joomla and TYPO3</a> with minor shares. The preference for Wordpress suggests a reliance on its user-friendly interface and extensive plugins to manage the complexities of large-scale city websites.","This is a Blog Titel 5",,publish,open,open,,this-is-a-blog-titel-5,,,"2024-04-02 08:18:35","2024-04-02 08:18:35",,0,https://wordpress.thebetaspace.com/?p=32,0,post,,0,https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_6.jpg,1,admin,admin,vishal@nitsantech.com,https://wordpress.thebetaspace.com,admin,33,https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_6.jpg,office_6,,,,,,,1,1712045774:1,33,,Vestibulum,"Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.",34,90,1,,"Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.","Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.",https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_8-1024x683.jpg,41,"Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.","Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.",https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_33-1024x683.jpg,47,,,,,,"Category 5,Uncategorized","category-5,uncategorized","15,1","15,1","Category 5,Uncategorized","category-5,uncategorized","This is a Blog Titel 5",this-is-a-blog-titel-5,16,16,"This is a Blog Titel 5",this-is-a-blog-titel-5,,,,,,
+37,1,"2024-03-19 08:01:20","2024-03-19 08:01:20","<h1>This is a Blog Titel 6</h1>
+So far we have seen their individual impacts, but TYPO3, Joomla, Drupal and Wordpress together as open source CMS are ruling the game. Please note that opensource here only means the combination of <strong>Joomla+TYPO3+Wordpress+Drupal</strong>. Read details on how they are competing with Proprietary CMS.
 
-<!-- wp:list-item -->
-<li>second</li>
-<!-- /wp:list-item -->
+<strong>World Largest Cities: </strong>Open Source CMS are popular globally, with a 21.93% adoption rate. <img class="" wp-image-38 alignleft"" src=""https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_7-300x225.jpg"" alt="""" width=""365"" height=""274"" />
 
-<!-- wp:list-item -->
-<li>third</li>
-<!-- /wp:list-item -->
+<strong>World Capitals:</strong> Highly favored in capitals, with an impressive 38.38% adoption rate.
 
-<!-- wp:list-item -->
-<li>four</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list -->
+<strong>EU’s Largest City Websites:</strong> Open Source is significantly present in EU's largest cities websites, with a 38.04% adoption rate.
 
-<!-- wp:paragraph -->
-<p>Magna nostra praesent senectus scelerisque montes lectus velit pulvinar. Vestibulum duis nulla ligula ultricies lacinia. Purus morbi tempus leo platea blandit litora vulputate proin auctor felis consectetur. Libero nam primis ante augue duis sit purus molestie sollicitudin condimentum. Proin phasellus quis accumsan placerat mauris vestibulum aenean curae fringilla.</p>
-<!-- /wp:paragraph -->
+<strong>Polish City Websites:</strong> Widely accepted and effective, with a robust 37.39% adoption rate in Polish cities.
 
-<!-- wp:paragraph -->
-<p>Neque curae placerat rutrum molestie semper massa torquent potenti. Feugiat imperdiet litora urna senectus etiam vel maecenas. Egestas urna elit praesent lectus risus lacus. Nam in gravida suspendisse dictum ullamcorper. Laoreet erat ullamcorper molestie taciti morbi sodales. Platea dapibus ipsum condimentum nibh sem vehicula. Ipsum tortor condimentum curae malesuada ornare phasellus.</p>
-<!-- /wp:paragraph -->
+<strong>US Largest Cities:</strong> Moderately adopted at 20.12%, indicating a mix of open-source and proprietary solutions.
 
-<!-- wp:list -->
-<ul><!-- wp:list-item -->
-<li>Ridiculus proin sed at purus semper elit donec accumsan mauris urna ante. </li>
-<!-- /wp:list-item -->
+<strong>UK City Websites:</strong> Widely embraced, with a 36.23% adoption rate, showing their effectiveness
 
-<!-- wp:list-item -->
-<li>Ornare est praesent rutrum massa dapibus imperdiet. </li>
-<!-- /wp:list-item -->
+<strong>German Largest Cities Websites:</strong> Solid presence with a 25.61% adoption rate, highlighting their relevance.
 
-<!-- wp:list-item -->
-<li>Vestibulum sem dapibus nec consectetuer felis ridiculus aptent.</li>
-<!-- /wp:list-item -->
+<strong>Benelux City Websites: </strong>Strong adoption at 37.67%, indicating effectiveness in addressing governance needs.
 
-<!-- wp:list-item -->
-<li> Finibus nunc curabitur dapibus maximus rhoncus faucibus gravida.</li>
-<!-- /wp:list-item -->
+<strong>French City Websites:</strong> Dominant presence with an 80.13% adoption rate, showcasing widespread preference
 
-<!-- wp:list-item -->
-<li> Ipsum eros euismod urna auctor nibh vel lobortis ante massa quam id.</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list -->",What dataHandler ?,,publish,open,open,,what-datahandler,,,06/02/24 11:09,06/02/24 11:09,,0,https://nswordpress.ddev.site/?p=11,0,post,,0,,1,navdeep,navdeep,navdeep.nitsan@gmail.com,https://nswordpress.ddev.site,navdeep,,,,,,,,,,1707217719:1,1,default,,"DataHandler,Internet","datahandler,internet","4,5","4,5","DataHandler,Internet","datahandler,internet",,,,,,,,,,,,
-14,1,26/07/23 13:22,26/07/23 13:22,"<!-- wp:paragraph -->
-<p>Sociosqu ultricies vivamus amet felis lacinia. Senectus interdum mi consectetuer consequat phasellus hendrerit suscipit ornare mus. Nibh vel justo iaculis est mattis quis accumsan vestibulum.</p>
-<!-- /wp:paragraph -->
+<strong>Belgium City Websites:</strong> Notable presence with a 28.47% adoption rate, indicating effectiveness.
 
-<!-- wp:list -->
-<ul><!-- wp:list-item -->
-<li>Aptent facilisi parturient malesuada sapien torquent adipiscing. </li>
-<!-- /wp:list-item -->
+<strong>Netherlands City Websites:</strong> Widely accepted with a vigorous 41.72% adoption rate, underscoring their popularity.
 
-<!-- wp:list-item -->
-<li>Tincidunt potenti risus sem dolor consectetuer habitasse natoque laoreet libero. </li>
-<!-- /wp:list-item -->
+<strong>Luxembourg City Websites:</strong> Outstanding adoption rate of 91.67%, demonstrating singular preference.","This is a Blog Titel 6",,publish,open,open,,this-is-a-blog-titel-6,,,"2024-04-02 08:17:08","2024-04-02 08:17:08",,0,https://wordpress.thebetaspace.com/?p=37,0,post,,0,https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_7.jpg,1,admin,admin,vishal@nitsantech.com,https://wordpress.thebetaspace.com,admin,38,https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_7.jpg,office_7,,,,,,,1,1712045729:1,38,,Vestibulum,"Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.",47,90,2,,"Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.","Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.",,,"Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.","Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.",,,,,,,,"Category 1",category-1,6,6,"Category 1",category-1,"tag 1,Titel 1","tag-1,titel-1","17,5","17,5","tag 1,Titel 1","tag-1,titel-1",,,,,,
+40,1,"2024-03-19 08:02:30","2024-03-19 08:02:30","<header>
+<h1>TYPO3 Rising Market Share <i class=""fa fa-link"" aria-hidden=""true""></i></h1>
+</header>
+<div class=""ce-textpic ce-center ce-above"">
+<div class=""ce-bodytext"">
 
-<!-- wp:list-item -->
-<li>Natoque pulvinar egestas non rutrum lacinia ad accumsan porta mollis etiam. </li>
-<!-- /wp:list-item -->
+Some very shocking and rocking news for all the TYPO3 Lovers here! TYPO3’s usage in government websites has been widely observed, Which is again a testament to its awesomeness - Features like security and scalability at its best!
+<ul>
+ 	<li>20.7% - French cities (<strong>Surprised</strong>, even more share compared to German cities)</li>
+ 	<li>18.2% - German largest cities</li>
+ 	<li>1.6% - World capitals</li>
+ 	<li>9.8% - EU largest cities</li>
+ 	<li>8.0% - Belgium cities</li>
+</ul>
+<img class=""alignnone size-medium wp-image-41"" src=""https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_8-300x200.jpg"" alt="""" width=""300"" height=""200"" />
 
-<!-- wp:list-item -->
-<li>Pharetra nostra malesuada turpis parturient adipiscing donec quis pulvinar proin. </li>
-<!-- /wp:list-item -->
+</div>
+</div>","This is a Blog Titel 7",,publish,open,open,,this-is-a-blog-titel-7,,,"2024-04-02 08:16:33","2024-04-02 08:16:33",,0,https://wordpress.thebetaspace.com/?p=40,0,post,,0,https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_7.jpg,1,admin,admin,vishal@nitsantech.com,https://wordpress.thebetaspace.com,admin,38,https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_7.jpg,office_7,,,,,,,1,1712045651:1,38,,Vestibulum,"Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.",30,90,1,,"Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.","Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.",,,"Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.","Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.",,,,,,,,"Category 2",category-2,8,8,"Category 2",category-2,"Tag 2",tag-2,18,18,"Tag 2",tag-2,,,,,,
+43,1,"2024-03-19 08:03:36","2024-03-19 08:03:36","<header>
+<h1>Implications and Insights <i class=""fa fa-link"" aria-hidden=""true""></i></h1>
+</header>
+<div class=""ce-textpic ce-center ce-above"">
+<div class=""ce-bodytext"">
+<ul>
+ 	<li>Open-source CMS platforms such as Drupal, WordPress, TYPO3, and Joomla dominate the European city websites, reflecting the preference for flexible, community-driven solutions.</li>
+ 	<li>Regional variations exist in CMS adoption, influenced by factors such as language preferences, digital infrastructure, and government policies.</li>
+ 	<li>The rise of <a href=""https://t3planet.com/blog/top-typo3-websites/""><strong>TYPO3 CMS</strong></a> in German-speaking regions highlights the significance of localized solutions tailored to specific cultural and linguistic contexts.</li>
+ 	<li>French cities demonstrate a strong preference for WordPress, emphasizing the importance of user-friendly interfaces and extensive plugin support in engaging citizens effectively.</li>
+ 	<li>Open-source CMS platforms such as Drupal, WordPress, TYPO3, and Joomla dominate the European city websites, reflecting the preference for flexible, community-driven solutions.</li>
+ 	<li>Regional variations exist in CMS adoption, influenced by factors such as language preferences, digital infrastructure, and government policies.</li>
+ 	<li>The rise of <a href=""https://t3planet.com/blog/top-typo3-websites/""><strong>TYPO3 CMS</strong></a> in German-speaking regions highlights the significance of localized solutions tailored to specific cultural and linguistic contexts.</li>
+ 	<li>French cities demonstrate a strong preference for WordPress, emphasizing the importance of user-friendly interfaces and extensive plugin support in engaging citizens effectively.</li>
+</ul>
+<ul>
+ 	<li>Open-source CMS platforms such as Drupal, WordPress, TYPO3, and Joomla dominate the European city websites, reflecting the preference for flexible, community-driven solutions.</li>
+ 	<li>Regional variations exist in CMS adoption, influenced by factors such as language preferences, digital infrastructure, and government policies.</li>
+ 	<li>The rise of <a href=""https://t3planet.com/blog/top-typo3-websites/""><strong>TYPO3 CMS</strong></a> in German-speaking regions highlights the significance of localized solutions tailored to specific cultural and linguistic contexts.</li>
+ 	<li>French cities demonstrate a strong preference for WordPress, emphasizing the importance of user-friendly interfaces and extensive plugin support in engaging citizens effectively.</li>
+</ul>
+</div>
+</div>","This is a Blog Titel 8",,publish,open,open,,this-is-a-blog-titel-8,,,"2024-04-02 08:15:59","2024-04-02 08:15:59",,0,https://wordpress.thebetaspace.com/?p=43,0,post,,0,https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_10.jpg,1,admin,admin,vishal@nitsantech.com,https://wordpress.thebetaspace.com,admin,44,https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_10.jpg,office_10,,,,,,,1,1712045620:1,44,,Vestibulum,"Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.",56,90,2,,"Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.","Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.",,,"Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.","Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.",,,,,,,,"Category 3",category-3,10,10,"Category 3",category-3,"This is a Blog Titel 8",this-is-a-blog-titel-8,19,19,"This is a Blog Titel 8",this-is-a-blog-titel-8,,,,,,
+46,1,"2024-03-19 08:04:54","2024-03-19 08:04:54","<h1>This is a Blog Titel 9</h1>
+<header>
+<h3 class="""">Thought Leader’s Key Notes</h3>
+</header>
+<div class=""ce-textpic ce-center ce-above"">
+<div class=""ce-bodytext"">
 
-<!-- wp:list-item -->
-<li>Dictum duis netus interdum pellentesque integer habitant aliquam consequat ac ante amet. </li>
-<!-- /wp:list-item -->
+“Across various city website categories and utilizing four open-source platforms, the remarkable average adoption rate of 41.45% signifies a resounding success, highlighting the widespread trust and effectiveness of open-source CMS solutions in modernizing city governance on a global scale, even TYPO3 has made it’s stage to government websites with an adapt figure of around 20.72% in French City websites, Which states it’s not limited to local (German) use only. Further moving to 15.23% by Netherland city websites and then making its way to Luxembourg city websites by 8.33%.""
 
-<!-- wp:list-item -->
-<li>Torquent augue suspendisse rutrum lacinia ullamcorper blandit litora ut pulvinar purus semper. </li>
-<!-- /wp:list-item -->
+<img class=""alignnone size-medium wp-image-47"" src=""https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_33-300x200.jpg"" alt="""" width=""300"" height=""200"" /> <img class=""alignnone size-medium wp-image-44"" src=""https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_10-300x200.jpg"" alt="""" width=""300"" height=""200"" /> <img class=""alignnone size-medium wp-image-41"" src=""https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_8-300x200.jpg"" alt="""" width=""300"" height=""200"" /> <img class=""alignnone size-medium wp-image-38"" src=""https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_7-300x225.jpg"" alt="""" width=""300"" height=""225"" /> <img class=""alignnone size-medium wp-image-33"" src=""https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_6-300x200.jpg"" alt="""" width=""300"" height=""200"" /> <img class=""alignnone size-medium wp-image-28"" src=""https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_5-300x169.jpg"" alt="""" width=""300"" height=""169"" /> <img class=""alignnone size-medium wp-image-25"" src=""https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_4-300x200.jpg"" alt="""" width=""300"" height=""200"" /> <img class=""alignnone size-medium wp-image-22"" src=""https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/dfgddfg-300x200.jpg"" alt="""" width=""300"" height=""200"" /> <img class=""alignnone size-medium wp-image-19"" src=""https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/ccccc-300x200.jpg"" alt="""" width=""300"" height=""200"" />
 
-<!-- wp:list-item -->
-<li>Tellus eros enim mauris risus parturient congue quam faucibus vivamus mi ex.</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list -->
+<header>
+<h3 class="""">Leader’s Key Notes</h3>
+</header>
+<div class=""ce-textpic ce-center ce-above"">
+<div class=""ce-bodytext"">
 
-<!-- wp:heading {""level"":4} -->
-<h4 class=""wp-block-heading"">Conubia facilisis augue elit aliquam vivamus rhoncus enim</h4>
-<!-- /wp:heading -->
+“Across various city website categories and utilizing four open-source platforms, the remarkable average adoption rate of 41.45% signifies a resounding success, highlighting the widespread trust and effectiveness of open-source CMS solutions in modernizing city governance on a global scale, even TYPO3 has made it’s stage to government websites with an adapt figure of around 20.72% in French City websites, Which states it’s not limited to local (German) use only. Further moving to 15.23% by Netherland city websites and then making its way to Luxembourg city websites by 8.33%.""
 
-<!-- wp:paragraph -->
-<p>Torquent fringilla inceptos cursus fames magnis aliquam leo primis euismod facilisis sit. Felis ad ipsum habitant tincidunt interdum. Per scelerisque letius nisi pretium fames integer rutrum proin iaculis dignissim. Ornare hendrerit sollicitudin tempor placerat nec maximus orci. Odio fermentum turpis sagittis sociosqu ridiculus ullamcorper ultrices sodales accumsan non. Vulputate sapien finibus suspendisse risus purus natoque lacinia vel augue ultricies non. Eleifend taciti nam ridiculus netus tortor a aenean mauris. Odio vehicula phasellus habitasse orci duis.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>Libero egestas pulvinar si quam lectus. Ad litora fermentum torquent risus ornare pulvinar egestas. Montes ut rhoncus letius elementum sodales blandit ipsum habitant. Eget cubilia molestie primis parturient senectus.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p></p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {""sizeSlug"":""large"",""linkDestination"":""none""} -->
-<figure class=""wp-block-image size-large""><img src=""https://t3planet.com/fileadmin/ns_theme_t3planet/Templates/Multipurpose/T3_Bootstrap/Infographics/T3Karma_Developed_With.png"" alt=""""/></figure>
-<!-- /wp:image -->",What is eventHandler ?,,publish,open,open,,what-is-eventhandler,,,06/02/24 11:07,06/02/24 11:07,,0,https://nswordpress.ddev.site/?p=14,0,post,,0,,1,navdeep,navdeep,navdeep.nitsan@gmail.com,https://nswordpress.ddev.site,navdeep,,,,,,,,,,1707217511:1,1,default,,Event,event,3,3,Event,event,,,,,,,,,,,,
-40,1,06/02/24 11:11,06/02/24 11:11,"<!-- wp:paragraph -->
-<p>Lorem ipsum dolor sit amet consectetur adipiscing elit litora, ornare conubia nisl sociis vestibulum ridiculus posuere, leo quis cubilia hendrerit morbi per odio. Massa phasellus urna rhoncus parturient tincidunt litora blandit vitae, et quis purus curae pharetra sociosqu ad consequat, dapibus dignissim mus proin iaculis molestie nascetur. Posuere fermentum primis egestas ornare tempor rutrum justo, aliquam nisl risus suscipit laoreet lacinia, at aptent a velit sociosqu cum. Netus semper dictumst lobortis neque quisque rhoncus himenaeos ullamcorper ultricies mattis, vivamus dis conubia nibh laoreet sociis curabitur volutpat class aenean, venenatis pellentesque molestie tristique purus vestibulum consequat feugiat nam. Ante lobortis justo faucibus ultrices quis non sollicitudin at, etiam suspendisse elementum magnis nibh neque fames, accumsan cubilia dis mi augue praesent habitant. Luctus dui facilisis varius class vestibulum tristique laoreet, parturient interdum litora praesent tortor mollis facilisi, duis feugiat suscipit ante proin massa.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {""sizeSlug"":""large""} -->
-<figure class=""wp-block-image size-large""><img src=""https://t3planet.com/fileadmin/ns_theme_t3planet/Services/TYPO3-Customization-Services-T3Planet.jpg"" alt=""""/></figure>
-<!-- /wp:image -->",Data Driven Architecture,,publish,open,open,,data-driven-architecture,,,06/02/24 11:14,06/02/24 11:14,,0,https://nswordpress.ddev.site/?p=40,0,post,,0,https://nswordpress.ddev.site/wp-content/uploads/2023/11/0e1bf117-a3df-4bcd-89c2-d904222c1be0.jpg,1,navdeep,navdeep,navdeep.nitsan@gmail.com,https://nswordpress.ddev.site,navdeep,28,https://nitsantech.com/fileadmin/ns_theme_ns2019/Culture/Celebrating_13th_Anniversary_of_NITSAN/13th_Anniversary/Edited-3.jpg,Kitten being held in a white bathrobe.,,,,,,,1707218308:1,,,28,Event,event,3,3,Event,event,"data,event,handler,test","data,event,handler,test","9,7,8,6","9,7,8,6","data,event,handler,test","data,event,handler,test",,,,,,
-44,1,06/02/24 11:23,06/02/24 11:23,"<!-- wp:paragraph -->
-<p>Lorem ipsum dolor sit amet consectetur adipiscing elit, eros potenti velit nam accumsan placerat eget, magna non dis sed ut malesuada. Fames convallis vivamus euismod hac dignissim enim sapien ante, vel venenatis montes nec condimentum nullam proin quisque, malesuada leo molestie sed aliquam eu etiam. Scelerisque tristique magna mus tortor massa eleifend duis, imperdiet sed porta vulputate phasellus pharetra, facilisi et cubilia tempus dictum ultrices. Velit cras cursus arcu pretium natoque proin nec auctor, varius egestas quis vel rutrum imperdiet torquent nostra interdum, mauris congue feugiat habitasse parturient a aptent. Euismod blandit mauris lacinia laoreet mollis cum, habitant sem vivamus tristique potenti hendrerit gravida, egestas erat aptent sociis orci.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p></p>
-<!-- /wp:paragraph -->",bound the boundaries,"Lorem ipsum dolor sit amet consectetur adipiscing elit integer erat, proin cum habitasse nunc ullamcorper hac purus eget, risus fames primis duis class nibh ut gravida. Ultrices hac luctus ligula litora torquent suscipit vehicula aptent justo, gravida maecenas ullamcorper himenaeos tempus ridiculus pharetra aliquam cursus, vivamus diam semper metus phasellus dictum commodo magna. Enim senectus gravida luctus lectus tempus eros sagittis, commodo vestibulum cras fames",publish,open,open,,bound-the-boundaries,,,06/02/24 11:23,06/02/24 11:23,,0,https://nswordpress.ddev.site/?p=44,0,post,,0,https://nswordpress.ddev.site/wp-content/uploads/2024/02/ctfj9zqjsh4.jpg,1,navdeep,navdeep,navdeep.nitsan@gmail.com,https://nswordpress.ddev.site,navdeep,45,https://nitsantech.com/fileadmin/ns_theme_ns2019/Culture/Celebrating_13th_Anniversary_of_NITSAN/13th_Anniversary/Edited-1-1__1_.jpg,Photo by Brock Wegner,a woman sitting in a bathtub holding a candle,,,,,,1707218556:1,,,45,Internet,internet,5,5,Internet,internet,"event,hello,test","event,hello,test","7,10,6","7,10,6","event,hello,test","event,hello,test",,,,,,
-47,1,06/02/24 11:33,06/02/24 11:33,"<!-- wp:paragraph -->
-<p>Lorem ipsum dolor sit amet consectetur adipiscing elit, commodo dignissim a massa libero penatibus nisl egestas, euismod ultricies himenaeos nullam blandit nam. Magnis congue hendrerit maecenas justo inceptos sed turpis habitasse elementum, donec vulputate cum cursus dictumst curabitur consequat felis mus, laoreet viverra nascetur ornare a proin tortor commodo. Vivamus dapibus eu dictum quisque eget convallis cursus nam accumsan, bibendum lacus mattis habitant fermentum sociis taciti torquent ante proin, nunc nascetur magnis fringilla velit viverra sociosqu vitae. Aliquet placerat ligula eget gravida est nostra pellentesque vel mollis dictumst nam mattis porta, sed facilisi odio tempus morbi montes mi dui magna libero mus. Proin varius sed pulvinar nec vivamus duis parturient magna nullam rutrum ridiculus hac non, convallis mi ultrices etiam lacus elementum commodo at aliquam gravida cum. Est fames tempor sociosqu neque penatibus ac vivamus enim tellus aliquet, luctus rhoncus fermentum conubia malesuada dapibus turpis vulputate. Eros auctor ante senectus feugiat turpis rhoncus tortor ultrices tempor, id hendrerit a eu malesuada hac penatibus sed, sapien congue laoreet lobortis iaculis nam interdum magna. Nostra tortor pulvinar nisi cum orci tempus posuere nullam, taciti felis mollis hac class erat consequat vulputate, justo sed ridiculus sociosqu himenaeos lacinia curae.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:image {""sizeSlug"":""large""} -->
-<figure class=""wp-block-image size-large""><img src=""https://t3planet.com/fileadmin/_processed_/e/6/csm_why_t3planet_inner_2%401.5x_19a4cb92a7.png"" alt=""""/></figure>
-<!-- /wp:image -->
-
-<!-- wp:paragraph -->
-<p>Lorem ipsum dolor sit amet consectetur adipiscing elit magnis, urna aenean vulputate maecenas fermentum neque suspendisse mollis porttitor, ullamcorper per et augue tincidunt hac inceptos. Dis ultricies quisque ligula semper urna tellus conubia sapien sociosqu, mollis volutpat commodo mi morbi neque justo quam facilisis, nec velit magna proin mus eget dapibus a.</p>
-<!-- /wp:paragraph -->",self discipline,"Lorem ipsum dolor sit amet consectetur adipiscing elit integer, vitae lectus pretium orci rutrum ligula habitasse imperdiet, fames ac sed taciti bibendum lacus cubilia. Nibh leo curae cursus placerat odio diam congue, vel est fringilla sem feugiat eget fermentum magna, parturient arcu lacinia quis pretium eleifend.",publish,open,open,,self-discipline,,,06/02/24 11:33,06/02/24 11:33,,0,https://nswordpress.ddev.site/?p=47,0,post,,0,https://nswordpress.ddev.site/wp-content/uploads/2024/02/ctfj9zqjsh4.jpg,1,navdeep,navdeep,navdeep.nitsan@gmail.com,https://nswordpress.ddev.site,navdeep,45,https://nitsantech.com/fileadmin/ns_theme_ns2019/Culture/Celebrating_13th_Anniversary_of_NITSAN/13th_Anniversary/Edited-4.jpg,Photo by Brock Wegner,a woman sitting in a bathtub holding a candle,,,,,,1707219219:1,,,45,Awareness,awareness,11,11,Awareness,awareness,"awareness,selfhelp","awareness,selfhelp","12,13","12,13","awareness,selfhelp","awareness,selfhelp",,,,,,
+</div>
+</div>
+</div>
+</div>","This is a Blog Titel 9",,publish,open,open,,this-is-a-blog-titel-9,,,"2024-04-02 08:06:01","2024-04-02 08:06:01",,0,https://wordpress.thebetaspace.com/?p=46,0,post,,0,https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_33.jpg,1,admin,admin,vishal@nitsantech.com,https://wordpress.thebetaspace.com,admin,47,https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_33.jpg,office_33,,,,,,,1,1712045023:1,47,,Vestibulum,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis hendrerit est, tincidunt lacinia mi.",39,60,3,,"estibulum ut risus lec",". Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.",,,". Vestibulum ut",". Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.",,,,,,,,"Category 4",category-4,11,11,"Category 4",category-4,"This is a Blog Titel 8",this-is-a-blog-titel-8,19,19,"This is a Blog Titel 8",this-is-a-blog-titel-8,,,,,,
+50,1,"2024-03-19 08:05:54","2024-03-19 08:05:54","<img class=""alignnone size-medium wp-image-47"" src=""https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_33-300x200.jpg"" alt="""" width=""300"" height=""200"" /> <img class=""alignnone size-medium wp-image-44"" src=""https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_10-300x200.jpg"" alt="""" width=""300"" height=""200"" /> <img class=""alignnone size-medium wp-image-41"" src=""https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_8-300x200.jpg"" alt="""" width=""300"" height=""200"" /> <img class=""alignnone size-medium wp-image-38"" src=""https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_7-300x225.jpg"" alt="""" width=""300"" height=""225"" /> <img class=""alignnone size-medium wp-image-33"" src=""https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_6-300x200.jpg"" alt="""" width=""300"" height=""200"" /> <img class=""alignnone size-medium wp-image-28"" src=""https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_5-300x169.jpg"" alt="""" width=""300"" height=""169"" /> <img class=""alignnone size-medium wp-image-25"" src=""https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/office_4-300x200.jpg"" alt="""" width=""300"" height=""200"" /> <img class=""alignnone size-medium wp-image-22"" src=""https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/dfgddfg-300x200.jpg"" alt="""" width=""300"" height=""200"" /> <img class=""alignnone size-medium wp-image-19"" src=""https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/ccccc-300x200.jpg"" alt="""" width=""300"" height=""200"" />","Eligendi officia qui",,publish,open,open,,nostrud-quis-rerum-c,,,"2024-04-02 08:04:10","2024-04-02 08:04:10",,0,https://wordpress.thebetaspace.com/?p=50,0,post,,0,https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/nature_2.jpg,1,admin,admin,vishal@nitsantech.com,https://wordpress.thebetaspace.com,admin,51,https://wordpress.thebetaspace.com/wp-content/uploads/2024/03/nature_2.jpg,nature_2,,,,,,,1,1712044962:1,51,6,"Delectus quis ut ve","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis hendrerit est, tincidunt lacinia mi.",31,,2,,Vestibulum,"Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.",,,Vestibulum,"Vestibulum ut risus lectus. Integer vehicula lorem vitae nibh condimentum sodales.",,,this-is-a-blog-titel-10,,,,,"Category 1",category-1,6,6,"Category 1",category-1,"Ratione sit ea et do,This is a Blog Titel 10","ratione-sit-ea-et-do,this-is-a-blog-titel-10","21,20","21,20","Ratione sit ea et do,This is a Blog Titel 10","ratione-sit-ea-et-do,this-is-a-blog-titel-10",,,,,,

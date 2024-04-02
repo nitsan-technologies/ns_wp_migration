@@ -9,17 +9,9 @@ services:
   NITSAN\NsWpMigration\Controller\PostController:
     public: true
     arguments:
-      $blogPost: '@T3G\AgencyPack\Blog\Domain\Model\Post'
       $pageRepository: '@TYPO3\CMS\Core\Domain\Repository\PageRepository'
-      $blogPostRepository: '@T3G\AgencyPack\Blog\Domain\Repository\PostRepository'
-      $newsPostRepository: '@GeorgRinger\News\Domain\Repository\NewsRepository'
-      $categoryRepository: '@NITSAN\NsWpMigration\Domain\Repository\CategoryRepository'
       $contentRepository: '@NITSAN\NsWpMigration\Domain\Repository\ContentRepository'
-      $authorRepository: '@T3G\AgencyPack\Blog\Domain\Repository\AuthorRepository'
-      $newsAuthorRepository: '@Mediadreams\MdNewsAuthor\Domain\Repository\NewsAuthorRepository'
       $logManageRepository: '@NITSAN\NsWpMigration\Domain\Repository\LogManageRepository'
       $backendUserRepository: '@TYPO3\CMS\Beuser\Domain\Repository\BackendUserRepository'
-      $newsTagRepository: '@GeorgRinger\News\Domain\Repository\TagRepository'
-      $blogTagRepository: '@T3G\AgencyPack\Blog\Domain\Repository\TagRepository'
       $uriBuilder: '@TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder'
       $moduleTemplateFactory: '@TYPO3\CMS\Backend\Template\ModuleTemplateFactory'
