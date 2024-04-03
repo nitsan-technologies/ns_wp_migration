@@ -28,7 +28,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
                     $GLOBALS['TBE_MODULES'] = $temp_TBE_MODULES;
                     $GLOBALS['TBE_MODULES']['_configuration']['nitsan'] = [
-                        'iconIdentifier' => 'module-nswpmigration',
+                        'iconIdentifier' => 'module-nitsan',
                         'labels' => 'LLL:EXT:ns_wp_migration/Resources/Private/Language/BackendModule.xlf',
                         'name' => 'nitsan',
                         'navigationComponentId' => 'TYPO3/CMS/Backend/PageTree/PageTreeElement',
@@ -54,4 +54,16 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
     } else {
         $GLOBALS['TYPO3_CONF_VARS']['BE']['stylesheets']['ns_wp_migration'] = 'EXT:ns_wp_migration/Resources/Public/fontawesome/css/';
     }
+
+    $iconRegistry = GeneralUtility::makeInstance(
+        \TYPO3\CMS\Core\Imaging\IconRegistry::class
+    );
+
+    $identifier = 'module-nitsan';
+    $iconRegistry->registerIcon(
+        $identifier,
+        \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+        ['source' => 'EXT:ns_wp_migration/Resources/Public/Icons/'.$identifier.'.svg']
+    );
+
 })();
