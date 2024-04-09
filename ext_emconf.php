@@ -15,6 +15,8 @@ $EM_CONF['ns_wp_migration'] = [
             'news' => '11.0.0-11.4.99',
             'blog' => '11.0.2-12.0.2',
             'md_news_author' => '7.0.0-7.0.2',
+            'rte_ckeditor_image' => '11.0.0-12.4.99',
+            'ns_license' => '1.0.0-12.1.99',
         ],
         'conflicts' => [],
         'suggests' => [],
