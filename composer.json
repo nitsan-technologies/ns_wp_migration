@@ -1,7 +1,7 @@
 {
     "name": "nitsan/ns-wp-migration",
     "type": "typo3-cms-extension",
-    "description": "Plug-n-play TYPO3 extension to migrate wordpress post and page data to your TYPO3 site. This extension includes features like Migrate post to EXT:news or EXT:blog, migrate categories, migrate tags, migrate media files etc.",
+    "description": "Plug-n-play TYPO3 extension to migrate wordpress page and page data to your TYPO3 site.",
     "authors": [
         {
             "name": "T3: Navdeepsinh Jethwa",
