@@ -1,6 +1,6 @@
 <?php
 $EM_CONF['ns_wp_migration'] = [
-    'title' => '[Nitsan] WP Migration',
+    'title' => 'WP Migration',
     'description' => 'Plug-n-play TYPO3 extension to migrate wordpress page and page data to your TYPO3 site.',
     'category' => 'be',
     'author' => 'T3: Navdeepsinh Jethwa',
@@ -16,7 +16,6 @@ $EM_CONF['ns_wp_migration'] = [
             'blog' => '11.0.2-12.0.2',
             'md_news_author' => '7.0.0-7.0.2',
             'rte_ckeditor_image' => '11.0.0-12.4.99',
-            'ns_license' => '1.0.0-12.1.99',
         ],
         'conflicts' => [],
         'suggests' => [],
