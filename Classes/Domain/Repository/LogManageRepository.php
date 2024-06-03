@@ -1,8 +1,9 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
 
 /*
- * This file is part of the "[NITSAN] Ns Wp Migration" Extension for TYPO3 CMS.
+ * This file is part of the "Wp Migration" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE file that was distributed with this source code.
@@ -11,6 +12,7 @@ declare(strict_types = 1);
 
 namespace NITSAN\NsWpMigration\Domain\Repository;
 
+use Doctrine\DBAL\Exception;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Extbase\Persistence\Repository;
@@ -30,6 +32,7 @@ class LogManageRepository extends Repository
 
     /**
      * @return array
+     * @throws Exception
      */
     public function getAllLogs(): array
     {
@@ -42,7 +45,6 @@ class LogManageRepository extends Repository
                 $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0))
             )
             ->orderBy('uid', 'DESC')
-            ->executeQuery()
-            ->fetchAll();
+            ->executeQuery()->fetchAllAssociative();
     }
 }

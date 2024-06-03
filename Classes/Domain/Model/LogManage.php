@@ -1,9 +1,10 @@
 <?php
+
 namespace NITSAN\NsWpMigration\Domain\Model;
 
 /***
  *
- * This file is part of the "[NITSAN] Ns Wp Migration" Extension for TYPO3 CMS.
+ * This file is part of the "Wp Migration" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
@@ -12,15 +13,15 @@ namespace NITSAN\NsWpMigration\Domain\Model;
  *
  ***/
 
-use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\CMS\Beuser\Domain\Model\BackendUser;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 /**
  * LogManage
  */
-class LogManage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class LogManage extends AbstractEntity
 {
-
     /**
      * numberOfRecords
      *
@@ -46,7 +47,7 @@ class LogManage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $totalFails = 0;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Beuser\Domain\Model\BackendUser>
+     * @var ObjectStorage<BackendUser>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
     protected $addedBy = null;
@@ -150,7 +151,7 @@ class LogManage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the addedBy
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Beuser\Domain\Model\BackendUser> addedBy
+     * @return ObjectStorage<BackendUser> addedBy
      */
     public function getAddedBy(): ObjectStorage
     {
@@ -160,7 +161,7 @@ class LogManage extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the addedBy
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Beuser\Domain\Model\BackendUser> $addedBy
+     * @param ObjectStorage<BackendUser> $addedBy
      * @return void
      */
     public function setAddedBy(BackendUser $addedBy): void

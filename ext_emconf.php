@@ -1,4 +1,5 @@
 <?php
+
 $EM_CONF['ns_wp_migration'] = [
     'title' => 'WP Migration',
     'description' => 'Plug-n-play TYPO3 extension to migrate wordpress page and page data to your TYPO3 site.',
@@ -8,7 +9,7 @@ $EM_CONF['ns_wp_migration'] = [
     'author_company' => 'T3Planet // NITSAN',
     'state' => 'stable',
     'clearCacheOnLoad' => 0,
-    'version' => '1.0.1',
+    'version' => '1.1.0',
     'constraints' => [
         'depends' => [
             'typo3' => '11.5.0-12.5.99',

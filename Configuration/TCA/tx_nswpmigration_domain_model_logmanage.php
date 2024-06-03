@@ -18,7 +18,6 @@ return [
         'title' => $ll . 'tx_log_manage',
         'label' => 'created_date',
         'label_alt' => 'sys_language_uid',
-        // Display Language after Label
         'label_alt_force' => 0,
         'languageField' => 'sys_language_uid',
         'transOrigPointerField' => 'l18n_parent',
@@ -28,6 +27,7 @@ return [
         'cruser_id' => 'cruser_id',
         'default_sortby' => 'ORDER BY uid',
         'delete' => 'deleted',
+        'hideTable' => true,
         'enablecolumns' => [
             'disabled' => 'hidden',
         ],
@@ -116,13 +116,13 @@ return [
             'config' => [
                 'type' => 'text'
             ]
-         ],
+        ],
         'records_log' => [
-            'label' => $ll. 'tx_log_manage.records_log',
+            'label' => $ll. 'tx_log_man age.records_log',
             'config' => [
                 'type' => 'text'
             ]
-         ],
+        ],
         'created_date' => [
             'label' => $ll . 'tx_log_manage.created_date',
             'config' => [
@@ -131,7 +131,7 @@ return [
                 'eval' => 'datetime',
             ]
         ],
-        
+
     ],
     'palettes' => [
         'paletteCore' => [

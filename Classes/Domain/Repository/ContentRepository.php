@@ -2,15 +2,16 @@
 
 namespace  NITSAN\NsWpMigration\Domain\Repository;
 
+use Doctrine\DBAL\Exception;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\StringUtility;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
-
+use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /***
  *
- * This file is part of the "[NITSAN] wp-migration" Extension for TYPO3 CMS.
+ * This file is part of the "Wp Migration" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
@@ -22,13 +23,13 @@ use TYPO3\CMS\Core\DataHandling\DataHandler;
 /**
  * The repository for NsWpMigration
  */
-class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+class ContentRepository extends Repository
 {
     /**
      * @param array $contentElement
      * @return int
      */
-    public function insertContnetElements($contentElement): int
+    public function insertContnetElements(array $contentElement): int
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tt_content');
         $queryBuilder->insert('tt_content')->values($contentElement)->executeStatement();
@@ -40,7 +41,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param array $pageItems
      * @return mixed
      */
-    public function createPageRecord($pageItems): mixed
+    public function createPageRecord(array $pageItems): mixed
     {
         $isAdmin = $GLOBALS['BE_USER']->user['admin'] ?? 0;
         $randomString = StringUtility::getUniqueId('NEW');
@@ -62,9 +63,12 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 
     /**
      * Remove and create a new pages
+     * @param $data
+     * @param $recordId
      * @return int
      */
-    public function updatePageRecord($data, $recordId): int {
+    public function updatePageRecord($data, $recordId): int
+    {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('pages');
         $queryBuilder
             ->delete('pages')
@@ -77,6 +81,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 
     /**
      * @return string
+     * @throws Exception
      */
     public function findPageBySlug($slug, $storageId): string
     {
@@ -87,7 +92,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             ->where(
                 $queryBuilder->expr()->eq('slug', $queryBuilder->createNamedParameter($slug)),
                 $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($storageId, \PDO::PARAM_INT))
-                )
+            )
             ->executeQuery()
             ->fetchOne();
     }

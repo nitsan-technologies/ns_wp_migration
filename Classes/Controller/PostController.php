@@ -1,10 +1,12 @@
 <?php
+
 namespace NITSAN\NsWpMigration\Controller;
 
 use DOMDocument;
 use HTMLPurifier;
 use HTMLPurifier_Config;
 use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Http\RedirectResponse;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -25,7 +27,7 @@ use NITSAN\NsWpMigration\Domain\Repository\LogManageRepository;
 
 /***
  *
- * This file is part of the "[Nitsan] NS Wp Migration" Extension for TYPO3 CMS.
+ * This file is part of the "Wp Migration" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
@@ -81,7 +83,7 @@ class PostController extends AbstractController
             $view->assignMultiple($assign);
             return $view->renderResponse();
         }
-        
+
     }
 
     /**
@@ -93,20 +95,21 @@ class PostController extends AbstractController
         $requestData = $this->request->getArguments();
         // log url Action
         $loguri = $this->uriBuilder
-			->reset()
-			->uriFor('logManager', [], 'Post', 'NsWpMigration', 'importModule');
-		$loguri = $this->addBaseUriIfNecessary($loguri);
+            ->reset()
+            ->uriFor('logManager', [], 'Post', 'NsWpMigration', 'importModule');
+        $loguri = $this->addBaseUriIfNecessary($loguri);
         // Import url Action
         $importAction = $this->uriBuilder
-			->reset()
-			->uriFor('import', [], 'Post', 'NsWpMigration', 'importModule');
-		$importAction = $this->addBaseUriIfNecessary($importAction);
-        
+            ->reset()
+            ->uriFor('import', [], 'Post', 'NsWpMigration', 'importModule');
+        $importAction = $this->addBaseUriIfNecessary($importAction);
+
         $response = 0;
 
         if (!$requestData['storageId']) {
             $massage = LocalizationUtility::translate('storageId.require', 'ns_wp_migration');
             if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() < 12) {
+                // @extensionScannerIgnoreLine
                 $this->addFlashMessage($massage, 'Error', FlashMessage::ERROR);
                 return $this->redirect('import');
             } else {
@@ -124,10 +127,12 @@ class PostController extends AbstractController
             $response = $this->importCsvData(
                 $fileArray,
                 $requestData['postType'],
-                (int)$requestData['storageId']);
-        } else{
+                (int)$requestData['storageId']
+            );
+        } else {
             $massage = LocalizationUtility::translate('error.pageId', 'ns_wp_migration');
             if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() < 12) {
+                // @extensionScannerIgnoreLine
                 $this->addFlashMessage($massage, 'Error', FlashMessage::ERROR);
                 return $this->redirect('import');
             } else {
@@ -145,6 +150,7 @@ class PostController extends AbstractController
         } else {
             $massage = LocalizationUtility::translate('import.success', 'ns_wp_migration');
             if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() < 12) {
+                // @extensionScannerIgnoreLine
                 $this->addFlashMessage($massage, 'Success', FlashMessage::OK);
                 $response = $this->redirect('logManager');
             } else {
@@ -300,7 +306,7 @@ class PostController extends AbstractController
         $purifier = new HTMLPurifier($config);
         $htmlString = $purifier->purify(trim($data['post_content']));
         $resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
-        
+
         // Create a DOMDocument object
         $dom = new DOMDocument();
         try {
@@ -315,7 +321,7 @@ class PostController extends AbstractController
                 if($src) {
                     $fileName = basename($src);
                     $folder = 'fileadmin/user_upload/';
-                    $dstFolder = \TYPO3\CMS\Core\Core\Environment::getPublicPath() .'/'. $folder;
+                    $dstFolder = Environment::getPublicPath() .'/'. $folder;
                     if (!file_exists($dstFolder)) {
                         GeneralUtility::mkdir_deep($dstFolder);
                     }
@@ -340,16 +346,16 @@ class PostController extends AbstractController
                     $img->setAttribute('data-alt-override', 'true');
                 }
             }
-            
+
             // Get the modified HTML content
             $htmlString = $dom->saveHTML();
             $htmlString = $purifier->purify($htmlString);
             return $htmlString;
         } catch (\Throwable $th) {
-            $this->logger->error($th->getMessage(),$data);
+            $this->logger->error($th->getMessage(), $data);
             return $htmlString;
         }
-            
+
 
     }
 
@@ -358,7 +364,7 @@ class PostController extends AbstractController
      *
      * @return ResponseInterface
      */
-    public function logManagerAction() : ResponseInterface
+    public function logManagerAction(): ResponseInterface
     {
         $data = $this->logManageRepository->getAllLogs();
         $assign = [
@@ -392,7 +398,8 @@ class PostController extends AbstractController
     /**
      * Get the sample file for downloadings
      */
-    protected function downloadSampleAction() {
+    protected function downloadSampleAction()
+    {
         $file = ExtensionManagementUtility::extPath('ns_wp_migration') . 'Resources/Public/sample.csv';
         if (file_exists($file)) {
             header('Content-Type: application/octet-stream');
@@ -403,5 +410,4 @@ class PostController extends AbstractController
             exit;
         }
     }
-    
 }
