@@ -53,7 +53,7 @@ use TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider;
                 'access' => 'user,group',
                 'icon'   => 'EXT:ns_wp_migration/Resources/Public/Icons/icon.svg',
                 'labels' => 'LLL:EXT:ns_wp_migration/Resources/Private/Language/locallang_psimportexport.xlf',
-                'navigationComponentId' => 'typo3-pagetree',
+                'navigationComponentId' => 'TYPO3/CMS/Backend/PageTree/PageTreeElement',
                 'inheritNavigationComponentFromMainModule' => false
             ]
         );
