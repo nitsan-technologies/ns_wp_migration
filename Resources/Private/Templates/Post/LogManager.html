@@ -8,21 +8,21 @@
 					<table class="table ns-ext-logmanager-datatable ns-ext-datatable" id="loglist-table">
 						<thead class="thead-light">
 							<tr>
-								<th><f:translate key="log.totalRecord" /></th>
-								<th><f:translate key="log.totalInserted" /></th>
-								<th><f:translate key="log.totalUpdate" /></th>
-								<th><f:translate key="log.storageFolder" /></th>
-								<th><f:translate key="log.totalImportDate" /></th>
+								<th class="fs-5 fw-light" ><f:translate key="log.totalRecord" /></th>
+								<th class="fs-5 fw-light" ><f:translate key="log.totalInserted" /></th>
+								<th class="fs-5 fw-light" ><f:translate key="log.totalUpdate" /></th>
+								<th class="fs-5 fw-light" ><f:translate key="log.storageFolder" /></th>
+								<th class="fs-5 fw-light" ><f:translate key="log.totalImportDate" /></th>
 							</tr>
 						</thead>
 						<tbody>
 							<f:for each="{loglist}" as="log">
 								<tr>
-									<td>{log.number_of_records}</td>
-									<td>{log.total_success}</td>
-									<td>{log.total_update}</td>
-									<td>{log.pid}</td>
-									<td><f:format.date format="Y-m-d">{log.created_date}</f:format.date></td>
+									<td class="fs-5 fw-light" >{log.number_of_records}</td>
+									<td class="fs-5 fw-light" >{log.total_success}</td>
+									<td class="fs-5 fw-light" >{log.total_update}</td>
+									<td class="fs-5 fw-light" >{log.pid}</td>
+									<td class="fs-5 fw-light" ><f:format.date format="Y-m-d">{log.created_date}</f:format.date></td>
 								</tr>
 							</f:for>
 						</tbody>
