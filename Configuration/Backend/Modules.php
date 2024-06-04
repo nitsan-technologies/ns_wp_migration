@@ -8,13 +8,13 @@ use NITSAN\NsWpMigration\Controller\PostController;
  * Definitions for modules provided by EXT:ns_wp_migration
  */
 return [
-    'nitsan_module' => [
+    'nsWpMigration' => [
         'labels' => 'LLL:EXT:ns_wp_migration/Resources/Private/Language/BackendModule.xlf',
-        'iconIdentifier' => 'module-nitsan',
+        'icon'   => 'EXT:ns_wp_migration/Resources/Public/Icons/module-nswpmigration.svg',
         'position' => ['after' => 'web'],
     ],
-    'importModule' => [
-        'parent' => 'nitsan_module',
+    'nsWpMigrationModule' => [
+        'parent' => 'nsWpMigration',
         'position' => ['before' => 'top'],
         'access' => 'user',
         'icon'   => 'EXT:ns_wp_migration/Resources/Public/Icons/icon.svg',

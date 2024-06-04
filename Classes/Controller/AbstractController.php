@@ -1,4 +1,5 @@
 <?php
+
 namespace NITSAN\NsWpMigration\Controller;
 
 use Psr\Log\LoggerAwareTrait;
@@ -10,7 +11,7 @@ use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
 /***
  *
- * This file is part of the "[NITSAN] NS Wp Migration" Extension for TYPO3 CMS.
+ * This file is part of the "Wp Migration" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
@@ -24,13 +25,12 @@ use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
  */
 abstract class AbstractController extends ActionController implements LoggerAwareInterface
 {
-
     use LoggerAwareTrait;
-  
+
     protected ?PersistenceManager $persistenceManager = null;
     protected $constants;
-    
-    public function initializeAction() : void
+
+    public function initializeAction(): void
     {
         $this->persistenceManager = GeneralUtility::makeInstance(PersistenceManager::class);
         $this->logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
@@ -56,7 +56,7 @@ abstract class AbstractController extends ActionController implements LoggerAwar
             'application/vnd.msexcel',
             'text/plain'
         ];
-        
+
         return in_array($file['type'], $fileMimes);
     }
 
