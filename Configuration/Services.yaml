@@ -6,6 +6,7 @@ services:
 
   NITSAN\NsWpMigration\:
     resource: '../Classes/*'
+    
   NITSAN\NsWpMigration\Controller\PostController:
     public: true
     arguments:
@@ -15,3 +16,10 @@ services:
       $backendUserRepository: '@TYPO3\CMS\Beuser\Domain\Repository\BackendUserRepository'
       $uriBuilder: '@TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder'
       $moduleTemplateFactory: '@TYPO3\CMS\Backend\Template\ModuleTemplateFactory'
+
+  NITSAN\NsWpMigration\Command\ImportCsvCommand:
+    tags:
+      -
+        name: console.command
+        command: 'nswpmigration:import'
+        description: 'Import CSV files'

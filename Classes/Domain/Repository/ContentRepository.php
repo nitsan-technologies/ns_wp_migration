@@ -41,24 +41,14 @@ class ContentRepository extends Repository
      * @param array $pageItems
      * @return mixed
      */
-    public function createPageRecord(array $pageItems): mixed
+    public function createPageRecord(array $pageItems, $beUid = 0): mixed
     {
-        $isAdmin = $GLOBALS['BE_USER']->user['admin'] ?? 0;
-        $randomString = StringUtility::getUniqueId('NEW');
-        $newPageData = [
-            'pages' => [
-                $randomString => $pageItems,
-            ],
-        ];
-        $dataHandler = GeneralUtility::makeInstance(DataHandler::class);
-        $dataHandler->start($newPageData, []);
-        $dataHandler->admin = $isAdmin;
-        $dataHandler->process_datamap();
-        if ($dataHandler->errorLog) {
-            return $dataHandler->errorLog;
-        }
-        $dataHandler->clear_cacheCmd('pages');
-        return $dataHandler->substNEWwithIDs[$randomString];
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('pages');
+        $queryBuilder
+            ->insert('pages')
+            ->values($pageItems)
+            ->executeStatement();
+        return (int)$queryBuilder->getConnection()->lastInsertId();
     }
 
     /**
@@ -67,7 +57,7 @@ class ContentRepository extends Repository
      * @param $recordId
      * @return int
      */
-    public function updatePageRecord($data, $recordId): int
+    public function updatePageRecord($data, $recordId, $beUserId = 0): int
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('pages');
         $queryBuilder
@@ -76,7 +66,7 @@ class ContentRepository extends Repository
                 $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($recordId, \PDO::PARAM_INT))
             )
             ->executeStatement();
-        return $this->createPageRecord($data);
+        return $this->createPageRecord($data, $beUserId);
     }
 
     /**

@@ -5,8 +5,9 @@ namespace NITSAN\NsWpMigration\Controller;
 use DOMDocument;
 use HTMLPurifier;
 use HTMLPurifier_Config;
-use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Core\Environment;
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Http\RedirectResponse;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -23,6 +24,7 @@ use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use NITSAN\NsWpMigration\Domain\Repository\ContentRepository;
 use TYPO3\CMS\Beuser\Domain\Repository\BackendUserRepository;
+use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use NITSAN\NsWpMigration\Domain\Repository\LogManageRepository;
 
 /***
@@ -211,14 +213,18 @@ class PostController extends AbstractController
      * @param string $dockType
      * @return array
      */
-    public function createPagesAndBlog(array $data, int $storageId, string $dockType): array
+    public function createPagesAndBlog(array $data, int $storageId, string $dockType, $beUid = 0): array
     {
         $response = [];
         $numberOfRecords = count($data);
         $success = 0;
         $fails = 0;
         $updatedRecords = 0;
-        $beUserId = $GLOBALS['BE_USER']->user['uid'];
+        $beUserId = $beUid;
+        $context = GeneralUtility::makeInstance(Context::class);
+        if ($context->getPropertyFromAspect('backend.user', 'id')) {
+            $beUserId = $context->getPropertyFromAspect('backend.user', 'id');
+        }
         $beUser = $this->backendUserRepository->findByUid($beUserId);
         $logManager = GeneralUtility::makeInstance(LogManage::class);
         $logManager->setPid($storageId);
@@ -229,11 +235,20 @@ class PostController extends AbstractController
                 // Creating Pages
                 $slugString = preg_replace('/[^A-Za-z0-9 ]/', '', $pageItem['post_title']);
                 $slug = strtolower(str_replace(' ', '-', $slugString));
+                $postDate = explode(" ", $pageItem['post_date']);
+                if(isset($postDate[0])){
+                    $date = \DateTime::createFromFormat('d/m/y', $postDate[0]);
+                    if($date) {
+                        $formattedDate = $date->format('Y-m-d');
+                    } else {
+                        $formattedDate = date($postDate[0]);
+                    }
+                }
                 $pageData = [
                     'title' => $pageItem['post_title'],
                     'hidden' => 0,
                     'tstamp' => time(),
-                    'crdate' => strtotime($pageItem['post_date']),
+                    'crdate' => $formattedDate ? strtotime($formattedDate) : time(),
                     'pid' => $storageId,
                     'slug' => '/'.$slug,
                     'sys_language_uid' => 0,
@@ -247,10 +262,10 @@ class PostController extends AbstractController
                 if (isset($pageItem['post_status']) && $pageItem['post_status'] != 'trash') {
                     $existingRecordId = $this->contentRepository->findPageBySlug('/'.$slug, $storageId);
                     if($existingRecordId) {
-                        $recordId = $this->contentRepository->updatePageRecord($pageData, $existingRecordId);
+                        $recordId = $this->contentRepository->updatePageRecord($pageData, $existingRecordId, $beUserId);
                         $updatedRecords++;
                     } else {
-                        $recordId = $this->contentRepository->createPageRecord($pageData);
+                        $recordId = $this->contentRepository->createPageRecord($pageData, $beUserId );
                         $this->logger->error($recordId, $pageData);
                         $success++;
                     }
@@ -281,7 +296,8 @@ class PostController extends AbstractController
         $logManager->setCreatedDate($dateTime);
         $logManager->setAddedBy($beUser);
         $this->logManageRepository->add($logManager);
-        $this->persistenceManager->persistAll();
+        $persistanceManager = GeneralUtility::makeInstance(PersistenceManager::class);
+        $persistanceManager->persistAll();
         $massage = LocalizationUtility::translate('import.success', 'ns_wp_migration');
         $response['message'] = $massage;
         $response['result'] = true;
