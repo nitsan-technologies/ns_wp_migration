@@ -41,7 +41,7 @@ class ContentRepository extends Repository
      * @param array $pageItems
      * @return mixed
      */
-    public function createPageRecord(array $pageItems, $beUid = 0): mixed
+    public function createPageRecord(array $pageItems): mixed
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('pages');
         $queryBuilder
@@ -57,7 +57,7 @@ class ContentRepository extends Repository
      * @param $recordId
      * @return int
      */
-    public function updatePageRecord($data, $recordId, $beUserId = 0): int
+    public function updatePageRecord($data, $recordId): int
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('pages');
         $queryBuilder
@@ -66,7 +66,7 @@ class ContentRepository extends Repository
                 $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($recordId, \PDO::PARAM_INT))
             )
             ->executeStatement();
-        return $this->createPageRecord($data, $beUserId);
+        return $this->createPageRecord($data);
     }
 
     /**

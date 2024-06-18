@@ -213,14 +213,14 @@ class PostController extends AbstractController
      * @param string $dockType
      * @return array
      */
-    public function createPagesAndBlog(array $data, int $storageId, string $dockType, $beUid = 0): array
+    public function createPagesAndBlog(array $data, int $storageId, string $dockType): array
     {
         $response = [];
         $numberOfRecords = count($data);
         $success = 0;
         $fails = 0;
         $updatedRecords = 0;
-        $beUserId = $beUid;
+        $beUserId = 0;
         $context = GeneralUtility::makeInstance(Context::class);
         if ($context->getPropertyFromAspect('backend.user', 'id')) {
             $beUserId = $context->getPropertyFromAspect('backend.user', 'id');
@@ -262,10 +262,10 @@ class PostController extends AbstractController
                 if (isset($pageItem['post_status']) && $pageItem['post_status'] != 'trash') {
                     $existingRecordId = $this->contentRepository->findPageBySlug('/'.$slug, $storageId);
                     if($existingRecordId) {
-                        $recordId = $this->contentRepository->updatePageRecord($pageData, $existingRecordId, $beUserId);
+                        $recordId = $this->contentRepository->updatePageRecord($pageData, $existingRecordId);
                         $updatedRecords++;
                     } else {
-                        $recordId = $this->contentRepository->createPageRecord($pageData, $beUserId );
+                        $recordId = $this->contentRepository->createPageRecord($pageData);
                         $this->logger->error($recordId, $pageData);
                         $success++;
                     }
