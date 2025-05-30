@@ -77,15 +77,17 @@ class PostController extends AbstractController
         ];
 
         if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() < 12) {
+            $this->view->setLayoutRootPaths([ExtensionManagementUtility::extPath('ns_wp_migration') . 'Resources/Private/Layouts/']);
+            $this->view->setLayoutPathAndFilename(ExtensionManagementUtility::extPath('ns_wp_migration') . 'Resources/Private/Layouts/DefaultV11.html');
             $this->view->assignMultiple($assign);
             return $this->htmlResponse();
         } else {
             $assign['version'] = 12;
             $view = $this->initializeModuleTemplate($this->request);
+            $view->setLayoutName('Default');
             $view->assignMultiple($assign);
             return $view->renderResponse("Post/Import");
         }
-
     }
 
     /**
@@ -392,12 +394,16 @@ class PostController extends AbstractController
             'loglist' => $data,
             'version' => 11
         ];
+
         if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() < 12) {
+            $this->view->setLayoutRootPaths([ExtensionManagementUtility::extPath('ns_wp_migration') . 'Resources/Private/Layouts/']);
+            $this->view->setLayoutPathAndFilename(ExtensionManagementUtility::extPath('ns_wp_migration') . 'Resources/Private/Layouts/DefaultV11.html');
             $this->view->assignMultiple($assign);
             return $this->htmlResponse();
         } else {
             $assign['version'] = 12;
             $view = $this->initializeModuleTemplate($this->request);
+            $view->setLayoutName('Default');
             $view->assignMultiple($assign);
             return $view->renderResponse("Post/LogManager");
         }
