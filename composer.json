@@ -20,12 +20,12 @@
         "Wordpress"
     ],
     "require": {
-        "typo3/cms-core": "^11.5 || ^12.4",
-        "ezyang/htmlpurifier": "^4.14",
-        "t3g/blog": "^12.0",
-        "georgringer/news": "^11",
-        "mediadreams/md_news_author": "^6.0 || ^7.0",
-        "netresearch/rte-ckeditor-image": "^11.0 || ^12.0"
+        "typo3/cms-core": "^11.5 || ^12.4 || ^13.4",
+        "ezyang/htmlpurifier": "^4.18",
+        "t3g/blog": "^12.0 || ^13.0",
+        "georgringer/news": "^11 || ^12.0", 
+        "mediadreams/md_news_author": "^6.0 || ^7.0 || ^8.0",
+        "netresearch/rte-ckeditor-image": "^11.0 || ^12.0  || ^13.0"
     },
     "autoload": {
         "psr-4": {

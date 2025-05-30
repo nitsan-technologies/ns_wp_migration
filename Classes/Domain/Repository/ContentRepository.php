@@ -63,7 +63,7 @@ class ContentRepository extends Repository
         $queryBuilder
             ->delete('pages')
             ->where(
-                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($recordId, \PDO::PARAM_INT))
+                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($recordId))
             )
             ->executeStatement();
         return $this->createPageRecord($data);
@@ -81,7 +81,7 @@ class ContentRepository extends Repository
             ->from('pages')
             ->where(
                 $queryBuilder->expr()->eq('slug', $queryBuilder->createNamedParameter($slug)),
-                $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($storageId, \PDO::PARAM_INT))
+                $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($storageId))
             )
             ->executeQuery()
             ->fetchOne();

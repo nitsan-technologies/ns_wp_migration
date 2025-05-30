@@ -37,7 +37,7 @@ use NITSAN\NsWpMigration\Domain\Repository\LogManageRepository;
  *  (c) 2023 T3: Navdeep <sanjay@nitsan.in>, NITSAN Technologies Pvt Ltd
  *
  ***/
-
+// @extensionScannerIgnoreFile
 /**
  * PostController
  */
@@ -83,7 +83,7 @@ class PostController extends AbstractController
             $assign['version'] = 12;
             $view = $this->initializeModuleTemplate($this->request);
             $view->assignMultiple($assign);
-            return $view->renderResponse();
+            return $view->renderResponse("Post/Import");
         }
 
     }
@@ -333,11 +333,14 @@ class PostController extends AbstractController
             // Loop through each image tag
             foreach ($imageTags as $img) {
                 // Get the value of the src attribute
-                $src = $img->getAttribute('src');
+                $src = trim($img->getAttribute('src'));
+                
                 if($src) {
                     $fileName = basename($src);
+                    
                     $folder = 'fileadmin/user_upload/';
                     $dstFolder = Environment::getPublicPath() .'/'. $folder;
+                   
                     if (!file_exists($dstFolder)) {
                         GeneralUtility::mkdir_deep($dstFolder);
                     }
@@ -396,7 +399,7 @@ class PostController extends AbstractController
             $assign['version'] = 12;
             $view = $this->initializeModuleTemplate($this->request);
             $view->assignMultiple($assign);
-            return $view->renderResponse();
+            return $view->renderResponse("Post/LogManager");
         }
     }
 
