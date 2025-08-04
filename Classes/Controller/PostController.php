@@ -54,8 +54,8 @@ class PostController extends AbstractController
         ContentRepository $contentRepository,
         LogManageRepository $logManageRepository,
         BackendUserRepository $backendUserRepository,
-        UriBuilder $uriBuilder,
-        protected readonly ModuleTemplateFactory $moduleTemplateFactory,
+        UriBuilder $uriBuilder
+        
     ) {
         $this->pageRepository = $pageRepository;
         $this->contentRepository = $contentRepository;
@@ -423,7 +423,8 @@ class PostController extends AbstractController
      */
     protected function initializeModuleTemplate(ServerRequestInterface $request): ModuleTemplate
     {
-        return $this->moduleTemplateFactory->create($request);
+        $moduleTemplateFactory = GeneralUtility::makeInstance(ModuleTemplateFactory::class);
+        return $moduleTemplateFactory->create($request);
     }
 
     /**

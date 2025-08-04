@@ -213,7 +213,9 @@ label {
 }
 
 .ns-ext-navigation .nav-item.active>.nav-link,
-.ns-ext-navigation .nav-item:hover>.nav-link {
+.ns-ext-navigation .nav-item:hover>.nav-link,
+.ns-ext-navigation .nav-item.active .nav-link,
+.ns-ext-navigation .nav-item:hover .nav-link {
     background-color: #d7d7d7;
 }
 

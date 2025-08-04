@@ -41,7 +41,7 @@ class ContentRepository extends Repository
      * @param array $pageItems
      * @return mixed
      */
-    public function createPageRecord(array $pageItems): mixed
+    public function createPageRecord(array $pageItems): int
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('pages');
         $queryBuilder
