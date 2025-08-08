@@ -35,14 +35,15 @@
       url('../Fonts/SourceSansPro-Regular.ttf') format('truetype');
  }
  
- html, body {
-     font-size: 12px;
- }
  
- body {
-     font-family: Verdana, Arial, Helvetica, sans-serif;
-     color: #212424;
- }
+html,
+body {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    background-color: light-dark(#fff, #262626);
+    color: light-dark(#000, #fff);
+}
+
 
 .form-control::-webkit-input-placeholder {
     color: #bdbdbd;
@@ -213,7 +214,9 @@ label {
 }
 
 .ns-ext-navigation .nav-item.active>.nav-link,
-.ns-ext-navigation .nav-item:hover>.nav-link {
+.ns-ext-navigation .nav-item:hover>.nav-link,
+.ns-ext-navigation .nav-item.active .nav-link,
+.ns-ext-navigation .nav-item:hover .nav-link {
     background-color: #d7d7d7;
 }
 
@@ -843,6 +846,7 @@ New Common Style
     border-color: #ccc;
     box-shadow: none;
     margin-bottom: 30px;
+    background-color: light-dark(#fff, #262626);
 }
 
 .custom-card .card-header {

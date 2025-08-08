@@ -9,17 +9,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
-/***
- *
- * This file is part of the "Wp Migration" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- *  (c) 2023 Navdeepsinh Jethwa <navdeep@nitsantech.com>, Nitsan Technologies Pvt. Ltd.
- *
- ***/
-
 /**
  * AbstractController
  */

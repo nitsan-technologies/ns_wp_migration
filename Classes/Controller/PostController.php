@@ -26,18 +26,9 @@ use NITSAN\NsWpMigration\Domain\Repository\ContentRepository;
 use TYPO3\CMS\Beuser\Domain\Repository\BackendUserRepository;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use NITSAN\NsWpMigration\Domain\Repository\LogManageRepository;
+use TYPO3\CMS\Core\Page\PageRenderer;
 
-/***
- *
- * This file is part of the "Wp Migration" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- *  (c) 2023 T3: Navdeep <sanjay@nitsan.in>, NITSAN Technologies Pvt Ltd
- *
- ***/
-
+// @extensionScannerIgnoreFile
 /**
  * PostController
  */
@@ -53,8 +44,8 @@ class PostController extends AbstractController
         ContentRepository $contentRepository,
         LogManageRepository $logManageRepository,
         BackendUserRepository $backendUserRepository,
-        UriBuilder $uriBuilder,
-        protected readonly ModuleTemplateFactory $moduleTemplateFactory,
+        UriBuilder $uriBuilder
+
     ) {
         $this->pageRepository = $pageRepository;
         $this->contentRepository = $contentRepository;
@@ -70,6 +61,15 @@ class PostController extends AbstractController
      */
     public function importAction(): ResponseInterface
     {
+        if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() > 11) {
+            $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
+            $pageRenderer->addInlineLanguageLabelFile('EXT:ns_wp_migration/Resources/Private/Language/locallang.xlf');
+            $pageRenderer->loadJavaScriptModule('@nitsan/ns-wp-migration/jquery.js');
+            $pageRenderer->loadJavaScriptModule('@nitsan/ns-wp-migration/datatable.js');
+            $pageRenderer->loadJavaScriptModule('@nitsan/ns-wp-migration/tom-select.complete.js');
+            $pageRenderer->loadJavaScriptModule('@nitsan/ns-wp-migration/main.js');
+        }
+
         $assign = [
             'action' => 'import',
             'constant' => $this->constants,
@@ -83,9 +83,8 @@ class PostController extends AbstractController
             $assign['version'] = 12;
             $view = $this->initializeModuleTemplate($this->request);
             $view->assignMultiple($assign);
-            return $view->renderResponse();
+            return $view->renderResponse("Post/Import");
         }
-
     }
 
     /**
@@ -121,7 +120,7 @@ class PostController extends AbstractController
         }
 
         if ($this->pageRepository->getPage($requestData['storageId'])) {
-            if((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() < 12) {
+            if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() < 12) {
                 $fileArray = $requestData['dataFile'];
             } else {
                 $fileArray = $_FILES['dataFile'];
@@ -143,7 +142,7 @@ class PostController extends AbstractController
             }
         }
 
-        if($response === 0) {
+        if ($response === 0) {
             if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() < 12) {
                 $response = $this->redirect('import');
             } else {
@@ -178,12 +177,24 @@ class PostController extends AbstractController
             $columns = fgetcsv($handle, 10000, ",");
             $record = 1;
             $data = [];
+
             while (($row = fgetcsv($handle, 10000, ",")) !== false) {
+                // Validate column count
+                if (count($columns) !== count($row)) {
+                    $massage = LocalizationUtility::translate('error.invalidfileData', 'ns_wp_migration');
+                    if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() < 12) {
+                        $this->addFlashMessage($massage, 'Error', FlashMessage::ERROR);
+                    } else {
+                        $this->addFlashMessage($massage, 'Error', ContextualFeedbackSeverity::ERROR);
+                    }
+                    return 0;
+                }
+
                 $data[$record] = array_combine($columns, $row);
                 $record++;
             }
 
-            if(is_array($data) && isset($data[1], $data[1]['post_title'], $data[1]['post_type'])) {
+            if (is_array($data) && isset($data[1], $data[1]['post_title'], $data[1]['post_type'])) {
                 $this->createPagesAndBlog($data, $storageId, $dockType);
                 return 1;
             } else {
@@ -231,14 +242,14 @@ class PostController extends AbstractController
         $logManager->setNumberOfRecords($numberOfRecords);
         foreach ($data as $pageItem) {
             // Validate Pages Items First
-            if($pageItem['post_title']) {
+            if ($pageItem['post_title']) {
                 // Creating Pages
                 $slugString = preg_replace('/[^A-Za-z0-9 ]/', '', $pageItem['post_title']);
                 $slug = strtolower(str_replace(' ', '-', $slugString));
                 $postDate = explode(" ", $pageItem['post_date']);
-                if(isset($postDate[0])){
+                if (isset($postDate[0])) {
                     $date = \DateTime::createFromFormat('d/m/y', $postDate[0]);
-                    if($date) {
+                    if ($date) {
                         $formattedDate = $date->format('Y-m-d');
                     } else {
                         $formattedDate = date($postDate[0]);
@@ -250,7 +261,7 @@ class PostController extends AbstractController
                     'tstamp' => time(),
                     'crdate' => $formattedDate ? strtotime($formattedDate) : time(),
                     'pid' => $storageId,
-                    'slug' => '/'.$slug,
+                    'slug' => '/' . $slug,
                     'sys_language_uid' => 0,
                     'doktype' => 1
                 ];
@@ -260,8 +271,8 @@ class PostController extends AbstractController
                 }
 
                 if (isset($pageItem['post_status']) && $pageItem['post_status'] != 'trash') {
-                    $existingRecordId = $this->contentRepository->findPageBySlug('/'.$slug, $storageId);
-                    if($existingRecordId) {
+                    $existingRecordId = $this->contentRepository->findPageBySlug('/' . $slug, $storageId);
+                    if ($existingRecordId) {
                         $recordId = $this->contentRepository->updatePageRecord($pageData, $existingRecordId);
                         $updatedRecords++;
                     } else {
@@ -273,14 +284,16 @@ class PostController extends AbstractController
                     // post content crete
                     if (isset($pageItem['post_content']) && !empty($pageItem['post_content'])) {
                         $htmlContent = $this->processPostContentHtml($pageItem);
-                        $contentElements = ['pid' => $recordId,
-                                            'hidden' => 0,
-                                            'tstamp' => time(),
-                                            'crdate' => time(),
-                                            'CType' => 'text',
-                                            'bodytext' => $htmlContent,
-                                            'colPos' => 0,
-                                            'sectionIndex' => 1];
+                        $contentElements = [
+                            'pid' => $recordId,
+                            'hidden' => 0,
+                            'tstamp' => time(),
+                            'crdate' => time(),
+                            'CType' => 'text',
+                            'bodytext' => $htmlContent,
+                            'colPos' => 0,
+                            'sectionIndex' => 1
+                        ];
                         $this->contentRepository->insertContnetElements($contentElements);
                     }
                 }
@@ -333,11 +346,14 @@ class PostController extends AbstractController
             // Loop through each image tag
             foreach ($imageTags as $img) {
                 // Get the value of the src attribute
-                $src = $img->getAttribute('src');
-                if($src) {
+                $src = trim($img->getAttribute('src'));
+
+                if ($src) {
                     $fileName = basename($src);
+
                     $folder = 'fileadmin/user_upload/';
-                    $dstFolder = Environment::getPublicPath() .'/'. $folder;
+                    $dstFolder = Environment::getPublicPath() . '/' . $folder;
+
                     if (!file_exists($dstFolder)) {
                         GeneralUtility::mkdir_deep($dstFolder);
                     }
@@ -371,8 +387,6 @@ class PostController extends AbstractController
             $this->logger->error($th->getMessage(), $data);
             return $htmlString;
         }
-
-
     }
 
     /**
@@ -389,14 +403,17 @@ class PostController extends AbstractController
             'loglist' => $data,
             'version' => 11
         ];
+
         if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() < 12) {
+            $this->view->setLayoutRootPaths([ExtensionManagementUtility::extPath('ns_wp_migration') . 'Resources/Private/Layouts/']);
+            $this->view->setLayoutPathAndFilename(ExtensionManagementUtility::extPath('ns_wp_migration') . 'Resources/Private/Layouts/DefaultV11.html');
             $this->view->assignMultiple($assign);
             return $this->htmlResponse();
         } else {
             $assign['version'] = 12;
             $view = $this->initializeModuleTemplate($this->request);
             $view->assignMultiple($assign);
-            return $view->renderResponse();
+            return $view->renderResponse("Post/LogManager");
         }
     }
 
@@ -408,7 +425,8 @@ class PostController extends AbstractController
      */
     protected function initializeModuleTemplate(ServerRequestInterface $request): ModuleTemplate
     {
-        return $this->moduleTemplateFactory->create($request);
+        $moduleTemplateFactory = GeneralUtility::makeInstance(ModuleTemplateFactory::class);
+        return $moduleTemplateFactory->create($request);
     }
 
     /**

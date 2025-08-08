@@ -9,16 +9,6 @@ use TYPO3\CMS\Core\Utility\StringUtility;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
-/***
- *
- * This file is part of the "Wp Migration" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- *  (c) 2023 T3: Navdeepsinh Jethwa <sanjay@nitsan.in>, NITSAN Technologies Pvt Ltd
- *
- ***/
 
 /**
  * The repository for NsWpMigration
@@ -41,7 +31,7 @@ class ContentRepository extends Repository
      * @param array $pageItems
      * @return mixed
      */
-    public function createPageRecord(array $pageItems): mixed
+    public function createPageRecord(array $pageItems): int
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('pages');
         $queryBuilder
@@ -63,7 +53,7 @@ class ContentRepository extends Repository
         $queryBuilder
             ->delete('pages')
             ->where(
-                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($recordId, \PDO::PARAM_INT))
+                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($recordId))
             )
             ->executeStatement();
         return $this->createPageRecord($data);
@@ -81,7 +71,7 @@ class ContentRepository extends Repository
             ->from('pages')
             ->where(
                 $queryBuilder->expr()->eq('slug', $queryBuilder->createNamedParameter($slug)),
-                $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($storageId, \PDO::PARAM_INT))
+                $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($storageId))
             )
             ->executeQuery()
             ->fetchOne();

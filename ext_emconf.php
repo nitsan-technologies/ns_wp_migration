@@ -9,15 +9,18 @@ $EM_CONF['ns_wp_migration'] = [
     'author_company' => 'T3Planet',
     'state' => 'stable',
     'clearCacheOnLoad' => 0,
-    'version' => '1.1.1',
+    'version' => '2.0.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '11.5.0-12.5.99',
-            'news' => '11.0.0-11.4.99',
-            'blog' => '11.0.2-12.0.2',
-            'md_news_author' => '7.0.0-7.0.2',
-            'rte_ckeditor_image' => '11.0.0-12.4.99',
+            'typo3' => '11.5.0-13.9.99',
+            'news' => '11.0.0-12.9.99',
+            'blog' => '11.0.2-13.9.9',
+            'md_news_author' => '7.0.0-8.9.99',
+            'ns_license' => '1.2.0-13.9.99',
+            'rte_ckeditor_image'=>'11.0.2-13.9.99',
+            'php' => '7.4.0 - 8.3.99'
         ],
+
         'conflicts' => [],
         'suggests' => [],
     ],
