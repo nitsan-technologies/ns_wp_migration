@@ -1,8 +1,8 @@
 <?php
 
 $EM_CONF['ns_wp_migration'] = [
-    'title' => 'WP Migration',
-    'description' => 'Plug-n-play TYPO3 extension to migrate wordpress page and page data to your TYPO3 site.',
+    'title' => 'TYPO3 WordPress Migration Tool',
+    'description' => 'Easily migrate your WordPress pages and data into a TYPO3 website with this plug-and-play backend extension. Simplifies migration for posts, authors, media, and more.',    
     'category' => 'be',
     'author' => 'Team T3Planet',
     'author_email' => 'info@t3planet.de',
