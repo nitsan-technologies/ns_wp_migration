@@ -28,16 +28,6 @@ use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use NITSAN\NsWpMigration\Domain\Repository\LogManageRepository;
 use TYPO3\CMS\Core\Page\PageRenderer;
 
-/***
- *
- * This file is part of the "Wp Migration" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- *  (c) 2023 T3: Navdeep <sanjay@nitsan.in>, NITSAN Technologies Pvt Ltd
- *
- ***/
 // @extensionScannerIgnoreFile
 /**
  * PostController
@@ -55,7 +45,7 @@ class PostController extends AbstractController
         LogManageRepository $logManageRepository,
         BackendUserRepository $backendUserRepository,
         UriBuilder $uriBuilder
-        
+
     ) {
         $this->pageRepository = $pageRepository;
         $this->contentRepository = $contentRepository;
@@ -187,7 +177,19 @@ class PostController extends AbstractController
             $columns = fgetcsv($handle, 10000, ",");
             $record = 1;
             $data = [];
+
             while (($row = fgetcsv($handle, 10000, ",")) !== false) {
+                // Validate column count
+                if (count($columns) !== count($row)) {
+                    $massage = LocalizationUtility::translate('error.invalidfileData', 'ns_wp_migration');
+                    if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() < 12) {
+                        $this->addFlashMessage($massage, 'Error', FlashMessage::ERROR);
+                    } else {
+                        $this->addFlashMessage($massage, 'Error', ContextualFeedbackSeverity::ERROR);
+                    }
+                    return 0;
+                }
+
                 $data[$record] = array_combine($columns, $row);
                 $record++;
             }

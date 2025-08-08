@@ -9,16 +9,6 @@ use TYPO3\CMS\Core\Utility\StringUtility;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
-/***
- *
- * This file is part of the "Wp Migration" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- *  (c) 2023 T3: Navdeepsinh Jethwa <sanjay@nitsan.in>, NITSAN Technologies Pvt Ltd
- *
- ***/
 
 /**
  * The repository for NsWpMigration
