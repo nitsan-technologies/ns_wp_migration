@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.0" xmlns:t3="http://typo3.org/schemas/xliff">
-    <file t3:id="1557352031" source-language="en" datatype="plaintext" original="messages" date="2019-05-08T21:47:12Z" product-name="ns_wp_migration">
+    <file t3:id="1557352031" source-language="en" datatype="plaintext" original="EXT:ns_wp_migration/Resources/Private/Language/locallang_db.xlf" date="2019-05-08T21:47:12Z" product-name="ns_wp_migration">
         <header/>
         <body>
             <trans-unit id="tx_log_manage" xml:space="preserve">

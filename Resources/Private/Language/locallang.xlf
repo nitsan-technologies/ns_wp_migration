@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2015-11-18T13:15:38Z" product-name="ns_wp_migration">
+	<file source-language="en" datatype="plaintext" original="EXT:ns_wp_migration/Resources/Private/Language/locallang.xlf" date="2015-11-18T13:15:38Z" product-name="ns_wp_migration">
 		<header/>
 		<body>
 			<trans-unit id="import_manager">
