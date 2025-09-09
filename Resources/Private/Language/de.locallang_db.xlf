@@ -5,25 +5,25 @@
     <body>
       <trans-unit id="tx_log_manage" xml:space="preserve">
                 <source>Blog: Logs</source>
-            <target state="needs-translation">Blog: Logs</target></trans-unit>
+            <target state="translated">Blog: Protokolle</target></trans-unit>
       <trans-unit id="tx_log_manage.number_of_records" xml:space="preserve">
                 <source>Total Records</source>
-            <target state="needs-translation">Total Records</target></trans-unit>
+            <target state="translated">Gesamtanzahl Datensätze</target></trans-unit>
       <trans-unit id="tx_log_manage.total_success" xml:space="preserve">
                 <source>Inserted Total</source>
-            <target state="needs-translation">Inserted Total</target></trans-unit>
+            <target state="translated">Insgesamt eingefügt</target></trans-unit>
       <trans-unit id="tx_log_manage.total_fails" xml:space="preserve">
                 <source>Fails Total</source>
-            <target state="needs-translation">Fails Total</target></trans-unit>
+            <target state="translated">Insgesamt fehlgeschlagen</target></trans-unit>
       <trans-unit id="tx_log_manage.total_update" xml:space="preserve">
                 <source>Total Updated</source>
-            <target state="needs-translation">Total Updated</target></trans-unit>
+            <target state="translated">Gesamtanzahl Aktualisierungen</target></trans-unit>
       <trans-unit id="tx_log_manage.added_by" xml:space="preserve">
                 <source>Added By</source>
-            <target state="needs-translation">Added By</target></trans-unit>
+            <target state="translated">Hinzugefügt von</target></trans-unit>
       <trans-unit id="tx_log_manage.created_date" xml:space="preserve">
                 <source>Created Date</source>
-            <target state="needs-translation">Created Date</target></trans-unit>
+            <target state="translated">Erstellungsdatum</target></trans-unit>
     </body>
   </file>
 </xliff>
