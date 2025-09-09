@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns:t3="http://typo3.org/schemas/xliff" version="1.0">
+  <file t3:id="1557352031" source-language="en" datatype="plaintext" original="EXT:ns_wp_migration/Resources/Private/Language/locallang_db.xlf" date="2019-05-08T21:47:12Z" product-name="ns_wp_migration" target-language="tr">
+    <header/>
+    <body>
+      <trans-unit id="tx_log_manage" xml:space="preserve">
+                <source>Blog: Logs</source>
+            <target state="needs-translation">Blog: Logs</target></trans-unit>
+      <trans-unit id="tx_log_manage.number_of_records" xml:space="preserve">
+                <source>Total Records</source>
+            <target state="needs-translation">Total Records</target></trans-unit>
+      <trans-unit id="tx_log_manage.total_success" xml:space="preserve">
+                <source>Inserted Total</source>
+            <target state="needs-translation">Inserted Total</target></trans-unit>
+      <trans-unit id="tx_log_manage.total_fails" xml:space="preserve">
+                <source>Fails Total</source>
+            <target state="needs-translation">Fails Total</target></trans-unit>
+      <trans-unit id="tx_log_manage.total_update" xml:space="preserve">
+                <source>Total Updated</source>
+            <target state="needs-translation">Total Updated</target></trans-unit>
+      <trans-unit id="tx_log_manage.added_by" xml:space="preserve">
+                <source>Added By</source>
+            <target state="needs-translation">Added By</target></trans-unit>
+      <trans-unit id="tx_log_manage.created_date" xml:space="preserve">
+                <source>Created Date</source>
+            <target state="needs-translation">Created Date</target></trans-unit>
+    </body>
+  </file>
+</xliff>
