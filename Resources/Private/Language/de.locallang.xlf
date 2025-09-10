@@ -3,133 +3,133 @@
   <file source-language="en" datatype="plaintext" original="EXT:ns_wp_migration/Resources/Private/Language/locallang.xlf" date="2015-11-18T13:15:38Z" product-name="ns_wp_migration" target-language="de">
     <header/>
     <body>
-      <trans-unit id="import_manager">
+      <trans-unit id="import_manager" approved="yes">
         <source>Import Manager</source>
-        <target state="translated">Import-Manager</target>
+        <target state="final">Import-Manager</target>
       </trans-unit>
-      <trans-unit id="log_manager">
+      <trans-unit id="log_manager" approved="yes">
         <source>Log Manager</source>
-        <target state="translated">Protokoll-Manager</target>
+        <target state="final">Protokoll-Manager</target>
       </trans-unit>
-      <trans-unit id="redirect_rule">
+      <trans-unit id="redirect_rule" approved="yes">
         <source>301 Rule URL</source>
-        <target state="translated">301-Regel-URL</target>
+        <target state="final">301-Regel-URL</target>
       </trans-unit>
-      <trans-unit id="active_url">
+      <trans-unit id="active_url" approved="yes">
         <source>Active-URL:</source>
-        <target state="translated">Aktive-URL:</target>
+        <target state="final">Aktive-URL:</target>
       </trans-unit>
-      <trans-unit id="previous_url">
+      <trans-unit id="previous_url" approved="yes">
         <source>Previous-URL:</source>
-        <target state="translated">Vorherige-URL:</target>
+        <target state="final">Vorherige-URL:</target>
       </trans-unit>
       <trans-unit id="form.submitButton">
         <source>Import</source>
-        <target state="needs-translation">Import</target>
+        <target state="translated"/>
       </trans-unit>
-      <trans-unit id="missing_rule">
+      <trans-unit id="missing_rule" approved="yes">
         <source>Missing Items</source>
-        <target state="translated">Fehlende Elemente</target>
+        <target state="final">Fehlende Elemente</target>
       </trans-unit>
-      <trans-unit id="missing_rowno">
+      <trans-unit id="missing_rowno" approved="yes">
         <source>Row No:</source>
-        <target state="translated">Zeilennummer:</target>
+        <target state="final">Zeilennummer:</target>
       </trans-unit>
-      <trans-unit id="missing_column">
+      <trans-unit id="missing_column" approved="yes">
         <source>Column Name:</source>
-        <target state="translated">Spaltenname:</target>
+        <target state="final">Spaltenname:</target>
       </trans-unit>
-      <trans-unit id="missing_rule_validation">
+      <trans-unit id="missing_rule_validation" approved="yes">
         <source>If required items are missing then records are not inserted*</source>
-        <target state="translated">Wenn erforderliche Elemente fehlen, werden Datensätze nicht eingefügt*</target>
+        <target state="final">Wenn erforderliche Elemente fehlen, werden Datensätze nicht eingefügt*</target>
       </trans-unit>
-      <trans-unit id="storageId.require">
+      <trans-unit id="storageId.require" approved="yes">
         <source>Please provide a storage ID</source>
-        <target state="translated">Bitte geben Sie eine Speicher-ID an</target>
+        <target state="final">Bitte geben Sie eine Speicher-ID an</target>
       </trans-unit>
-      <trans-unit id="import.success">
+      <trans-unit id="import.success" approved="yes">
         <source>Data import Successfully please check the logs for more informations.</source>
-        <target state="translated">Datenimport erfolgreich, bitte überprüfen Sie die Protokolle für weitere Informationen.</target>
+        <target state="final">Datenimport erfolgreich, bitte überprüfen Sie die Protokolle für weitere Informationen.</target>
       </trans-unit>
-      <trans-unit id="import.fail">
+      <trans-unit id="import.fail" approved="yes">
         <source>Log create fails something went wrongs.</source>
-        <target state="translated">Fehlgeschlagene Protokollerstellung, etwas ist schiefgelaufen.</target>
+        <target state="final">Fehlgeschlagene Protokollerstellung, etwas ist schiefgelaufen.</target>
       </trans-unit>
-      <trans-unit id="error.pageId">
+      <trans-unit id="error.pageId" approved="yes">
         <source>Storage page is not found</source>
-        <target state="translated">Speicherseite wurde nicht gefunden</target>
+        <target state="final">Speicherseite wurde nicht gefunden</target>
       </trans-unit>
-      <trans-unit id="error.invalidFile">
+      <trans-unit id="error.invalidFile" approved="yes">
         <source>Invalid file format : Please upload file (CSV)</source>
-        <target state="translated">Ungültiges Dateiformat: Bitte laden Sie eine Datei (CSV) hoch</target>
+        <target state="final">Ungültiges Dateiformat: Bitte laden Sie eine Datei (CSV) hoch</target>
       </trans-unit>
       <trans-unit id="error.invalidfileData">
         <source>Data is not match as per requirement! Please download sample csv file.</source>
         <target state="translated">Die Daten entsprechen nicht den Anforderungen! Bitte laden Sie die Beispiel-CSV-Datei herunter.</target>
       </trans-unit>
-      <trans-unit id="label.fileSelect">
+      <trans-unit id="label.fileSelect" approved="yes">
         <source>Please Select Post File (CSV)</source>
-        <target state="translated">Bitte wählen Sie die Post-Datei (CSV) aus</target>
+        <target state="final">Bitte wählen Sie die Post-Datei (CSV) aus</target>
       </trans-unit>
-      <trans-unit id="label.postType">
+      <trans-unit id="label.postType" approved="yes">
         <source>Select Post Types</source>
-        <target state="translated">Wählen Sie die Post-Typen aus</target>
+        <target state="final">Wählen Sie die Post-Typen aus</target>
       </trans-unit>
       <trans-unit id="label.storageFolder">
         <source>Please Insert Storage Folder Id</source>
         <target state="translated">Bitte geben Sie die ID des Speicherordners ein</target>
       </trans-unit>
-      <trans-unit id="postType.page">
+      <trans-unit id="postType.page" approved="yes">
         <source>Page</source>
-        <target state="translated">Seite</target>
+        <target state="final">Seite</target>
       </trans-unit>
-      <trans-unit id="postType.news">
+      <trans-unit id="postType.news" approved="yes">
         <source>News</source>
-        <target state="translated">Nachrichten</target>
+        <target state="final">Nachrichten</target>
       </trans-unit>
       <trans-unit id="postType.Blog">
         <source>Blog</source>
         <target state="needs-translation">Blog</target>
       </trans-unit>
-      <trans-unit id="log.totalRecord">
+      <trans-unit id="log.totalRecord" approved="yes">
         <source>Total Records</source>
-        <target state="translated">Gesamtzahl der Datensätze</target>
+        <target state="final">Gesamtzahl der Datensätze</target>
       </trans-unit>
-      <trans-unit id="log.totalUpdate">
+      <trans-unit id="log.totalUpdate" approved="yes">
         <source>Total Update</source>
-        <target state="translated">Gesamtanzahl der Aktualisierungen</target>
+        <target state="final">Gesamtanzahl der Aktualisierungen</target>
       </trans-unit>
-      <trans-unit id="log.totalInserted">
+      <trans-unit id="log.totalInserted" approved="yes">
         <source>Total Inserted</source>
-        <target state="translated">Insgesamt eingefügt</target>
+        <target state="final">Insgesamt eingefügt</target>
       </trans-unit>
-      <trans-unit id="log.totalImportDate">
+      <trans-unit id="log.totalImportDate" approved="yes">
         <source>Import date</source>
-        <target state="translated">Importdatum</target>
+        <target state="final">Importdatum</target>
       </trans-unit>
-      <trans-unit id="log.storageFolder">
+      <trans-unit id="log.storageFolder" approved="yes">
         <source>Record Storage ID</source>
-        <target state="translated">Speicher-ID des Datensatzes</target>
+        <target state="final">Speicher-ID des Datensatzes</target>
       </trans-unit>
-      <trans-unit id="download.samplefile">
+      <trans-unit id="download.samplefile" approved="yes">
         <source>Download Sample</source>
-        <target state="translated">Beispiel herunterladen</target>
+        <target state="final">Beispiel herunterladen</target>
       </trans-unit>
       <trans-unit id="placeholder.StorageFolder">
         <source>Insert Storage Page Id</source>
         <target state="translated">Speicherseiten-ID einfügen</target>
       </trans-unit>
-      <trans-unit id="extensionconfiguration.mediapath">
+      <trans-unit id="extensionconfiguration.mediapath" approved="yes">
         <source>Media Storage Path</source>
-        <target state="translated">Medienspeicherpfad</target>
+        <target state="final">Medienspeicherpfad</target>
       </trans-unit>
-      <trans-unit id="extensionconfiguration.newsmediapath">
+      <trans-unit id="extensionconfiguration.newsmediapath" approved="yes">
         <source>News Media Storage Path</source>
-        <target state="translated">Medienspeicherpfad für Nachrichten</target>
+        <target state="final">Medienspeicherpfad für Nachrichten</target>
       </trans-unit>
-      <trans-unit id="extensionconfiguration.blogmediapath">
+      <trans-unit id="extensionconfiguration.blogmediapath" approved="yes">
         <source>Blog Media Storage Path</source>
-        <target state="translated">Medienspeicherpfad für Blog</target>
+        <target state="final">Medienspeicherpfad für Blog</target>
       </trans-unit>
     </body>
   </file>
