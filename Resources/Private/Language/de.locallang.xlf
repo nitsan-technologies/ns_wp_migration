@@ -23,9 +23,9 @@
         <source>Previous-URL:</source>
         <target state="final">Vorherige-URL:</target>
       </trans-unit>
-      <trans-unit id="form.submitButton">
+      <trans-unit id="form.submitButton" approved="yes">
         <source>Import</source>
-        <target state="translated"/>
+        <target state="final"/>
       </trans-unit>
       <trans-unit id="missing_rule" approved="yes">
         <source>Missing Items</source>
@@ -63,9 +63,9 @@
         <source>Invalid file format : Please upload file (CSV)</source>
         <target state="final">Ungültiges Dateiformat: Bitte laden Sie eine Datei (CSV) hoch</target>
       </trans-unit>
-      <trans-unit id="error.invalidfileData">
+      <trans-unit id="error.invalidfileData" approved="yes">
         <source>Data is not match as per requirement! Please download sample csv file.</source>
-        <target state="translated">Die Daten entsprechen nicht den Anforderungen! Bitte laden Sie die Beispiel-CSV-Datei herunter.</target>
+        <target state="final">Die Daten entsprechen nicht den Anforderungen! Bitte laden Sie die Beispiel-CSV-Datei herunter.</target>
       </trans-unit>
       <trans-unit id="label.fileSelect" approved="yes">
         <source>Please Select Post File (CSV)</source>
@@ -75,9 +75,9 @@
         <source>Select Post Types</source>
         <target state="final">Wählen Sie die Post-Typen aus</target>
       </trans-unit>
-      <trans-unit id="label.storageFolder">
+      <trans-unit id="label.storageFolder" approved="yes">
         <source>Please Insert Storage Folder Id</source>
-        <target state="translated">Bitte geben Sie die ID des Speicherordners ein</target>
+        <target state="final">Bitte geben Sie die ID des Speicherordners ein</target>
       </trans-unit>
       <trans-unit id="postType.page" approved="yes">
         <source>Page</source>
@@ -115,9 +115,9 @@
         <source>Download Sample</source>
         <target state="final">Beispiel herunterladen</target>
       </trans-unit>
-      <trans-unit id="placeholder.StorageFolder">
+      <trans-unit id="placeholder.StorageFolder" approved="yes">
         <source>Insert Storage Page Id</source>
-        <target state="translated">Speicherseiten-ID einfügen</target>
+        <target state="final">Speicherseiten-ID einfügen</target>
       </trans-unit>
       <trans-unit id="extensionconfiguration.mediapath" approved="yes">
         <source>Media Storage Path</source>
