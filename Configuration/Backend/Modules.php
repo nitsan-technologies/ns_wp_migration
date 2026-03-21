@@ -22,7 +22,7 @@ return [
         'path' => '/module/web/importModule',
         'inheritNavigationComponentFromMainModule' => false,
         'extensionName' => 'ns_wp_migration',
-        'navigationComponent' => '@typo3/backend/page-tree/page-tree-element',
+        'navigationComponent' => '@typo3/backend/tree/page-tree-element',
         'controllerActions' => [
             PostController::class => 'import, importForm, logManager, downloadSample',
         ],

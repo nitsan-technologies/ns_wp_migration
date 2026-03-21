@@ -14,10 +14,10 @@ use TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider;
 
     $GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets']['ns-importer'] = 'EXT:ns_wp_migration/Configuration/RTE/Default.yaml';
     // PageTS
-    ExtensionManagementUtility::addPageTSConfig(
-        '
-        @import EXT:ns_wp_migration/Configuration/TsConfig/Page/RTE.tsconfig'
-    );
+    // ExtensionManagementUtility::addPageTSConfig(
+    //     '
+    //     @import EXT:ns_wp_migration/Configuration/TsConfig/Page/RTE.tsconfig'
+    // );
     if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() < 12) {
         // @extensionScannerIgnoreLine
         if (!array_key_exists('nitsan', $GLOBALS['TBE_MODULES']) || $GLOBALS['TBE_MODULES']['nitsan'] == '') {

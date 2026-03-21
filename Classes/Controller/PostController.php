@@ -93,6 +93,7 @@ class PostController extends AbstractController
      */
     public function importFormAction(): ResponseInterface
     {
+        // \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump("test", __FILE__.' '.__LINE__);die;
         $requestData = $this->request->getArguments();
         // log url Action
         $loguri = $this->uriBuilder
@@ -107,7 +108,8 @@ class PostController extends AbstractController
 
         $response = 0;
 
-        if (!$requestData['storageId']) {
+        // if (!$requestData['storageId']) {
+        if (empty($requestData['storageId'])) {
             $massage = LocalizationUtility::translate('storageId.require', 'ns_wp_migration');
             if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() < 12) {
                 // @extensionScannerIgnoreLine
@@ -174,11 +176,11 @@ class PostController extends AbstractController
         if ($this->checkValideFile($file)) {
 
             $handle = fopen($file['tmp_name'], 'r');
-            $columns = fgetcsv($handle, 10000, ",");
+            $columns = fgetcsv($handle, 10000, ",", '"', '\\');
             $record = 1;
             $data = [];
 
-            while (($row = fgetcsv($handle, 10000, ",")) !== false) {
+            while (($row = fgetcsv($handle, 10000, ",", '"', '\\')) !== false) {
                 // Validate column count
                 if (count($columns) !== count($row)) {
                     $massage = LocalizationUtility::translate('error.invalidfileData', 'ns_wp_migration');
@@ -396,6 +398,7 @@ class PostController extends AbstractController
      */
     public function logManagerAction(): ResponseInterface
     {
+        
         $data = $this->logManageRepository->getAllLogs();
         $assign = [
             'action' => 'logManager',
