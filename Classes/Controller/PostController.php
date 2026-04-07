@@ -27,8 +27,10 @@ use TYPO3\CMS\Beuser\Domain\Repository\BackendUserRepository;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use NITSAN\NsWpMigration\Domain\Repository\LogManageRepository;
 use TYPO3\CMS\Core\Page\PageRenderer;
-
+use TYPO3\CMS\Backend\Routing\UriBuilder as BackendUriBuilder;
+use TYPO3\CMS\Backend\Utility\BackendUtility;
 // @extensionScannerIgnoreFile
+
 /**
  * PostController
  */
@@ -93,26 +95,33 @@ class PostController extends AbstractController
      */
     public function importFormAction(): ResponseInterface
     {
-        // \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump("test", __FILE__.' '.__LINE__);die;
         $requestData = $this->request->getArguments();
-        // log url Action
-        $loguri = $this->uriBuilder
-            ->reset()
-            ->uriFor('logManager', [], 'Post', 'NsWpMigration', 'importModule');
-        $loguri = $this->addBaseUriIfNecessary($loguri);
-        // Import url Action
-        $importAction = $this->uriBuilder
-            ->reset()
-            ->uriFor('import', [], 'Post', 'NsWpMigration', 'importModule');
-        $importAction = $this->addBaseUriIfNecessary($importAction);
+        $typo3Version = (GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion();
+
+        if ($typo3Version < 12) {
+            $loguri = $this->addBaseUriIfNecessary(
+                $this->uriBuilder->reset()->uriFor('logManager', [], 'Post', 'NsWpMigration', 'importModule')
+            );
+            $importAction = $this->addBaseUriIfNecessary(
+                $this->uriBuilder->reset()->uriFor('import', [], 'Post', 'NsWpMigration', 'importModule')
+            );
+        } else {
+            $backendUriBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Backend\Routing\UriBuilder::class);
+            $loguri = (string)$backendUriBuilder->buildUriFromRoute('nsWpMigrationModule', [
+                'action'     => 'logManager',
+                'controller' => 'Post',
+            ]);
+            $importAction = (string)$backendUriBuilder->buildUriFromRoute('nsWpMigrationModule', [
+                'action'     => 'import',
+                'controller' => 'Post',
+            ]);
+        }
 
         $response = 0;
 
-        // if (!$requestData['storageId']) {
         if (empty($requestData['storageId'])) {
             $massage = LocalizationUtility::translate('storageId.require', 'ns_wp_migration');
-            if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() < 12) {
-                // @extensionScannerIgnoreLine
+            if ($typo3Version < 12) {
                 $this->addFlashMessage($massage, 'Error', FlashMessage::ERROR);
                 return $this->redirect('import');
             } else {
@@ -122,11 +131,7 @@ class PostController extends AbstractController
         }
 
         if ($this->pageRepository->getPage($requestData['storageId'])) {
-            if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() < 12) {
-                $fileArray = $requestData['dataFile'];
-            } else {
-                $fileArray = $_FILES['dataFile'];
-            }
+            $fileArray = $typo3Version < 12 ? $requestData['dataFile'] : $_FILES['dataFile'];
             $response = $this->importCsvData(
                 $fileArray,
                 $requestData['postType'],
@@ -134,8 +139,7 @@ class PostController extends AbstractController
             );
         } else {
             $massage = LocalizationUtility::translate('error.pageId', 'ns_wp_migration');
-            if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() < 12) {
-                // @extensionScannerIgnoreLine
+            if ($typo3Version < 12) {
                 $this->addFlashMessage($massage, 'Error', FlashMessage::ERROR);
                 return $this->redirect('import');
             } else {
@@ -145,23 +149,31 @@ class PostController extends AbstractController
         }
 
         if ($response === 0) {
-            if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() < 12) {
-                $response = $this->redirect('import');
-            } else {
-                $response = new RedirectResponse($importAction);
-            }
+            return $typo3Version < 12
+                ? $this->redirect('import')
+                : new RedirectResponse($importAction);
+        }
+        $massage = LocalizationUtility::translate('import.success', 'ns_wp_migration');
+        if ($typo3Version < 12) {
+            $this->addFlashMessage($massage, 'Success', FlashMessage::OK);
+            BackendUtility::setUpdateSignal('updatePageTree'); 
+            $response = $this->redirect('import');
         } else {
-            $massage = LocalizationUtility::translate('import.success', 'ns_wp_migration');
-            if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() < 12) {
-                // @extensionScannerIgnoreLine
-                $this->addFlashMessage($massage, 'Success', FlashMessage::OK);
-                $response = $this->redirect('logManager');
-            } else {
-                $this->addFlashMessage($massage, 'Success', ContextualFeedbackSeverity::OK);
-                $response = new RedirectResponse($loguri);
-            }
+            $this->addFlashMessage($massage, 'Success', ContextualFeedbackSeverity::OK);
+            BackendUtility::setUpdateSignal('updatePageTree');
+            $response = new RedirectResponse($importAction);
         }
         return $response;
+
+
+        $massage = LocalizationUtility::translate('import.success', 'ns_wp_migration');
+        if ($typo3Version < 12) {
+            $this->addFlashMessage($massage, 'Success', FlashMessage::OK);
+            return $this->redirect('import');
+        } else {
+            $this->addFlashMessage($massage, 'Success', ContextualFeedbackSeverity::OK);
+            return new RedirectResponse($importAction); // ← was $loguri
+        }
     }
 
     /**
@@ -398,7 +410,7 @@ class PostController extends AbstractController
      */
     public function logManagerAction(): ResponseInterface
     {
-        
+
         $data = $this->logManageRepository->getAllLogs();
         $assign = [
             'action' => 'logManager',

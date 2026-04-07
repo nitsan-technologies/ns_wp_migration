@@ -6,7 +6,6 @@ imports:
 
 editor:
   config:
-    # RTE default config removes image plugin - restore it:
     toolbar:
       items:
         - Image
@@ -14,7 +13,6 @@ editor:
         - removeFormat
         - undo
         - redo
-        # grouping separator
         - '|'
         - find
         - selectAll
@@ -28,7 +26,6 @@ editor:
         - sourceEditing
         - showBlocks
         - horizontalLine
-        # line break
         - '-'
         - bold
         - italic
@@ -63,5 +60,29 @@ editor:
 
     removeButtons:
       - Anchor
-      - Underline
-      - Strike
+
+    htmlSupport:
+      allow:
+        - name: 'img'
+          attributes: true
+          classes: true
+          styles: true
+        - name: 'figure'
+          attributes: true
+          classes: true
+          styles: true
+
+processing:
+  allowTags:
+    - img
+    - figure
+
+  HTMLparser_db:
+    tags:
+      img:
+        allowedAttribs: class,src,alt,width,height
+        fixAttrib:
+          src:
+            userFunc: null
+      figure:
+        allowedAttribs: class
