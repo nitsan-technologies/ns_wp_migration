@@ -13,8 +13,8 @@ $EM_CONF['ns_wp_migration'] = [
     'constraints' => [
         'depends' => [
             'typo3' => '11.5.0-14.9.99',
-            'rte_ckeditor_image'=>'11.0.2-13.9.99',
-            'php' => '7.4.0 - 8.4.99'
+            'rte_ckeditor_image'=>'11.0.2-14.9.99',
+            'php' => '7.4.0 - 8.5'
         ],
 
         'conflicts' => [],

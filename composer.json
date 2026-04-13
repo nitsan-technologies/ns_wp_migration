@@ -20,9 +20,9 @@
         "Wordpress"
     ],
     "require": {
-        "typo3/cms-core": "^11.5 || ^12.4 || ^13.4  || ^14.9",
-        "ezyang/htmlpurifier": "^4.18",
-        "netresearch/rte-ckeditor-image": "^11.0 || ^12.0  || ^13.0"
+        "typo3/cms-core": "^11.5 || ^12.4 || ^13.4  || ^14.0",
+        "ezyang/htmlpurifier": "^4.19",
+        "netresearch/rte-ckeditor-image": "^11.0 || ^12.0  || ^13.0 || ^14.0"
     },
     "autoload": {
         "psr-4": {
