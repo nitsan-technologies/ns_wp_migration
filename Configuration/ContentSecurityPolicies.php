@@ -27,7 +27,9 @@ return Map::fromEntries([
             MutationMode::Extend,
             Directive::ImgSrc,
             new UriValue('https://t3planet.de'),
-            new UriValue('https://*.t3planet.de') 
+            new UriValue('https://*.t3planet.de'),
+            new UriValue('https://t3planet.com'),
+
         ),
     ),
 ]);
