@@ -29,6 +29,7 @@ use NITSAN\NsWpMigration\Domain\Repository\LogManageRepository;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Backend\Routing\UriBuilder as BackendUriBuilder;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Resource\StorageRepository;
 // @extensionScannerIgnoreFile
 
 /**
@@ -156,7 +157,7 @@ class PostController extends AbstractController
         $massage = LocalizationUtility::translate('import.success', 'ns_wp_migration');
         if ($typo3Version < 12) {
             $this->addFlashMessage($massage, 'Success', FlashMessage::OK);
-            BackendUtility::setUpdateSignal('updatePageTree'); 
+            BackendUtility::setUpdateSignal('updatePageTree');
             $response = $this->redirect('import');
         } else {
             $this->addFlashMessage($massage, 'Success', ContextualFeedbackSeverity::OK);
@@ -374,7 +375,9 @@ class PostController extends AbstractController
                     $out = file_get_contents($src);
                     file_put_contents($dstFolder . '/' . $fileName, $out);
                     // Get TYPO3 file storage
-                    $fileStorage = $resourceFactory->getDefaultStorage();
+                    $storageRepository = GeneralUtility::makeInstance(StorageRepository::class);
+                    $storages = $storageRepository->findAll();
+                    $fileStorage = $storages[0];
                     $folder = $fileStorage->getFolder('user_upload');
                     $fileObject = $fileStorage->getFileInFolder($fileName, $folder);
                     $properties = $fileObject->getProperties();

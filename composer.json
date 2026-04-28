@@ -1,7 +1,7 @@
 {
     "name": "nitsan/ns-wp-migration",
     "type": "typo3-cms-extension",
-    "description": "Plug-n-play TYPO3 extension to migrate wordpress page and page data to your TYPO3 site.",
+    "description": "TYPO3 WordPress Migration Tool - Plug-n-play TYPO3 extension to migrate wordpress page and page data to your TYPO3 site.",
     "authors": [
         {
             "name": "T3: Navdeepsinh Jethwa",
