@@ -30,6 +30,7 @@ use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Backend\Routing\UriBuilder as BackendUriBuilder;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Resource\StorageRepository;
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 // @extensionScannerIgnoreFile
 
 /**
@@ -375,9 +376,14 @@ class PostController extends AbstractController
                     $out = file_get_contents($src);
                     file_put_contents($dstFolder . '/' . $fileName, $out);
                     // Get TYPO3 file storage
+                    if (version_compare(VersionNumberUtility::convertVersionStringToArray(
+                        VersionNumberUtility::getNumericTypo3Version()
+                    )['version_main'], '13.0.0', '<')) {
+                    $fileStorage = $resourceFactory->getDefaultStorage();
+                    } else {
                     $storageRepository = GeneralUtility::makeInstance(StorageRepository::class);
-                    $storages = $storageRepository->findAll();
-                    $fileStorage = $storages[0];
+                    $fileStorage = $storageRepository->getDefaultStorage();
+                    }
                     $folder = $fileStorage->getFolder('user_upload');
                     $fileObject = $fileStorage->getFileInFolder($fileName, $folder);
                     $properties = $fileObject->getProperties();
