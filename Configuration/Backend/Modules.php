@@ -12,8 +12,9 @@ $typo3Version = (int)VersionNumberUtility::convertVersionStringToArray(
 /**
  * Definitions for modules provided by EXT:ns_wp_migration
  */
-$module =  [
-    'nsWpMigration' => [
+
+return [
+    'nitsan_module' => [
         'labels' => 'LLL:EXT:ns_wp_migration/Resources/Private/Language/BackendModule.xlf',
         'icon'   => 'EXT:ns_wp_migration/Resources/Public/Icons/module-nswpmigration.svg',
         'position' => ['after' => 'web'],
@@ -35,13 +36,4 @@ $module =  [
         ],
     ],
 ];
-    if (!ExtensionManagementUtility::isLoaded('ns_basetheme')) {
-    $module['nitsan_module'] = [
-        'labels' => 'LLL:EXT:ns_helpdesk/Resources/Private/Language/BackendModule.xlf',
-        'icon' => 'EXT:ns_helpdesk/Resources/Public/Icons/module-nitsan.svg',
-        'iconIdentifier' => 'module-nshelpdesk',
-        'position' => ['after' => 'web'],
-    ];
-}
-return $module;
 
