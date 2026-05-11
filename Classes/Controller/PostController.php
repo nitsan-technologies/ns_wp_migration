@@ -101,18 +101,11 @@ class PostController extends AbstractController
         $typo3Version = (GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion();
 
         if ($typo3Version < 12) {
-            $loguri = $this->addBaseUriIfNecessary(
-                $this->uriBuilder->reset()->uriFor('logManager', [], 'Post', 'NsWpMigration', 'importModule')
-            );
             $importAction = $this->addBaseUriIfNecessary(
                 $this->uriBuilder->reset()->uriFor('import', [], 'Post', 'NsWpMigration', 'importModule')
             );
         } else {
             $backendUriBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Backend\Routing\UriBuilder::class);
-            $loguri = (string)$backendUriBuilder->buildUriFromRoute('nsWpMigrationModule', [
-                'action'     => 'logManager',
-                'controller' => 'Post',
-            ]);
             $importAction = (string)$backendUriBuilder->buildUriFromRoute('nsWpMigrationModule', [
                 'action'     => 'import',
                 'controller' => 'Post',
@@ -166,16 +159,6 @@ class PostController extends AbstractController
             $response = new RedirectResponse($importAction);
         }
         return $response;
-
-
-        $massage = LocalizationUtility::translate('import.success', 'ns_wp_migration');
-        if ($typo3Version < 12) {
-            $this->addFlashMessage($massage, 'Success', FlashMessage::OK);
-            return $this->redirect('import');
-        } else {
-            $this->addFlashMessage($massage, 'Success', ContextualFeedbackSeverity::OK);
-            return new RedirectResponse($importAction); // ← was $loguri
-        }
     }
 
     /**
@@ -379,10 +362,10 @@ class PostController extends AbstractController
                     if (version_compare(VersionNumberUtility::convertVersionStringToArray(
                         VersionNumberUtility::getNumericTypo3Version()
                     )['version_main'], '13.0.0', '<')) {
-                    $fileStorage = $resourceFactory->getDefaultStorage();
+                        $fileStorage = $resourceFactory->getDefaultStorage();
                     } else {
-                    $storageRepository = GeneralUtility::makeInstance(StorageRepository::class);
-                    $fileStorage = $storageRepository->getDefaultStorage();
+                        $storageRepository = GeneralUtility::makeInstance(StorageRepository::class);
+                        $fileStorage = $storageRepository->getDefaultStorage();
                     }
                     $folder = $fileStorage->getFolder('user_upload');
                     $fileObject = $fileStorage->getFileInFolder($fileName, $folder);
