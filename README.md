@@ -1,7 +1,7 @@
 # ns_wp_migration
 
 [![WpMigration](https://img.shields.io/badge/stable-v14.0.0-green?style=flat-square)](https://github.com/nitsan-technologies/ns_wp_migration/tree/14.0.0)
-[![WpMigration](https://img.shields.io/badge/stable-v13.0.0-green?style=flat-square)](https://github.com/nitsan-technologies/ns_wp_migration/tree/13.0.0)
+[![WpMigration](https://img.shields.io/badge/stable-v13.0.0-green?style=flat-square)](https://github.com/nitsan-technologies/ns_wp_migration/tree/2.0.0)
 [![TYPO3 14](https://img.shields.io/badge/TYPO3-14-orange.svg?style=flat-square)](https://get.typo3.org/version/14)
 [![TYPO3 13](https://img.shields.io/badge/TYPO3-13-orange.svg?style=flat-square)](https://get.typo3.org/version/13)
 [![License](https://img.shields.io/badge/license-GPL--3.0-orange?style=flat-square)](https://www.gnu.org/licenses/gpl-3.0.en.html)
