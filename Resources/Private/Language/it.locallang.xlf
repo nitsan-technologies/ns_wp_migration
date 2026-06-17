@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="EXT:ns_wp_migration/Resources/Private/Language/locallang.xlf" date="2015-11-18T13:15:38Z" product-name="ns_wp_migration" target-language="it">
+    <header/>
+    <body>
+      <trans-unit id="import_manager">
+        <source>Import Manager</source>
+        <target state="needs-translation">Import Manager</target>
+      </trans-unit>
+      <trans-unit id="log_manager">
+        <source>Log Manager</source>
+        <target state="needs-translation">Log Manager</target>
+      </trans-unit>
+      <trans-unit id="redirect_rule">
+        <source>301 Rule URL</source>
+        <target state="needs-translation">301 Rule URL</target>
+      </trans-unit>
+      <trans-unit id="active_url">
+        <source>Active-URL:</source>
+        <target state="needs-translation">Active-URL:</target>
+      </trans-unit>
+      <trans-unit id="previous_url">
+        <source>Previous-URL:</source>
+        <target state="needs-translation">Previous-URL:</target>
+      </trans-unit>
+      <trans-unit id="form.submitButton">
+        <source>Import</source>
+        <target state="needs-translation">Import</target>
+      </trans-unit>
+      <trans-unit id="missing_rule">
+        <source>Missing Items</source>
+        <target state="needs-translation">Missing Items</target>
+      </trans-unit>
+      <trans-unit id="missing_rowno">
+        <source>Row No:</source>
+        <target state="needs-translation">Row No:</target>
+      </trans-unit>
+      <trans-unit id="missing_column">
+        <source>Column Name:</source>
+        <target state="needs-translation">Column Name:</target>
+      </trans-unit>
+      <trans-unit id="missing_rule_validation">
+        <source>If required items are missing then records are not inserted*</source>
+        <target state="needs-translation">If required items are missing then records are not inserted*</target>
+      </trans-unit>
+      <trans-unit id="storageId.require">
+        <source>Please provide a storage ID</source>
+        <target state="needs-translation">Please provide a storage ID</target>
+      </trans-unit>
+      <trans-unit id="import.success">
+        <source>Data import Successfully please check the logs for more informations.</source>
+        <target state="needs-translation">Data import Successfully please check the logs for more informations.</target>
+      </trans-unit>
+      <trans-unit id="import.fail">
+        <source>Log create fails something went wrongs.</source>
+        <target state="needs-translation">Log create fails something went wrongs.</target>
+      </trans-unit>
+      <trans-unit id="error.pageId">
+        <source>Storage page is not found</source>
+        <target state="needs-translation">Storage page is not found</target>
+      </trans-unit>
+      <trans-unit id="error.invalidFile">
+        <source>Invalid file format : Please upload file (CSV)</source>
+        <target state="needs-translation">Invalid file format : Please upload file (CSV)</target>
+      </trans-unit>
+      <trans-unit id="error.invalidfileData">
+        <source>Data is not match as per requirement! Please download sample csv file.</source>
+        <target state="needs-translation">Data is not match as per requirement! Please download sample csv file.</target>
+      </trans-unit>
+      <trans-unit id="label.fileSelect">
+        <source>Please Select Post File (CSV)</source>
+        <target state="needs-translation">Please Select Post File (CSV)</target>
+      </trans-unit>
+      <trans-unit id="label.postType">
+        <source>Select Post Types</source>
+        <target state="needs-translation">Select Post Types</target>
+      </trans-unit>
+      <trans-unit id="label.storageFolder">
+        <source>Please Insert Storage Folder Id</source>
+        <target state="needs-translation">Please Insert Storage Folder Id</target>
+      </trans-unit>
+      <trans-unit id="postType.page">
+        <source>Page</source>
+        <target state="needs-translation">Page</target>
+      </trans-unit>
+      <trans-unit id="postType.news">
+        <source>News</source>
+        <target state="needs-translation">News</target>
+      </trans-unit>
+      <trans-unit id="postType.Blog">
+        <source>Blog</source>
+        <target state="needs-translation">Blog</target>
+      </trans-unit>
+      <trans-unit id="log.totalRecord">
+        <source>Total Records</source>
+        <target state="needs-translation">Total Records</target>
+      </trans-unit>
+      <trans-unit id="log.totalUpdate">
+        <source>Total Update</source>
+        <target state="needs-translation">Total Update</target>
+      </trans-unit>
+      <trans-unit id="log.totalInserted">
+        <source>Total Inserted</source>
+        <target state="needs-translation">Total Inserted</target>
+      </trans-unit>
+      <trans-unit id="log.totalImportDate">
+        <source>Import date</source>
+        <target state="needs-translation">Import date</target>
+      </trans-unit>
+      <trans-unit id="log.storageFolder">
+        <source>Record Storage ID</source>
+        <target state="needs-translation">Record Storage ID</target>
+      </trans-unit>
+      <trans-unit id="download.samplefile">
+        <source>Download Sample</source>
+        <target state="needs-translation">Download Sample</target>
+      </trans-unit>
+      <trans-unit id="placeholder.StorageFolder">
+        <source>Insert Storage Page Id</source>
+        <target state="needs-translation">Insert Storage Page Id</target>
+      </trans-unit>
+      <trans-unit id="extensionconfiguration.mediapath">
+        <source>Media Storage Path</source>
+        <target state="needs-translation">Media Storage Path</target>
+      </trans-unit>
+      <trans-unit id="extensionconfiguration.newsmediapath">
+        <source>News Media Storage Path</source>
+        <target state="needs-translation">News Media Storage Path</target>
+      </trans-unit>
+      <trans-unit id="extensionconfiguration.blogmediapath">
+        <source>Blog Media Storage Path</source>
+        <target state="needs-translation">Blog Media Storage Path</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

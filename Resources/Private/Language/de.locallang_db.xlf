@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns:t3="http://typo3.org/schemas/xliff" version="1.0">
+  <file t3:id="1557352031" source-language="en" datatype="plaintext" original="EXT:ns_wp_migration/Resources/Private/Language/locallang_db.xlf" date="2019-05-08T21:47:12Z" product-name="ns_wp_migration" target-language="de">
+    <header/>
+    <body>
+      <trans-unit id="tx_log_manage" xml:space="preserve" approved="yes">
+                <source>Blog: Logs</source>
+            <target state="final">Blog: Protokolle</target></trans-unit>
+      <trans-unit id="tx_log_manage.number_of_records" xml:space="preserve" approved="yes">
+                <source>Total Records</source>
+            <target state="final">Gesamtanzahl Datensätze</target></trans-unit>
+      <trans-unit id="tx_log_manage.total_success" xml:space="preserve" approved="yes">
+                <source>Inserted Total</source>
+            <target state="final">Insgesamt eingefügt</target></trans-unit>
+      <trans-unit id="tx_log_manage.total_fails" xml:space="preserve" approved="yes">
+                <source>Fails Total</source>
+            <target state="final">Insgesamt fehlgeschlagen</target></trans-unit>
+      <trans-unit id="tx_log_manage.total_update" xml:space="preserve" approved="yes">
+                <source>Total Updated</source>
+            <target state="final">Gesamtanzahl Aktualisierungen</target></trans-unit>
+      <trans-unit id="tx_log_manage.added_by" xml:space="preserve" approved="yes">
+                <source>Added By</source>
+            <target state="final">Hinzugefügt von</target></trans-unit>
+      <trans-unit id="tx_log_manage.created_date" xml:space="preserve" approved="yes">
+                <source>Created Date</source>
+            <target state="final">Erstellungsdatum</target></trans-unit>
+    </body>
+  </file>
+</xliff>
