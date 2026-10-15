@@ -28,6 +28,7 @@ use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use NITSAN\NsWpMigration\Domain\Repository\LogManageRepository;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Backend\Routing\UriBuilder as BackendUriBuilder;
+use TYPO3\CMS\Backend\Routing\Exception\RouteNotFoundException;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Resource\StorageRepository;
 use TYPO3\CMS\Core\Utility\VersionNumberUtility;
@@ -38,6 +39,9 @@ use TYPO3\CMS\Core\Utility\VersionNumberUtility;
  */
 class PostController extends AbstractController
 {
+    protected const NS_LICENSE_MODULE = 'nitsan_nslicensemodule';
+    protected const NS_LICENSE_FREE_SECTION_ANCHOR = '#free-section';
+
     protected $pageRepository = null;
     protected $contentRepository = null;
     protected $logManageRepository = null;
@@ -77,7 +81,8 @@ class PostController extends AbstractController
         $assign = [
             'action' => 'import',
             'constant' => $this->constants,
-            'version' => 11
+            'version' => 11,
+            'trialUrl' => $this->getTrialUrl(),
         ];
 
         if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() < 12) {
@@ -421,6 +426,20 @@ class PostController extends AbstractController
             $view = $this->initializeModuleTemplate($this->request);
             $view->assignMultiple($assign);
             return $view->renderResponse("Post/LogManager");
+        }
+    }
+
+    /**
+     * Free-trial link to the ns_license module; empty when its route is not registered.
+     */
+    protected function getTrialUrl(): string
+    {
+        try {
+            return (string)GeneralUtility::makeInstance(BackendUriBuilder::class)
+                ->buildUriFromRoute(self::NS_LICENSE_MODULE, ['trial' => 'ns_wp_migration'])
+                . self::NS_LICENSE_FREE_SECTION_ANCHOR;
+        } catch (RouteNotFoundException $exception) {
+            return '';
         }
     }
 
