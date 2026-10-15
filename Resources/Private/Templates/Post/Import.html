@@ -1,5 +1,20 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
 <f:layout name="Default" />
+<f:section name="premiumStrip">
+	<f:if condition="{trialUrl}">
+		<div class="ns-wp-migration-premium-strip d-flex flex-wrap align-items-center justify-content-between gap-3">
+			<div class="d-flex align-items-center gap-3">
+				<span class="ns-wp-migration-premium-strip-icon"><core:icon identifier="actions-rocket" size="small" /></span>
+				<div>
+					<div class="ns-wp-migration-premium-strip-headline"><f:translate key="premium.strip.headline" /></div>
+					<div class="ns-wp-migration-premium-strip-description"><f:translate key="premium.strip.description" /></div>
+				</div>
+			</div>
+			<a href="{trialUrl}" class="btn btn-primary"><f:translate key="premium.strip.trial" /> <span aria-hidden="true">&rarr;</span></a>
+		</div>
+	</f:if>
+</f:section>
+
 <f:section name="content">
 	<div class="card custom-card">
 		<div class="card-header">
