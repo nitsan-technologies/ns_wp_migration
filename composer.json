@@ -4,9 +4,9 @@
     "description": "TYPO3 WordPress Migration Tool - Plug-n-play TYPO3 extension to migrate wordpress page and page data to your TYPO3 site.",
     "authors": [
         {
-            "name": "T3: Navdeepsinh Jethwa",
+            "name": "Team T3Planet",
             "role": "Developer",
-            "email": "sanjay@nitsan.in",
+            "email": "info@t3planet.de",
             "homepage": "https://nitsantech.com/"
         }
     ],
